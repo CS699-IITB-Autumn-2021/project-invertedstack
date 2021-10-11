@@ -72,6 +72,28 @@ class openReview:
         driver.quit()
 
         return all_venues
+    
+    def get_list_of_iclr_conf(self,url):
+
+        driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
+        # Run the Webdriver, save page an quit browser
+        driver.get(url)
+
+
+        ele_available = False
+        while not ele_available:
+            elements = driver.find_elements_by_css_selector("div#notes a")
+            if(len(elements)>0):
+                ele_available = True
+        iclr_confs = {}
+        for element in elements:
+            iclr_conf_link = element.get_attribute("href")
+            iclr_conf_name = element.get_attribute("innerHTML")
+            iclr_confs[iclr_conf_name] = iclr_conf_link
+
+        driver.quit()
+
+        return iclr_confs
 
 
 if __name__ == "__main__":
@@ -83,6 +105,9 @@ if __name__ == "__main__":
     print(OR.get_active_venues(home_url))
     print(OR.get_open_venues(home_url))
     all_venues = OR.get_all_venues(home_url)
+    
+    all_iclr = OR.get_list_of_iclr_conf(all_venues['ICLR'])
+    print(all_iclr)
 
     print(all_venues)
 
