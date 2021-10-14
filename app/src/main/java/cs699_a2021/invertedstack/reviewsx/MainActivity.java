@@ -6,9 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.concurrent.Executors;
+
 import io.noties.markwon.Markwon;
+import io.noties.markwon.editor.MarkwonEditor;
+import io.noties.markwon.editor.MarkwonEditorTextWatcher;
 import io.noties.markwon.ext.latex.JLatexMathPlugin;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin;
@@ -52,5 +59,18 @@ public class MainActivity extends AppCompatActivity {
                 .usePlugin(StrikethroughPlugin.create())
                 .build();
         markwon.setMarkdown(textView, "**Hello there!** \n $$ \\LaTeX \\text{is working !!!!!}$$ \n ~~strikethrough doesn't work ?~~");
+
+        EditText editText = findViewById(R.id.main_edit_text);
+        // https://noties.io/Markwon/docs/v4/editor/#getting-started-with-editor
+        final MarkwonEditor editor = MarkwonEditor.create(markwon);
+        editText.addTextChangedListener(MarkwonEditorTextWatcher.withProcess(editor));
+
+        Button button = findViewById(R.id.main_submit);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markwon.setMarkdown(textView, editText.getText().toString());
+            }
+        });
     }
 }
