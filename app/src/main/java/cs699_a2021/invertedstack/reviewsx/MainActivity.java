@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import io.noties.markwon.Markwon;
 import io.noties.markwon.ext.latex.JLatexMathPlugin;
+import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
 import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 }))
+                .usePlugin(StrikethroughPlugin.create())
                 .build();
-        markwon.setMarkdown(textView, "**Hello there!** \n $$ \\LaTeX \\text{is working !!!!!}$$");
+        markwon.setMarkdown(textView, "**Hello there!** \n $$ \\LaTeX \\text{is working !!!!!}$$ \n ~~strikethrough doesn't work ?~~");
     }
 }
