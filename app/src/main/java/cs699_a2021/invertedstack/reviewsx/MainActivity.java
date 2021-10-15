@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.LayoutTransition;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.concurrent.Executors;
@@ -20,6 +23,7 @@ import io.noties.markwon.editor.MarkwonEditor;
 import io.noties.markwon.editor.MarkwonEditorTextWatcher;
 import io.noties.markwon.ext.latex.JLatexMathPlugin;
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
+import io.noties.markwon.ext.tables.TablePlugin;
 import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }))
                 .usePlugin(StrikethroughPlugin.create())
+                .usePlugin(TablePlugin.create(this))
                 .build();
         markwon.setMarkdown(textView, "**Hello there!** \n $$ \\LaTeX \\text{is working !!!!!}$$ \n ~~strikethrough doesn't work ?~~");
 
@@ -82,5 +87,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button button = findViewById(R.id.dummy_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewGroup editor_view = findViewById(R.id.main_layout_for_edittext);
+                ViewGroup text_view = findViewById(R.id.main_layout_for_text);
+                editor_view.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+                text_view.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) editor_view.getLayoutParams();
+                float new_weight = params.weight != 0 ? 0 : 1;
+                editor_view.setLayoutParams(new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        0,
+                        new_weight
+                ));
+            }
+        });
     }
 }
