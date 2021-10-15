@@ -91,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                 * References:
+                 * https://developer.android.com/guide/topics/graphics/prop-animation#layout
+                 * https://stackoverflow.com/a/49159490
+                 */
                 ViewGroup editor_view = findViewById(R.id.main_layout_for_edittext);
                 ViewGroup text_view = findViewById(R.id.main_layout_for_text);
                 editor_view.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
