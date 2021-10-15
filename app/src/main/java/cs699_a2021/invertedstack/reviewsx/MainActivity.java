@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         TextView textView = findViewById(R.id.main_text);
         //final Markwon markwon = Markwon.create(getApplicationContext());
         // https://noties.io/Markwon/docs/v4/ext-latex/#blocks
@@ -64,13 +65,22 @@ public class MainActivity extends AppCompatActivity {
         // https://noties.io/Markwon/docs/v4/editor/#getting-started-with-editor
         final MarkwonEditor editor = MarkwonEditor.create(markwon);
         editText.addTextChangedListener(MarkwonEditorTextWatcher.withProcess(editor));
-
-        Button button = findViewById(R.id.main_submit);
-        button.setOnClickListener(new View.OnClickListener() {
+        editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 markwon.setMarkdown(textView, editText.getText().toString());
             }
         });
+
     }
 }
