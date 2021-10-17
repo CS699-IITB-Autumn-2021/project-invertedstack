@@ -1,6 +1,19 @@
 import requests,json
 
 def get_all_comments_for_forum_id(forum_id,path):
+    '''    
+    This function scrapes all the comments of a particular forum and saves in a json file.
+    Parameters
+    ----------
+    forum_id : str
+        The id of the forum to be scraped for comments
+    path : str
+        path where the json file containing all comments for the particular forum id will be stored.
+    
+    Returns
+    -------
+    None
+    '''
     headers = {
         'authority': 'api.openreview.net',
         'access-control-allow-origin': '*',
