@@ -1,4 +1,7 @@
 class Config:
+    '''
+    This class contains variables that can be configured as per need. 
+    '''
     #specify the path of directory where scraped json files will be stored
     data_dir = '../data/'
     #specify the path where chromedriver is placed
