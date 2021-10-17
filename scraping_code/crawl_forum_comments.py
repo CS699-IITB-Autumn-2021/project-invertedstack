@@ -43,6 +43,20 @@ def get_all_comments_for_forum_id(forum_id,path):
 
     children = {}
     def get_children(root,json_data):
+        '''
+        This function takes json_data from api requests and creates an adjacency list representation of forum comments.
+        Parameters
+        ----------
+        root : json dictionary item
+            A comment structure from json_data
+        json_data : json data from url response 
+            Json data taken from response.json()
+        
+        Returns
+        -------
+        None
+    
+        '''
         
         for comment in json_data:
             if 'replyto' in comment:
@@ -57,6 +71,23 @@ def get_all_comments_for_forum_id(forum_id,path):
                 get_children(child,json_data)
             
     def populate_json(root,json_data,comments):
+        '''
+        This function takes json_data from api requests and uses adjacency list representation of forum comments.
+        It creates a proper json nested form of comments.
+        Parameters
+        ----------
+        root : json dictionary item
+            A comment structure from json_data
+        json_data : json data from url response 
+            Json data taken from response.json()
+        comments : list
+            list which will finally contain the list of all comments 
+        
+        Returns
+        -------
+        None
+    
+        '''
         if root in children:
             for child in children[root]:
                 details = {}
