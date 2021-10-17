@@ -9,7 +9,20 @@ config = Config.Config()
 
 
 class PageCrawler:
+    '''
+    This class contains methods which can be used to scraped from openreview.net
+    '''
     def __init__(self):
+        '''
+        This method initialzes the PageCrawler object with chrome options and chrome path to enable use of selenium
+        Parameters
+        ----------
+        None
+        
+        Returns
+        -------
+        None
+        '''
         self.chrome_options = Options()
         self.chrome_options.add_argument("--headless") # Hides the browser window
         # Reference the local Chromedriver instance
@@ -17,6 +30,17 @@ class PageCrawler:
       
 
     def get_all_venues(self,url):
+        '''
+        This method scrapes all the venues which are available in the home_url 
+        Parameters
+        ----------
+        url : str
+            url or the home page of open review
+        
+        Returns
+        -------
+        A dictionary containing all venues along with their url
+        '''
         driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
         driver.get(url)
