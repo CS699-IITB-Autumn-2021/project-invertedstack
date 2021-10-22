@@ -1,6 +1,8 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import android.content.res.Resources;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import java.util.List;
 public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubItem extends IItem & ISubItem> extends AbstractExpandableItem<DiscussionItemExpandable<Parent, SubItem>, DiscussionItemExpandable.ViewHolder, SubItem> {
     public String title;
     public String body;
+    public int padding_left;
 
     private OnClickListener<DiscussionItemExpandable> mOnClickListener;
 
@@ -74,6 +77,9 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
         super.bindView(viewHolder, payloads);
         viewHolder.title.setText(title);
         viewHolder.body.setText(body);
+        // ref: https://stackoverflow.com/a/6327095
+        float scale = Resources.getSystem().getDisplayMetrics().density;
+        viewHolder.container.setPadding(((int) scale * padding_left), 0, 0, 0);
         if (getSubItems() == null || getSubItems().size() == 0) {
             viewHolder.icon.setVisibility(View.GONE);
         } else {
@@ -99,11 +105,14 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
         TextView title;
         TextView body;
         TextView icon;
+        LinearLayout container;
+
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.discussion_card_title);
             body = view.findViewById(R.id.discussion_card_body);
             icon = view.findViewById(R.id.discussion_expand);
+            container = view.findViewById(R.id.discussion_card_parent_linear);
         }
     }
 }

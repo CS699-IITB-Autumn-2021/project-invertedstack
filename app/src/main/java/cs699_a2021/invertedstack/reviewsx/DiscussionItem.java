@@ -1,6 +1,8 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import android.content.res.Resources;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import java.util.List;
 public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.ViewHolder> {
     public String title;
     public String body;
+    public int padding_left;
 
     @NonNull
     @Override
@@ -36,15 +39,21 @@ public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.
     protected static class ViewHolder extends FastAdapter.ViewHolder<DiscussionItem> {
         TextView title;
         TextView body;
+        LinearLayout container;
+
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.discussion_card_title);
             body = view.findViewById(R.id.discussion_card_body);
+            container = view.findViewById(R.id.discussion_card_parent_linear);
         }
         @Override
         public void bindView(DiscussionItem item, List<Object> payloads) {
             title.setText(item.title);
             body.setText(item.body);
+            // ref: https://stackoverflow.com/a/6327095
+            float scale = Resources.getSystem().getDisplayMetrics().density;
+            container.setPadding(((int) scale * item.padding_left), 0, 0, 0);
         }
 
         @Override

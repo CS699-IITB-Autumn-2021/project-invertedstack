@@ -44,6 +44,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
                 item.title = "Title" + i;
                 System.out.println(item.title);
                 item.body = "Body" + i;
+                item.padding_left = 0;
                 items.add(item);
                 continue;
             }
@@ -57,6 +58,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
                 DiscussionItemExpandable subItem = new DiscussionItemExpandable();
                 subItem.title = "SubTitle" + i + "." + ii;
                 subItem.body = "SubBody" + i + "." + ii;
+                subItem.padding_left = 16;
                 if(ii % 2 == 0) {
                     subItems.add(subItem);
                     continue;
@@ -66,6 +68,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
                     DiscussionItemExpandable subsubItem = new DiscussionItemExpandable();
                     subsubItem.title = "SubSubTitle" + i + "." + ii + "," + iii;
                     subsubItem.body = "SubSubBody" + i + "." + ii + "," + iii;
+                    subsubItem.padding_left = 32;
                     // Also have a padding parameter that adds like 2 dp larger padding-left than parent to a maximum padding
                     subsubItems.add(subsubItem);
                 }
