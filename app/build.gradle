@@ -64,6 +64,9 @@ dependencies {
     implementation "com.mikepenz:fastadapter-extensions-ui:${latestFastAdapterRelease}" // pre-defined ui components
     implementation "com.mikepenz:fastadapter-extensions-utils:${latestFastAdapterRelease}" // needs the `expandable`, `drag` and `scroll` extension.
     */
+
+    implementation "com.mikepenz:itemanimators:1.1.0"
+
     implementation "androidx.appcompat:appcompat:${androidX}"
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.cardview:cardview:1.0.0"

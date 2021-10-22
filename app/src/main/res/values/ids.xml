@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="discussion_item_id" type="id"/>
+    <item name="discussion_item_expandable_id" type="id"/>
 </resources>

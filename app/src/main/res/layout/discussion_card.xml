@@ -20,5 +20,11 @@
             android:id="@+id/discussion_card_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/discussion_expand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EXPAND"/>
     </LinearLayout>
 </LinearLayout>
