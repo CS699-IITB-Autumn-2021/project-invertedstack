@@ -23,12 +23,7 @@ def get_parameters():
     """
     year = request.args["year"]
     category = request.args["category"]
-    # category_map = {"oral_presentations":"Review_Papers/iclr_"+year+"_oral_presentations.json", 
-    # "poster_presentations":"Review_Papers/iclr_"+year+"_poster_presentations.json",
-    # "spotlight_presentations":"Review_Papers/iclr_"+year+"_spotlight_presentations.json",
-    # "withdrawn_rejected_submission":"Review_Papers/iclr_"+year+"_withdrawn_rejected_submissions.json"}
     output_dict = {}
-    # f = open(category_map[category])
     f = open("/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/iclr_"+year+"/iclr_"+year+"_"+category+".json")
     data = json.load(f)
     for i in data:
