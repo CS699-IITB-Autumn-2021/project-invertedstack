@@ -1,6 +1,8 @@
 package cs699_a2021.invertedstack.reviewsx;
 
 import android.content.res.Resources;
+import android.os.Build;
+import android.text.Html;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,8 +51,15 @@ public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.
         }
         @Override
         public void bindView(DiscussionItem item, List<Object> payloads) {
-            title.setText(item.title);
-            body.setText(item.body);
+            // ref - https://stackoverflow.com/a/2116191
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                title.setText(Html.fromHtml(item.title, Html.FROM_HTML_MODE_COMPACT));
+                body.setText(Html.fromHtml(item.body, Html.FROM_HTML_MODE_COMPACT));
+            }
+            else {
+                title.setText(Html.fromHtml(item.title));
+                body.setText(Html.fromHtml(item.body));
+            }
             // ref: https://stackoverflow.com/a/6327095
             float scale = Resources.getSystem().getDisplayMetrics().density;
             container.setPadding(((int) scale * item.padding_left), 0, 0, 0);

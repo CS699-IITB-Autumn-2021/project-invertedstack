@@ -1,5 +1,6 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.textclassifier.TextLinks;
+import android.widget.TextView;
 
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
@@ -16,11 +19,39 @@ import com.mikepenz.fastadapter.IItemAdapter;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class PaperList extends AppCompatActivity {
     private FastAdapter fastAdapter;
     private ItemAdapter itemAdapter;
+
+    private String test_json = "[\n" +
+            "      {\n" +
+            "            \"data_id\": \"ryQu7f-RZ\",\n" +
+            "            \"paper_title\": \"On the Convergence of Adam and Beyond\",\n" +
+            "            \"forum_link\": \"https://openreview.net/forum?id=ryQu7f-RZ\",\n" +
+            "            \"pdf_link\": \"https://openreview.net/pdf?id=ryQu7f-RZ\",\n" +
+            "            \"authors\": [\n" +
+            "                  \"Sashank J. Reddi\",\n" +
+            "                  \"Satyen Kale\",\n" +
+            "                  \"Sanjiv Kumar\"\n" +
+            "            ],\n" +
+            "            \"abstract\": \"Several recently proposed stochastic optimization methods that have been successfully used in training deep networks such as RMSProp, Adam, Adadelta, Nadam are based on using gradient updates scaled by square roots of exponential moving averages of squared past gradients. In many applications, e.g. learning with large output spaces, it has been empirically observed that these algorithms fail to converge to an optimal solution (or a critical point in nonconvex settings). We show that one cause for such failures is the exponential moving average used in the algorithms. We provide an explicit example of a simple convex optimization setting where Adam does not converge to the optimal solution, and describe the precise problems with the previous analysis of Adam algorithm. Our analysis suggests that the convergence issues can be fixed by endowing such algorithms with ``long-term memory'' of past gradients, and propose new variants of the Adam algorithm which not only fix the convergence issues but often also lead to improved empirical performance.\",\n" +
+            "            \"tl;dr\": \"We investigate the convergence of popular optimization algorithms like Adam , RMSProp and propose new variants of these methods which provably converge to optimal solution in convex  settings.\",\n" +
+            "            \"keywords\": \"optimization, deep learning, adam, rmsprop\"\n" +
+            "      }" + // NOTE: VERY IMPORTANT, DON'T HAVE A RUNNING COMMA HERE. JAVA JSON PARSER IS STUPID AS FUCK
+            "]";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +60,32 @@ public class PaperList extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.paperlist_recyclerview);
 
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://reqres.in/api/unknown";
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        /*
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    String rcvd_string = response.body().string();
+                    PaperList.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((TextView)findViewById(R.id.paperlist_testing)).setText(rcvd_string);
+                        }
+                    });
+                }
+            }
+        });
+         */
         itemAdapter = new ItemAdapter();
         fastAdapter = FastAdapter.with(itemAdapter);
         fastAdapter.withSelectable(true);
@@ -38,6 +95,34 @@ public class PaperList extends AppCompatActivity {
         recyclerView.setAdapter(fastAdapter);
 
         ArrayList<IItem> items = new ArrayList<>();
+        try {
+            JSONArray array = new JSONArray(test_json);
+            System.out.println(array.length());
+            for(int i = 0; i < array.length(); i++) {
+                JSONObject object = array.getJSONObject(i);
+                DiscussionItemExpandable item = new DiscussionItemExpandable();
+                item.title = object.getString("paper_title");
+                String body = "";
+                body += "<b>Authors: </b><i>";
+                // Authors
+                JSONArray authors = object.getJSONArray("authors");
+                for(int j = 0; j < authors.length(); j++) {
+                    body += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
+                    System.out.println(body);
+                }
+                // Abstract -- could be added as a collapsible as a separate entry
+                body += "<br><b>Abstract:</b><br>";
+                body += object.getString("abstract");
+                body += "<br><b>Keywords:</b><br><i>";
+                body += object.getString("keywords");
+                item.body = body;
+                items.add(item);
+                System.out.println("-----------------------------");
+            }
+        } catch (JSONException e) {
+            // TODO: Show proper error message
+            e.printStackTrace();
+        }
         for(int i = 0; i < 100; i++) {
             DiscussionItemExpandable item = new DiscussionItemExpandable();
             item.title = "Paper Title " + i;
