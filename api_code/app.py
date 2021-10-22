@@ -1,7 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_ngrok import run_with_ngrok
 import json
 
 app = Flask(__name__)
+run_with_ngrok(app)
+
+database_folder = "/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"
 
 
 @app.route('/')
@@ -11,7 +15,7 @@ def hello_world():
 
     Returns : string
     """
-    return 'This is the first API call!'
+    return 'Flask is running!'
 
 
 @app.route("/get_parameters")
@@ -24,7 +28,7 @@ def get_parameters():
     year = request.args["year"]
     category = request.args["category"]
     output_dict = {}
-    f = open("/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/iclr_"+year+"/iclr_"+year+"_"+category+".json")
+    f = open(database_folder+"iclr_"+year+"/iclr_"+year+"_"+category+".json")
     data = json.load(f)
     for i in data:
         output_dict[i["data_id"]] = {"paper_title":i["paper_title"],"forum_link":i["forum_link"],"pdf_link":i["pdf_link"]}
@@ -41,7 +45,7 @@ def get_categories():
     """
     year = request.args["year"]
     folder = "iclr_"+year
-    f = open("/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"+folder+"_categories.json")
+    f = open(database_folder+folder+"_categories.json")
     data = json.load(f)
     return jsonify(data)
 
@@ -52,6 +56,9 @@ def get_years():
 
     Returns : json output
     """
-    f = open("/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/years.json")
+    f = open(database_folder+"years.json")
     data = json.load(f)
     return jsonify(data)
+
+if __name__ == "__main__":
+  app.run()
