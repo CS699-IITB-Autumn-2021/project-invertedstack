@@ -15,7 +15,7 @@
             android:id="@+id/discussion_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="28sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/discussion_card_body"

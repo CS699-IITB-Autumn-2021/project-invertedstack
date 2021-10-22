@@ -122,6 +122,9 @@ public class PaperList extends AppCompatActivity {
         } catch (JSONException e) {
             // TODO: Show proper error message
             e.printStackTrace();
+            // TODO: Check if items is empty
+            // If it is empty, show full blown error screen
+            // Else show whatever items we got correct and then show a toast notification
         }
         for(int i = 0; i < 100; i++) {
             DiscussionItemExpandable item = new DiscussionItemExpandable();
