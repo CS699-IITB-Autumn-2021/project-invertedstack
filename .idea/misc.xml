@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_paper_list.xml" value="0.17958459979736577" />
         <entry key="app/src/main/res/layout/activity_paper_with_discussion.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/discussion_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/notetaking_menu.xml" value="0.266304347826087" />
