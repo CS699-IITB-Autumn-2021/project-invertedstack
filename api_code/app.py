@@ -42,6 +42,19 @@ def get_categories():
 
     Returns : json output
     """
-    f = open("Review_Papers/iclr_2021_categories.json")
+    year = request.args["year"]
+    folder = "iclr_"+year
+    f = open("/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"+folder+"_categories.json")
+    data = json.load(f)
+    return jsonify(data)
+
+@app.route("/get_years")
+def get_years():
+    """
+    Will get the years from the json database files.
+
+    Returns : json output
+    """
+    f = open("/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/years.json")
     data = json.load(f)
     return jsonify(data)
