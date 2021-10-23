@@ -98,6 +98,7 @@ public class PaperList extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     String rcvd_string = response.body().string();
                     test_json = rcvd_string;
+                    ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperList.this);
                     ArrayList<IItem> items = new ArrayList<>();
                     try {
                         JSONArray array = new JSONArray(test_json);
@@ -119,11 +120,12 @@ public class PaperList extends AppCompatActivity {
                             String body = "";
                             // Abstract -- could be added as a collapsible as a separate entry
                             body += "<br><b>Abstract:</b><br>";
-                            body += object.has("abstract") ? object.getString("abstract") : "null";
+                            body += object.has("abstract") ? object.getString("abstract") : "(Not Available)";
                             body += "<br><b>Keywords:</b><br><i>";
-                            body += object.has("keywords") ? object.getString("keywords") : "null";
+                            body += object.has("keywords") ? object.getString("keywords") : "(Not Available)";
                             item.body = body;
                             items.add(item);
+                            System.out.println(db.insertPaperData(item.content_id, item.title, item.authors, item.body));
                             System.out.println("-----------------------------");
                         }
                     } catch (JSONException e) {
