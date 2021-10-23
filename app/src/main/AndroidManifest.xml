@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ReviewsX">
+        android:theme="@style/Theme.ReviewsX"
+        android:hardwareAccelerated="true">
         <activity
             android:name=".PaperList"
             android:exported="true">

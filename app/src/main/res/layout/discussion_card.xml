@@ -1,31 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:id="@+id/discussion_card_parent_linear">
 
-    <LinearLayout
-        android:id="@+id/discussion_card_parent_linear"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|start"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="4dp"
+        card_view:contentPadding="4dp"
+        card_view:cardElevation="4dp"
+        card_view:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/discussion_card_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:orientation="vertical"
+            android:padding="4dp">
 
-        <TextView
-            android:id="@+id/discussion_card_body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/discussion_card_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/discussion_card_expand_body"
+                    android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/discussion_expand"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EXPAND"/>
-    </LinearLayout>
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/discussion_card_expand_body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="{faw-window-minimize}"
+                    android:textSize="16sp"
+                    android:rotation="180"
+                    android:padding="4dp"
+                    android:gravity="center_vertical|end"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/discussion_card_body_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true">
+                <TextView
+                    android:id="@+id/discussion_card_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/discussion_expand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="{faw-chevron-up}"
+                android:textSize="16sp"
+                android:padding="4dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

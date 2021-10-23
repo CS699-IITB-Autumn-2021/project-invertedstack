@@ -1,22 +1,30 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import android.animation.LayoutTransition;
 import android.content.res.Resources;
 import android.os.Build;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IExpandable;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.ISubItem;
 import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.listeners.ClickEventHook;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
+import com.mikepenz.fastadapter.utils.EventHookUtil;
 
 import java.util.List;
 
@@ -26,6 +34,30 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
     public int padding_left;
 
     private OnClickListener<DiscussionItemExpandable> mOnClickListener;
+
+    public static class ExpandBodyClickEvent extends ClickEventHook<DiscussionItemExpandable> {
+        @Nullable
+        @Override
+        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
+            if(viewHolder instanceof DiscussionItemExpandable.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder)viewHolder).expand_body);
+            }
+            return super.onBindMany(viewHolder);
+        }
+        @Override
+        public void onClick(View v, int position, FastAdapter<DiscussionItemExpandable> fastAdapter, DiscussionItemExpandable item) {
+            if(v.getId() == View.NO_ID) {
+                System.out.println("v has no ID");
+            }
+            else {
+                System.out.println("v has ID = " + v.getResources().getResourceName(v.getId()));
+            }
+            RelativeLayout expand_body_wrapper = ((ViewGroup)v.getParent().getParent()).findViewById(R.id.discussion_card_body_wrapper);
+            if(expand_body_wrapper != null) {
+                expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            }
+        }
+    }
 
     //we define a clickListener in here so we can directly animate
     final private OnClickListener<DiscussionItemExpandable<Parent, SubItem>> onClickListener = new OnClickListener<DiscussionItemExpandable<Parent, SubItem>>() {
@@ -113,14 +145,18 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
         TextView title;
         TextView body;
         TextView icon;
+        RelativeLayout body_wrapper;
         LinearLayout container;
+        TextView expand_body;
 
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.discussion_card_title);
             body = view.findViewById(R.id.discussion_card_body);
             icon = view.findViewById(R.id.discussion_expand);
+            body_wrapper = view.findViewById(R.id.discussion_card_body_wrapper);
             container = view.findViewById(R.id.discussion_card_parent_linear);
+            expand_body = view.findViewById(R.id.discussion_card_expand_body);
         }
     }
 }

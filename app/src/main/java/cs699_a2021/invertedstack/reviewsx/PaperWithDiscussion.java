@@ -155,6 +155,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
 
         expandableExtension = new ExpandableExtension();
         fastAdapter.addExtension(expandableExtension);
+        fastAdapter.withEventHook(new DiscussionItemExpandable.ExpandBodyClickEvent());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
