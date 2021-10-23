@@ -72,9 +72,8 @@ dependencies {
     //the core iconics library (without any widgets)
     implementation "com.mikepenz:iconics-core:${latestAndroidIconicsRelease}"
     implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
-    implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
+    implementation 'com.mikepenz:google-material-typeface:4.0.0.2-kotlin@aar'
     implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
-    implementation 'com.mikepenz:devicon-typeface:2.0.0.7-kotlin@aar'
 
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
 

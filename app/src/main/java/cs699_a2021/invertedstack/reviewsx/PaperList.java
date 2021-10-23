@@ -89,6 +89,7 @@ public class PaperList extends AppCompatActivity {
         itemAdapter = new ItemAdapter();
         fastAdapter = FastAdapter.with(itemAdapter);
         fastAdapter.withSelectable(true);
+        fastAdapter.withEventHook(new PapersItem.ExpandBodyClickEvent());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
@@ -100,16 +101,18 @@ public class PaperList extends AppCompatActivity {
             System.out.println(array.length());
             for(int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
-                DiscussionItemExpandable item = new DiscussionItemExpandable();
+                PapersItem item = new PapersItem();
                 item.title = object.getString("paper_title");
-                String body = "";
-                body += "<b>Authors: </b><i>";
+                String authors_string = "";
+                authors_string += "<b>Authors: </b><i>";
                 // Authors
                 JSONArray authors = object.getJSONArray("authors");
                 for(int j = 0; j < authors.length(); j++) {
-                    body += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
-                    System.out.println(body);
+                    authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
+                    System.out.println(authors_string);
                 }
+                item.authors = authors_string;
+                String body = "";
                 // Abstract -- could be added as a collapsible as a separate entry
                 body += "<br><b>Abstract:</b><br>";
                 body += object.getString("abstract");
@@ -125,12 +128,6 @@ public class PaperList extends AppCompatActivity {
             // TODO: Check if items is empty
             // If it is empty, show full blown error screen
             // Else show whatever items we got correct and then show a toast notification
-        }
-        for(int i = 0; i < 100; i++) {
-            DiscussionItemExpandable item = new DiscussionItemExpandable();
-            item.title = "Paper Title " + i;
-            item.body = "Paper info " + i;
-            items.add(item);
         }
         itemAdapter.add(items);
     }

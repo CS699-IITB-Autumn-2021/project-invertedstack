@@ -18,28 +18,19 @@ public class MainActivity extends AppCompatActivity {
         Button discussions = findViewById(R.id.main_button_discussion);
         Button notetaking = findViewById(R.id.main_button_notetaking);
 
-        papers_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PaperList.class);
-                startActivity(intent);
-            }
+        papers_list.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PaperList.class);
+            startActivity(intent);
         });
 
-        discussions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PaperWithDiscussion.class);
-                startActivity(intent);
-            }
+        discussions.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PaperWithDiscussion.class);
+            startActivity(intent);
         });
 
-        notetaking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, NoteTakingActivity.class);
-                startActivity(intent);
-            }
+        notetaking.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, NoteTakingActivity.class);
+            startActivity(intent);
         });
     }
 }
