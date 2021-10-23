@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.textclassifier.TextLinks;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -58,34 +60,14 @@ public class PaperList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper_list);
 
+        TextView header = findViewById(R.id.paperlist_header);
+        int year = 2020; // Currently only for ICLR
+        String category = "oral_presentations";
+        header.setText("ICLR" + year + " " + category);
+
         RecyclerView recyclerView = findViewById(R.id.paperlist_recyclerview);
 
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://reqres.in/api/unknown";
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        /*
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()) {
-                    String rcvd_string = response.body().string();
-                    PaperList.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((TextView)findViewById(R.id.paperlist_testing)).setText(rcvd_string);
-                        }
-                    });
-                }
-            }
-        });
-         */
         itemAdapter = new ItemAdapter();
         fastAdapter = FastAdapter.with(itemAdapter);
         fastAdapter.withSelectable(true);
@@ -96,42 +78,71 @@ public class PaperList extends AppCompatActivity {
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
         recyclerView.setAdapter(fastAdapter);
 
-        ArrayList<IItem> items = new ArrayList<>();
-        try {
-            JSONArray array = new JSONArray(test_json);
-            System.out.println(array.length());
-            for(int i = 0; i < array.length(); i++) {
-                JSONObject object = array.getJSONObject(i);
-                PapersItem item = new PapersItem();
-                item.content_id = object.getString("data_id");
-                item.title = object.getString("paper_title");
-                String authors_string = "";
-                authors_string += "<b>Authors: </b><i>";
-                // Authors
-                JSONArray authors = object.getJSONArray("authors");
-                for(int j = 0; j < authors.length(); j++) {
-                    authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
-                    System.out.println(authors_string);
-                }
-                item.authors = authors_string;
-                String body = "";
-                // Abstract -- could be added as a collapsible as a separate entry
-                body += "<br><b>Abstract:</b><br>";
-                body += object.getString("abstract");
-                body += "<br><b>Keywords:</b><br><i>";
-                body += object.getString("keywords");
-                item.body = body;
-                items.add(item);
-                System.out.println("-----------------------------");
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(50, TimeUnit.SECONDS)
+                .build();
+        String url = "http://2.tcp.ngrok.io:11452/get_parameters?year=" + year + "&category=" + category;
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            // TODO: Show proper error message
-            e.printStackTrace();
-            // TODO: Check if items is empty
-            // If it is empty, show full blown error screen
-            // Else show whatever items we got correct and then show a toast notification
-        }
-        itemAdapter.add(items);
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    String rcvd_string = response.body().string();
+                    test_json = rcvd_string;
+                    ArrayList<IItem> items = new ArrayList<>();
+                    try {
+                        JSONArray array = new JSONArray(test_json);
+                        System.out.println(array.length());
+                        for(int i = 0; i < array.length(); i++) {
+                            JSONObject object = array.getJSONObject(i);
+                            PapersItem item = new PapersItem();
+                            item.content_id = object.getString("data_id");
+                            item.title = object.getString("paper_title");
+                            String authors_string = "";
+                            authors_string += "<b>Authors: </b><i>";
+                            // Authors
+                            JSONArray authors = object.getJSONArray("authors");
+                            for(int j = 0; j < authors.length(); j++) {
+                                authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
+                                System.out.println(authors_string);
+                            }
+                            item.authors = authors_string;
+                            String body = "";
+                            // Abstract -- could be added as a collapsible as a separate entry
+                            body += "<br><b>Abstract:</b><br>";
+                            body += object.has("abstract") ? object.getString("abstract") : "null";
+                            body += "<br><b>Keywords:</b><br><i>";
+                            body += object.has("keywords") ? object.getString("keywords") : "null";
+                            item.body = body;
+                            items.add(item);
+                            System.out.println("-----------------------------");
+                        }
+                    } catch (JSONException e) {
+                        // TODO: Show proper error message
+                        e.printStackTrace();
+                        // TODO: Check if items is empty
+                        // If it is empty, show full blown error screen
+                        // Else show whatever items we got correct and then show a toast notification
+                    }
+                    PaperList.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            itemAdapter.add(items);
+                            findViewById(R.id.paperlist_progressbar).setVisibility(View.GONE);
+                        }
+                    });
+                }
+            }
+        });
     }
     // ref - https://www.youtube.com/watch?v=CTvzoVtKoJ8
     @Override

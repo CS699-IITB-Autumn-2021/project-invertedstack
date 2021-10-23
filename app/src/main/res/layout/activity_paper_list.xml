@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,14 +8,21 @@
     tools:context=".PaperList">
 
     <TextView
+        android:id="@+id/paperlist_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/paperlist_testing" />
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/paperlist_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:layout_below="@id/paperlist_header"/>
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/paperlist_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="128dp"/>
+
+</RelativeLayout>
