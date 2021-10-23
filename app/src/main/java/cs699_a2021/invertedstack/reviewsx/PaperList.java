@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,6 +79,35 @@ public class PaperList extends AppCompatActivity {
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
         recyclerView.setAdapter(fastAdapter);
 
+
+        ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperList.this);
+        Cursor allPapers = db.getAllPapers();
+        ArrayList<IItem> items = new ArrayList<>();
+
+        if(allPapers.getCount() != 0) {
+            while(allPapers.moveToNext()) {
+                PapersItem item = new PapersItem();
+                System.out.println(allPapers.toString());
+                System.out.println(allPapers.getColumnCount());
+                String[] names = allPapers.getColumnNames();
+                for(String name: names)
+                    System.out.println(name);
+                System.out.println(allPapers.getString(0));
+                System.out.println(allPapers.getString(1));
+                System.out.println(allPapers.getString(2));
+                System.out.println(allPapers.getString(3));
+                System.out.println("-------------------------------");
+                item.content_id = allPapers.getString(0);
+                item.title = allPapers.getString(1);
+                item.authors = allPapers.getString(2);
+                item.body = allPapers.getString(3);
+                items.add(item);
+            }
+            itemAdapter.add(items);
+            findViewById(R.id.paperlist_progressbar).setVisibility(View.GONE);
+            return;
+        }
+
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(50, TimeUnit.SECONDS)
@@ -98,8 +128,6 @@ public class PaperList extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     String rcvd_string = response.body().string();
                     test_json = rcvd_string;
-                    ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperList.this);
-                    ArrayList<IItem> items = new ArrayList<>();
                     try {
                         JSONArray array = new JSONArray(test_json);
                         System.out.println(array.length());
@@ -125,7 +153,7 @@ public class PaperList extends AppCompatActivity {
                             body += object.has("keywords") ? object.getString("keywords") : "(Not Available)";
                             item.body = body;
                             items.add(item);
-                            System.out.println(db.insertPaperData(item.content_id, item.title, item.authors, item.body));
+                            System.out.println(db.updatePaperData(item.content_id, item.title, item.authors, item.body));
                             System.out.println("-----------------------------");
                         }
                     } catch (JSONException e) {

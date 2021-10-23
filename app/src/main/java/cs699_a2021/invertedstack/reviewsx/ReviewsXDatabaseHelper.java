@@ -2,13 +2,16 @@ package cs699_a2021.invertedstack.reviewsx;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.io.NotSerializableException;
 
 public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     // ref - http://www.codebind.com/android-tutorials-and-examples/android-sqlite-tutorial-example/
     private static String DATABASE_NAME = "ReviewsX.db";
-
+    // TODO: All the tables MUST also have a key = name of the conference + year + type of the paper (Oral/Spotlight etc.)
     // TODO: Paper PDF link too maybe ?
     private static String PAPERS_TABLE_NAME = "Papers";
     private static String PAPERS_PAPER_ID = "Paper_ID";
@@ -59,14 +62,65 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPaperData(String id, String title, String authors, String body) {
+    public boolean updatePaperData(String id, String title, String authors, String body) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PAPERS_PAPER_ID, id);
         contentValues.put(PAPERS_TITLE, title);
         contentValues.put(PAPERS_AUTHORS, authors);
-        contentValues.put(PAPERS_AUTHORS, body);
-        long result = db.insert(PAPERS_TABLE_NAME, null, contentValues);
+        contentValues.put(PAPERS_BODY, body);
+        Cursor cursor = db.query(PAPERS_TABLE_NAME, new String[]{PAPERS_PAPER_ID}, PAPERS_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+        long result;
+        if(cursor.getCount() == 0) {
+            result = db.insert(PAPERS_TABLE_NAME, null, contentValues);
+        }
+        else {
+            result = db.update(PAPERS_TABLE_NAME, contentValues, PAPERS_PAPER_ID + " = ?", new String[]{id});
+        }
         return result != -1;
+    }
+
+    public boolean updateCommentsData(String id, String comment_json) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COMMENTS_PAPER_ID, id);
+        contentValues.put(COMMENTS_COMMENT_JSON, comment_json);
+        Cursor cursor = db.query(COMMENTS_TABLE_NAME, new String[]{COMMENTS_PAPER_ID}, COMMENTS_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+        long result;
+        if(cursor.getCount() == 0) {
+            result = db.insert(COMMENTS_TABLE_NAME, null, contentValues);
+        }
+        else {
+            result = db.update(COMMENTS_TABLE_NAME, contentValues, COMMENTS_PAPER_ID + "= ?", new String[]{id});
+        }
+        return result != -1;
+    }
+
+
+    public boolean updateNotesData(String id, String note_markdown) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NOTES_PAPER_ID, id);
+        contentValues.put(NOTES_PAPER_ID, note_markdown);
+        Cursor cursor = db.query(NOTES_TABLE_NAME, new String[]{NOTES_PAPER_ID}, NOTES_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+        long result;
+        if(cursor.getCount() == 0) {
+            result = db.insert(NOTES_TABLE_NAME, null, contentValues);
+        }
+        else {
+            result = db.update(NOTES_TABLE_NAME, contentValues, NOTES_PAPER_ID + "= ?", new String[]{id});
+        }
+        return result != -1;
+    }
+
+    public Cursor getAllPapers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(PAPERS_TABLE_NAME, null, null, null, null, null, null);
+    }
+
+    public boolean deleteAllPapers() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.rawQuery("DELETE FROM " + PAPERS_TABLE_NAME, null);
+        return true;
     }
 }
