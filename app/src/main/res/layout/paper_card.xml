@@ -63,7 +63,7 @@
                 android:id="@+id/paper_card_add_collections"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add to collections {gmd-collections_bookmark}"/>
+                android:text="Save to collection {gmd-collections_bookmark}"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

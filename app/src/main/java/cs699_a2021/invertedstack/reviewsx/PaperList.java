@@ -90,6 +90,7 @@ public class PaperList extends AppCompatActivity {
         fastAdapter = FastAdapter.with(itemAdapter);
         fastAdapter.withSelectable(true);
         fastAdapter.withEventHook(new PapersItem.ExpandBodyClickEvent());
+        fastAdapter.withEventHook(new PapersItem.CollectionSaveEvent());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
@@ -102,6 +103,7 @@ public class PaperList extends AppCompatActivity {
             for(int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
                 PapersItem item = new PapersItem();
+                item.content_id = object.getString("data_id");
                 item.title = object.getString("paper_title");
                 String authors_string = "";
                 authors_string += "<b>Authors: </b><i>";
@@ -146,13 +148,14 @@ public class PaperList extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 itemAdapter.filter(newText);
-                itemAdapter.getItemFilter().withFilterPredicate(new IItemAdapter.Predicate<DiscussionItemExpandable>() {
+                itemAdapter.getItemFilter().withFilterPredicate(new IItemAdapter.Predicate<PapersItem>() {
                     @Override
-                    public boolean filter(DiscussionItemExpandable item, @Nullable CharSequence constraint) {
+                    public boolean filter(PapersItem item, @Nullable CharSequence constraint) {
                         String title = item.title.toLowerCase();
+                        String authors = item.authors.toLowerCase();
                         String body = item.body.toLowerCase();
                         String key = constraint.toString().toLowerCase();
-                        return (title.contains(key) || body.contains(key));
+                        return (title.contains(key) || authors.contains(key) || body.contains(key));
                     }
                 });
                 return false;

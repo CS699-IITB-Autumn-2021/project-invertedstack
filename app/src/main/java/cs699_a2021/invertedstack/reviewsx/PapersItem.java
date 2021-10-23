@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IExpandable;
@@ -27,12 +28,14 @@ import com.mikepenz.fastadapter.utils.EventHookUtil;
 import com.mikepenz.iconics.view.IconicsButton;
 import com.mikepenz.iconics.view.IconicsTextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> {
     public String title;
     public String authors;
     public String body;
+    public String content_id;
 
     public static class ExpandBodyClickEvent extends ClickEventHook<PapersItem> {
         @Nullable
@@ -55,6 +58,38 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
             if(expand_body_wrapper != null) {
                 expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
             }
+        }
+    }
+
+    public static class CollectionSaveEvent extends ClickEventHook<PapersItem> {
+        @Nullable
+        @Override
+        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
+            if(viewHolder instanceof PapersItem.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder)viewHolder).collections_button);
+            }
+            return super.onBindMany(viewHolder);
+        }
+        @Override
+        public void onClick(View v, int position, FastAdapter<PapersItem> fastAdapter, PapersItem item) {
+            ArrayList<String> options = new ArrayList<>();
+            Integer[] selected_indices = new Integer[2];
+            selected_indices[0] = 0;
+            selected_indices[1] = 2;
+            options.add("Favourites");
+            options.add("Currently reading");
+            options.add("Wishlist");
+            options.add("Already read");
+            MaterialDialog.Builder dialog = new MaterialDialog.Builder(v.getContext())
+                    .title(item.content_id)
+                    .items(options)
+                    .itemsCallbackMultiChoice(selected_indices, new MaterialDialog.ListCallbackMultiChoice() {
+                        @Override
+                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                            return false;
+                        }
+                    });
+            dialog.show();
         }
     }
 
@@ -110,6 +145,7 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
             authors = view.findViewById(R.id.paper_card_authors);
             body = view.findViewById(R.id.paper_card_body);
             expand_body = view.findViewById(R.id.paper_card_expand_body);
+            collections_button = view.findViewById(R.id.paper_card_add_collections);
         }
     }
 }
