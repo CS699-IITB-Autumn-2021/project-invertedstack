@@ -3,7 +3,6 @@ package cs699_a2021.invertedstack.reviewsx;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.animation.LayoutTransition;
 import android.graphics.drawable.Drawable;
@@ -12,15 +11,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.Set;
-import java.util.concurrent.Executors;
 
 import io.noties.markwon.Markwon;
 import io.noties.markwon.editor.MarkwonEditor;
@@ -32,10 +26,8 @@ import io.noties.markwon.ext.tasklist.TaskListPlugin;
 import io.noties.markwon.html.HtmlPlugin;
 import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin;
 import io.noties.markwon.linkify.LinkifyPlugin;
-import io.noties.prism4j.GrammarLocator;
-import io.noties.prism4j.Prism4j;
 
-public class MainActivity extends AppCompatActivity {
+public class NoteTakingActivity extends AppCompatActivity {
 
     String notes_string = "**Hello there!** \n $$ \\LaTeX \\text{is working !!!!!}$$ \n ~~strikethrough doesn't work ?~~";
     TextView textView;
@@ -44,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_note_taking);
         // TODO: Change orientation of the parent LinearLayout depending on the aspect ratio
         textView = findViewById(R.id.main_text);
         // https://noties.io/Markwon/docs/v4/ext-latex/#blocks
