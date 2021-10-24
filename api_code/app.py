@@ -27,11 +27,12 @@ def get_parameters():
     """
     year = request.args["year"]
     category = request.args["category"]
+    conference = request.args["conference"]
     output_dict = {}
-    f = open(database_folder+"iclr_"+year+"/iclr_"+year+"_"+category+".json")
+    f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+".json")
     data = json.load(f)
     for i in data:
-        output_dict[i["data_id"]] = {"paper_title":i["paper_title"],"forum_link":i["forum_link"],"pdf_link":i["pdf_link"]}
+        output_dict[i["data_id"]] = {"paper_title":i["paper_title"],"forum_link":i["forum_link"],"pdf_link":i["pdf_link"],"authors":i["authors"],"abstract":i["abstract"]}
         if "keywords" in i:
             output_dict[i["data_id"]]["keywords"] = i["keywords"]
     return jsonify(output_dict)
@@ -44,8 +45,8 @@ def get_categories():
     Returns : json output
     """
     year = request.args["year"]
-    folder = "iclr_"+year
-    f = open(database_folder+folder+"_categories.json")
+    conference = request.args["conference"]
+    f = open(database_folder+conference+"_"+year+"_categories.json")
     data = json.load(f)
     return jsonify(data)
 
@@ -58,6 +59,22 @@ def get_years():
     """
     f = open(database_folder+"years.json")
     data = json.load(f)
+    return jsonify(data)
+
+@app.route("/get_comments")
+def get_comments():
+    """
+    Will get the comments wrt the presentation.
+
+    Returns : json output
+    """
+    year = request.args["year"]
+    category = request.args["category"]
+    conference = request.args["conference"]
+    data_id = request.args["data_id"]
+
+    f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+"/"+data_id+"_comments.json")
+    data=json.load(f)
     return jsonify(data)
 
 if __name__ == "__main__":
