@@ -1,10 +1,18 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import android.animation.LayoutTransition;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +47,12 @@ import okhttp3.Response;
 public class PaperWithDiscussion extends AppCompatActivity {
     private FastAdapter fastAdapter;
     private ExpandableExtension expandableExtension;
+
+    String conf_name = null;
+    String year = null;
+    String category = null;
+    String data_id = null;
+
     private String test_json = "[\n" +
             "    {\n" +
             "        \"id\": \"GacCzur68y\",\n" +
@@ -163,10 +177,6 @@ public class PaperWithDiscussion extends AppCompatActivity {
         setContentView(R.layout.activity_paper_with_discussion);
 
         Bundle b = getIntent().getExtras();
-        String conf_name = null;
-        String year = null;
-        String category = null;
-        String data_id = null;
         if(b == null) {
             // TODO: Sow proper error screen
             Toast.makeText(PaperWithDiscussion.this, "This intent is illegal", Toast.LENGTH_LONG);
@@ -285,5 +295,28 @@ public class PaperWithDiscussion extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.discussion_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.discussion_action_pdf:
+                Uri uri = Uri.parse(getString(R.string.openreview_pdf_link_template) + data_id);
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(webIntent);
+                return true;
+            case R.id.discussion_action_view_notes:
+                Intent noteIntent = new Intent(PaperWithDiscussion.this, NoteTakingActivity.class);
+                noteIntent.putExtra("data_id", data_id);
+                startActivity(noteIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

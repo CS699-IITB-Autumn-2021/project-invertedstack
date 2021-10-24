@@ -148,7 +148,7 @@ public class NoteTakingActivity extends AppCompatActivity {
                         new_weight
                 ));
                 // change icon https://stackoverflow.com/a/19882555
-                int new_icon = new_weight == 1 ? android.R.drawable.ic_menu_save : android.R.drawable.ic_menu_edit;
+                int new_icon = new_weight == 1 ? R.drawable.ic_baseline_save_24 : R.drawable.ic_baseline_edit_24;
                 item.setIcon(getDrawable(new_icon));
                 // Save the note depending on state
                 return true;
