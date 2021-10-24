@@ -1,7 +1,14 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,10 +23,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class PaperWithDiscussion extends AppCompatActivity {
     private FastAdapter fastAdapter;
@@ -147,6 +162,27 @@ public class PaperWithDiscussion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper_with_discussion);
 
+        Bundle b = getIntent().getExtras();
+        String conf_name = null;
+        String year = null;
+        String category = null;
+        String data_id = null;
+        if(b == null) {
+            // TODO: Sow proper error screen
+            Toast.makeText(PaperWithDiscussion.this, "This intent is illegal", Toast.LENGTH_LONG);
+            return;
+        }
+        else {
+            conf_name = b.getString("conf_name");
+            year = b.getString("year");
+            category = b.getString("category");
+            data_id = b.getString("data_id");
+        }
+
+        TextView title = findViewById(R.id.paper_discussion_title);
+        TextView authors = findViewById(R.id.paper_discussion_authors);
+        TextView body = findViewById(R.id.paper_discussion_body);
+
         RecyclerView recyclerView = findViewById(R.id.discussion_recyclerview);
 
         ItemAdapter itemAdapter = new ItemAdapter();
@@ -160,57 +196,94 @@ public class PaperWithDiscussion extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
         recyclerView.setAdapter(fastAdapter);
-        ArrayList<IItem> items = new ArrayList<>();
-        try {
-            JSONArray comments = new JSONArray(test_json);
-            for(int i = 0; i < comments.length(); i++) {
-                items.add(get_item_from_json(comments.getJSONObject(i), 0));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        /*
-        for(int i = 0; i < 100; i++) {
-            if(i % 3 != 0) {
-                DiscussionItem item = new DiscussionItem();
-                item.title = "Title" + i;
-                System.out.println(item.title);
-                item.body = "Body" + i;
-                item.padding_left = 0;
-                items.add(item);
-                continue;
-            }
-            DiscussionItemExpandable item = new DiscussionItemExpandable();
-            item.title = "Title" + i;
-            System.out.println(item.title);
-            item.body = "Body" + i;
 
-            List<IItem> subItems = new LinkedList<>();
-            for(int ii = 0; ii < 5; ii++) {
-                DiscussionItemExpandable subItem = new DiscussionItemExpandable();
-                subItem.title = "SubTitle" + i + "." + ii;
-                subItem.body = "SubBody" + i + "." + ii;
-                subItem.padding_left = 16;
-                if(ii % 2 == 0) {
-                    subItems.add(subItem);
-                    continue;
-                }
-                List<IItem> subsubItems = new LinkedList<>();
-                for(int iii = 0; iii < 3; iii++) {
-                    DiscussionItemExpandable subsubItem = new DiscussionItemExpandable();
-                    subsubItem.title = "SubSubTitle" + i + "." + ii + "," + iii;
-                    subsubItem.body = "SubSubBody" + i + "." + ii + "," + iii;
-                    subsubItem.padding_left = 32;
-                    // Also have a padding parameter that adds like 2 dp larger padding-left than parent to a maximum padding
-                    subsubItems.add(subsubItem);
-                }
-                subItem.withSubItems(subsubItems);
-                subItems.add(subItem);
-            }
-            item.withSubItems(subItems);
-            items.add(item);
+        ArrayList<IItem> items = new ArrayList<>();
+        // See if the received data_id exists under the database
+        ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperWithDiscussion.this);
+        Cursor data = db.getPaperByDataID(data_id);
+        if(data.getCount() == 0) {
+            title.setText("No paper title for paper ID = " + data_id);
+            authors.setText("No authors info for paper ID = " + data_id);
+            body.setText("No paper info for paper ID = " + data_id);
         }
-        */
-        itemAdapter.add(items);
+        else {
+            data.moveToFirst();
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                title.setText(Html.fromHtml(data.getString(1), Html.FROM_HTML_MODE_COMPACT));
+                authors.setText(Html.fromHtml(data.getString(2), Html.FROM_HTML_MODE_COMPACT));
+                body.setText(Html.fromHtml(data.getString(3), Html.FROM_HTML_MODE_COMPACT));
+            }
+            else {
+                title.setText(Html.fromHtml(data.getString(1)));
+                authors.setText(Html.fromHtml(data.getString(2)));
+                body.setText(Html.fromHtml(data.getString(3)));
+            }
+        }
+
+        Cursor comments_data = db.getCommentsForPaperID(data_id);
+        if(comments_data.getCount() != 0) {
+            comments_data.moveToFirst();
+            test_json = comments_data.getString(1);
+            try {
+                JSONArray comments = new JSONArray(test_json);
+                for(int i = 0; i < comments.length(); i++) {
+                    items.add(get_item_from_json(comments.getJSONObject(i), 0));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            itemAdapter.add(items);
+            findViewById(R.id.paper_discussion_progressbar).setVisibility(View.GONE);
+            return;
+        }
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(50, TimeUnit.SECONDS)
+                .build();
+        String url = getString(R.string.server_url) + "/get_comments?conference=" + conf_name + "&year=" + year + "&category=" + category + "&data_id=" + data_id;
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        String finalData_id = data_id;
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    String rcvd_string = response.body().string();
+                    test_json = rcvd_string;
+                    db.updateCommentsData(finalData_id, test_json);
+                    try {
+                        JSONArray comments = new JSONArray(test_json);
+                        for(int i = 0; i < comments.length(); i++) {
+                            items.add(get_item_from_json(comments.getJSONObject(i), 0));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            itemAdapter.add(items);
+                            findViewById(R.id.paper_discussion_progressbar).setVisibility(View.GONE);
+                        }
+                    });
+                }
+                else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(PaperWithDiscussion.this,
+                                    "Error in response, please contact admin",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+        });
     }
 }

@@ -7,6 +7,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.textclassifier.TextLinks;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.IItemAdapter;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 
 import org.json.JSONArray;
@@ -62,9 +67,10 @@ public class PaperList extends AppCompatActivity {
         setContentView(R.layout.activity_paper_list);
 
         TextView header = findViewById(R.id.paperlist_header);
-        int year = 2020; // Currently only for ICLR
+        String conf_name = "iclr";
+        String year = "2020"; // Currently only for ICLR
         String category = "oral_presentations";
-        header.setText("ICLR" + year + " " + category);
+        header.setText(conf_name + " " + year + " " + category);
 
         RecyclerView recyclerView = findViewById(R.id.paperlist_recyclerview);
 
@@ -74,11 +80,22 @@ public class PaperList extends AppCompatActivity {
         fastAdapter.withSelectable(true);
         fastAdapter.withEventHook(new PapersItem.ExpandBodyClickEvent());
         fastAdapter.withEventHook(new PapersItem.CollectionSaveEvent());
+        fastAdapter.withOnClickListener(new OnClickListener<PapersItem>() {
+            @Override
+            public boolean onClick(@Nullable View v, IAdapter<PapersItem> adapter, PapersItem item, int position) {
+                Intent intent = new Intent(PaperList.this, PaperWithDiscussion.class);
+                intent.putExtra("conf_name", conf_name);
+                intent.putExtra("year", year);
+                intent.putExtra("category", category);
+                intent.putExtra("data_id", item.content_id);
+                startActivity(intent);;
+                return false;
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
         recyclerView.setAdapter(fastAdapter);
-
 
         ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperList.this);
         Cursor allPapers = db.getAllPapers();
@@ -112,7 +129,7 @@ public class PaperList extends AppCompatActivity {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(50, TimeUnit.SECONDS)
                 .build();
-        String url = "http://2.tcp.ngrok.io:11452/get_parameters?year=" + year + "&category=" + category;
+        String url = getString(R.string.server_url) + "/get_parameters?conference=" + conf_name + "&year=" + year + "&category=" + category;
         Request request = new Request.Builder()
                 .url(url)
                 .build();

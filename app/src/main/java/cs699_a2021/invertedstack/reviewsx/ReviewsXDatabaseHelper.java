@@ -35,21 +35,21 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE IF NOT EXISTS " + PAPERS_TABLE_NAME + " (" +
                       PAPERS_PAPER_ID + " TEXT NOT NULL PRIMARY KEY, " +
-                      PAPERS_TITLE + " TEXT, " +
-                      PAPERS_AUTHORS + " TEXT, " +
-                      PAPERS_BODY + " TEXT" +
+                      PAPERS_TITLE + " TEXT NOT NULL, " +
+                      PAPERS_AUTHORS + " TEXT NOT NULL, " +
+                      PAPERS_BODY + " TEXT NOT NULL" +
                 ")"
         );
         db.execSQL(
                 "CREATE TABLE IF NOT EXISTS " + COMMENTS_TABLE_NAME + " (" +
                       COMMENTS_PAPER_ID + " TEXT NOT NULL PRIMARY KEY, " +
-                      COMMENTS_COMMENT_JSON + " TEXT " +
+                      COMMENTS_COMMENT_JSON + " TEXT NOT NULL " +
                 ")"
         );
         db.execSQL(
                 "CREATE TABLE IF NOT EXISTS " + NOTES_TABLE_NAME + " (" +
                       NOTES_PAPER_ID + " TEXT NOT NULL PRIMARY KEY, " +
-                      NOTES_NOTE_MD + " TEXT" +
+                      NOTES_NOTE_MD + " TEXT NOT NULL" +
                 ")"
         );
     }
@@ -116,6 +116,16 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllPapers() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(PAPERS_TABLE_NAME, null, null, null, null, null, null);
+    }
+
+    public Cursor getPaperByDataID(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(PAPERS_TABLE_NAME, null, PAPERS_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+    }
+
+    public Cursor getCommentsForPaperID(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(COMMENTS_TABLE_NAME, null, COMMENTS_PAPER_ID + " = ?", new String[]{id}, null, null, null);
     }
 
     public boolean deleteAllPapers() {
