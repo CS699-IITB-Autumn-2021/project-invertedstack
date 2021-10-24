@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.LayoutTransition;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -29,14 +30,35 @@ import io.noties.markwon.linkify.LinkifyPlugin;
 
 public class NoteTakingActivity extends AppCompatActivity {
 
-    String notes_string = "**Hello there!** \n $$ \\LaTeX \\text{is working !!!!!}$$ \n ~~strikethrough doesn't work ?~~";
+    String notes_string = "# Notes";
+    String data_id = null;
+    String paper_title = null;
     TextView textView;
     EditText editText;
+    ReviewsXDatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_taking);
+        Bundle b = getIntent().getExtras();
+        if(b == null) { // or some error such as data_id being NULL
+            // TODO: Do a nice fancy graphical error here
+            return;
+        }
+        else {
+            data_id = b.getString("data_id");
+            paper_title = b.getString("paper_title");
+            notes_string += " on " + paper_title + "\n\nThis is just default note template. Note that this is NOT saved on the disk by default\n\nGet started by clicking on the _edit_ icon to view the markdown source for these notes. Then click on _save_ icon to save the note to the device. After saving, this note will ALWAYS be available on the device";
+        }
+        // Do we already have the notes for this `data_id`
+        db = new ReviewsXDatabaseHelper(NoteTakingActivity.this);
+        Cursor data = db.getNotesForPaperID(data_id);
+        if(data.getCount() != 0) {
+            data.moveToFirst();
+            notes_string = data.getString(1);
+            System.out.println("Got notes from DB");
+        }
         // TODO: Change orientation of the parent LinearLayout depending on the aspect ratio
         textView = findViewById(R.id.main_text);
         // https://noties.io/Markwon/docs/v4/ext-latex/#blocks
@@ -151,6 +173,10 @@ public class NoteTakingActivity extends AppCompatActivity {
                 int new_icon = new_weight == 1 ? R.drawable.ic_baseline_save_24 : R.drawable.ic_baseline_edit_24;
                 item.setIcon(getDrawable(new_icon));
                 // Save the note depending on state
+                if(new_icon == R.drawable.ic_baseline_edit_24) {
+                    db.updateNotesData(data_id, notes_string);
+                    System.out.println("Saving to DB when new_weight = " + new_weight);
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

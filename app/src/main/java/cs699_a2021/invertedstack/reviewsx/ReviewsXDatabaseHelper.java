@@ -101,7 +101,7 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOTES_PAPER_ID, id);
-        contentValues.put(NOTES_PAPER_ID, note_markdown);
+        contentValues.put(NOTES_NOTE_MD, note_markdown);
         Cursor cursor = db.query(NOTES_TABLE_NAME, new String[]{NOTES_PAPER_ID}, NOTES_PAPER_ID + " = ?", new String[]{id}, null, null, null);
         long result;
         if(cursor.getCount() == 0) {
@@ -126,6 +126,11 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     public Cursor getCommentsForPaperID(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(COMMENTS_TABLE_NAME, null, COMMENTS_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+    }
+
+    public Cursor getNotesForPaperID(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(NOTES_TABLE_NAME, null, NOTES_PAPER_ID + " = ?", new String[]{id}, null, null, null);
     }
 
     public boolean deleteAllPapers() {

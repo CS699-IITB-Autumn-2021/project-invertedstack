@@ -52,6 +52,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
     String year = null;
     String category = null;
     String data_id = null;
+    String paper_title = null;
 
     private String test_json = "[\n" +
             "    {\n" +
@@ -222,6 +223,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
                 title.setText(Html.fromHtml(data.getString(1), Html.FROM_HTML_MODE_COMPACT));
                 authors.setText(Html.fromHtml(data.getString(2), Html.FROM_HTML_MODE_COMPACT));
                 body.setText(Html.fromHtml(data.getString(3), Html.FROM_HTML_MODE_COMPACT));
+                paper_title = data.getString(1);
             }
             else {
                 title.setText(Html.fromHtml(data.getString(1)));
@@ -313,6 +315,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
             case R.id.discussion_action_view_notes:
                 Intent noteIntent = new Intent(PaperWithDiscussion.this, NoteTakingActivity.class);
                 noteIntent.putExtra("data_id", data_id);
+                noteIntent.putExtra("paper_title", paper_title);
                 startActivity(noteIntent);
                 return true;
             default:
