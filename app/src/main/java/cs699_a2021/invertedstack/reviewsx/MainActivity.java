@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Button papers_list = findViewById(R.id.main_button_papers_list);
         Button discussions = findViewById(R.id.main_button_discussion);
         Button notetaking = findViewById(R.id.main_button_notetaking);
+        Button collection = findViewById(R.id.main_button_collection);
 
         papers_list.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, PaperList.class);
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         notetaking.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, NoteTakingActivity.class);
+            startActivity(intent);
+        });
+
+        collection.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
             startActivity(intent);
         });
     }

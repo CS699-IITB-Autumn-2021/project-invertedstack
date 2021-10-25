@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReviewsX"
-        android:usesCleartextTraffic="true"> <!-- Don't put this in PROD -->
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ViewCollectionActivity"
+            android:exported="true" />
+        <!-- Don't put this in PROD -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -24,16 +28,13 @@
         </activity>
         <activity
             android:name=".PaperList"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".PaperWithDiscussion"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".NoteTakingActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

@@ -23,5 +23,10 @@
         android:layout_height="wrap_content"
         android:text="NoteTaking"
         android:layout_below="@id/main_button_discussion"/>
-
+    <Button
+        android:id="@+id/main_button_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NoteTaking"
+        android:layout_below="@id/main_button_notetaking"/>
 </RelativeLayout>
