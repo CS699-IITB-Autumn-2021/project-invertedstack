@@ -50,16 +50,16 @@ def get_categories():
     data = json.load(f)
     return jsonify(data)
 
-@app.route("/get_years")
-def get_years():
-    """
-    Will get the years from the json database files.
+# @app.route("/get_years")
+# def get_years():
+#     """
+#     Will get the years from the json database files.
 
-    Returns : json output
-    """
-    f = open(database_folder+"years.json")
-    data = json.load(f)
-    return jsonify(data)
+#     Returns : json output
+#     """
+#     f = open(database_folder+"years.json")
+#     data = json.load(f)
+#     return jsonify(data)
 
 @app.route("/get_comments")
 def get_comments():
