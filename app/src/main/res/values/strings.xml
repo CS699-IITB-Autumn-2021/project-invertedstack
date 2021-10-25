@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ReviewsX</string>
-    <string name="server_url">http://2.tcp.ngrok.io:10191</string>
+    <string name="server_url">http://6.tcp.ngrok.io:15610</string>
     <string name="openreview_pdf_link_template">https://openreview.net/pdf?id=</string>
 </resources>

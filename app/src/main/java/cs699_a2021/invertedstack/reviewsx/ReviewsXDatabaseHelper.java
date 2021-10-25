@@ -18,6 +18,9 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     private static String PAPERS_TITLE = "Paper_Title";
     private static String PAPERS_AUTHORS = "Paper_Authors";
     private static String PAPERS_BODY = "Paper_Body";
+    private static String PAPERS_CONF = "Paper_Conf";
+    private static String PAPERS_YEAR = "Paper_Year";
+    private static String PAPERS_CATEGORY = "Paper_Category";
 
     private static String COMMENTS_TABLE_NAME = "Comments";
     private static String COMMENTS_PAPER_ID = "Paper_ID";
@@ -37,7 +40,10 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
                       PAPERS_PAPER_ID + " TEXT NOT NULL PRIMARY KEY, " +
                       PAPERS_TITLE + " TEXT NOT NULL, " +
                       PAPERS_AUTHORS + " TEXT NOT NULL, " +
-                      PAPERS_BODY + " TEXT NOT NULL" +
+                      PAPERS_BODY + " TEXT NOT NULL," +
+                      PAPERS_CONF + " TEXT NOT NULL," +
+                      PAPERS_YEAR + " TEXT NOT NULL," +
+                      PAPERS_CATEGORY + " TEXT NOT NULL" +
                 ")"
         );
         db.execSQL(
@@ -62,13 +68,16 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean updatePaperData(String id, String title, String authors, String body) {
+    public boolean updatePaperData(String id, String title, String authors, String body, String conf, String year, String cat) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PAPERS_PAPER_ID, id);
         contentValues.put(PAPERS_TITLE, title);
         contentValues.put(PAPERS_AUTHORS, authors);
         contentValues.put(PAPERS_BODY, body);
+        contentValues.put(PAPERS_CONF, conf);
+        contentValues.put(PAPERS_YEAR, year);
+        contentValues.put(PAPERS_CATEGORY, cat);
         Cursor cursor = db.query(PAPERS_TABLE_NAME, new String[]{PAPERS_PAPER_ID}, PAPERS_PAPER_ID + " = ?", new String[]{id}, null, null, null);
         long result;
         if(cursor.getCount() == 0) {
@@ -116,6 +125,11 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllPapers() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(PAPERS_TABLE_NAME, null, null, null, null, null, null);
+    }
+
+    public Cursor getPapersByConfYearCat(String conf, String year, String cat) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(PAPERS_TABLE_NAME, null, PAPERS_CONF + " = ? AND " + PAPERS_YEAR + " = ? AND " + PAPERS_CATEGORY + " = ?", new String[]{conf, year, cat}, null, null, null);
     }
 
     public Cursor getPaperByDataID(String id) {

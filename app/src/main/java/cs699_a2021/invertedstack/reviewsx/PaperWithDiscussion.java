@@ -144,8 +144,13 @@ public class PaperWithDiscussion extends AppCompatActivity {
         DiscussionItemExpandable ret = new DiscussionItemExpandable();
         try {
             JSONObject content = obj.getJSONObject("content");
-            ret.title = content.getString("title");
-            content.remove("title");
+            if(content.has("title")) {
+                ret.title = content.getString("title");
+                content.remove("title");
+            }
+            else {
+                ret.title = "(Not Available)";
+            }
             String body = "";
             Iterator<String> keys = content.keys();
             // ref - https://stackoverflow.com/a/10593838
@@ -155,14 +160,16 @@ public class PaperWithDiscussion extends AppCompatActivity {
             }
             ret.body = body;
             ret.padding_left = padding;
-            JSONArray reply = obj.getJSONArray("reply");
-            if(reply != null && reply.length() > 0) {
-                ArrayList<IItem> subItems = new ArrayList<>();
-                for(int i = 0; i < reply.length(); i++) {
-                    // TODO: Make the increase controllable elsewhere
-                    subItems.add(get_item_from_json(reply.getJSONObject(i), padding+16));
+            if(obj.has("reply")) {
+                JSONArray reply = obj.getJSONArray("reply");
+                if (reply != null && reply.length() > 0) {
+                    ArrayList<IItem> subItems = new ArrayList<>();
+                    for (int i = 0; i < reply.length(); i++) {
+                        // TODO: Make the increase controllable elsewhere
+                        subItems.add(get_item_from_json(reply.getJSONObject(i), padding + 16));
+                    }
+                    ret.withSubItems(subItems);
                 }
-                ret.withSubItems(subItems);
             }
         }
         catch (JSONException e) {

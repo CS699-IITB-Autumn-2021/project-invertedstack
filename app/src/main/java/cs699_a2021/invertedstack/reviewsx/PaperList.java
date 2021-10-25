@@ -68,8 +68,8 @@ public class PaperList extends AppCompatActivity {
 
         TextView header = findViewById(R.id.paperlist_header);
         String conf_name = "iclr";
-        String year = "2020"; // Currently only for ICLR
-        String category = "oral_presentations";
+        String year = "2021"; // Currently only for ICLR
+        String category = "spotlight_presentations";
         header.setText(conf_name + " " + year + " " + category);
 
         RecyclerView recyclerView = findViewById(R.id.paperlist_recyclerview);
@@ -98,7 +98,7 @@ public class PaperList extends AppCompatActivity {
         recyclerView.setAdapter(fastAdapter);
 
         ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperList.this);
-        Cursor allPapers = db.getAllPapers();
+        Cursor allPapers = db.getPapersByConfYearCat(conf_name, year, category);
         ArrayList<IItem> items = new ArrayList<>();
 
         if(allPapers.getCount() != 0) {
@@ -152,14 +152,19 @@ public class PaperList extends AppCompatActivity {
                             JSONObject object = array.getJSONObject(i);
                             PapersItem item = new PapersItem();
                             item.content_id = object.getString("data_id");
-                            item.title = object.getString("paper_title");
+                            item.title = object.has("paper_title") ? object.getString("paper_title") : "(Not Available)";
                             String authors_string = "";
                             authors_string += "<b>Authors: </b><i>";
                             // Authors
-                            JSONArray authors = object.getJSONArray("authors");
-                            for(int j = 0; j < authors.length(); j++) {
-                                authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
-                                System.out.println(authors_string);
+                            if(object.has("authors")) {
+                                JSONArray authors = object.getJSONArray("authors");
+                                for (int j = 0; j < authors.length(); j++) {
+                                    authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
+                                    System.out.println(authors_string);
+                                }
+                            }
+                            else {
+                                authors_string += "(Not Available)";
                             }
                             item.authors = authors_string;
                             String body = "";
@@ -170,7 +175,7 @@ public class PaperList extends AppCompatActivity {
                             body += object.has("keywords") ? object.getString("keywords") : "(Not Available)";
                             item.body = body;
                             items.add(item);
-                            System.out.println(db.updatePaperData(item.content_id, item.title, item.authors, item.body));
+                            System.out.println(db.updatePaperData(item.content_id, item.title, item.authors, item.body, conf_name, year, category));
                             System.out.println("-----------------------------");
                         }
                     } catch (JSONException e) {
