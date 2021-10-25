@@ -5,6 +5,14 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.listeners.ClickEventHook;
+import com.mikepenz.fastadapter.listeners.EventHook;
+import com.mikepenz.fastadapter.utils.EventHookUtil;
 import com.mikepenz.iconics.view.IconicsImageButton;
 import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.model.BaseDescribeableDrawerItem;
@@ -24,6 +32,25 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
     public DrawerCollectionsItem withDeletable(boolean deletable) {
         this.is_deletable = deletable;
         return this;
+    }
+
+    public static class RemoveViewEvent extends ClickEventHook<DrawerCollectionsItem> {
+        @Nullable
+        @Override
+        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
+            if(viewHolder instanceof DrawerCollectionsItem.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder)viewHolder).delete);
+            }
+            return super.onBindMany(viewHolder);
+        }
+        @Override
+        public void onClick(View v, int position, FastAdapter<DrawerCollectionsItem> fastAdapter, DrawerCollectionsItem item) {
+            System.out.println("I'm inside the motherfucking fastadapter callback ! FIRST TIME CODING BABY !! I'M A FUCKING GOD IF THIS WORKS LOL");
+            ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
+            db.deleteCollection(item.collection_name);
+            fastAdapter.getAdapter(1).getAdapterItems().remove(position-1);
+            fastAdapter.notifyAdapterDataSetChanged();
+        }
     }
 
     @Override
@@ -51,12 +78,15 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         viewHolder.collection_name.setTextColor(getColor(ctx));
         System.out.println(viewHolder.collection_name.getText());
         if(is_deletable) {
+            /*
             viewHolder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     System.out.println("You clicked " + collection_name);
                 }
             });
+
+             */
         }
         else {
             viewHolder.delete.setVisibility(View.GONE);

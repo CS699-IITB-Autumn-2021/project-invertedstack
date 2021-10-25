@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.adapters.ModelAdapter;
+import com.mikepenz.fastadapter.expandable.ExpandableExtension;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -29,6 +34,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private AccountHeader header;
+    private DrawerBuilder drawerBuilder;
     private Drawer drawer;
     ExpandableDrawerItem collections;
     ArrayList<String> collection_names;
@@ -66,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(name + collections_start + i);
             i += 1;
         }
-        drawer = new DrawerBuilder()
+        FastAdapter fastAdapter = FastAdapter.with(new ItemAdapter<>());
+        fastAdapter.withSelectable(true);
+        fastAdapter.withEventHook(new DrawerCollectionsItem.RemoveViewEvent());
+        drawerBuilder = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(header)
@@ -123,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .withSavedInstance(savedInstanceState)
-                .build();
+                .withAdapter(fastAdapter);
+        drawer = drawerBuilder.build();
 
         Button papers_list = findViewById(R.id.main_button_papers_list);
         Button discussions = findViewById(R.id.main_button_discussion);
