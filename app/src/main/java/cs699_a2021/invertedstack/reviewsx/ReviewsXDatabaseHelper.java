@@ -11,8 +11,7 @@ import java.io.NotSerializableException;
 public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     // ref - http://www.codebind.com/android-tutorials-and-examples/android-sqlite-tutorial-example/
     private static String DATABASE_NAME = "ReviewsX.db";
-    // TODO: All the tables MUST also have a key = name of the conference + year + type of the paper (Oral/Spotlight etc.)
-    // TODO: Paper PDF link too maybe ?
+
     private static String PAPERS_TABLE_NAME = "Papers";
     private static String PAPERS_PAPER_ID = "Paper_ID";
     private static String PAPERS_TITLE = "Paper_Title";
@@ -29,6 +28,10 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     private static String NOTES_TABLE_NAME = "Notes";
     private static String NOTES_PAPER_ID = "Paper_ID";
     private static String NOTES_NOTE_MD = "Note_MD";
+
+    private static String COLLECTIONS_TABLE_NAME = "Collections";
+    public static String COLLECTION_NAME = "Name";
+    private static String COLLECTION_PAPER_ID = "Paper_ID";
 
     public ReviewsXDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -58,6 +61,15 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
                       NOTES_NOTE_MD + " TEXT NOT NULL" +
                 ")"
         );
+        db.execSQL(
+                "CREATE TABLE IF NOT EXISTS " + COLLECTIONS_TABLE_NAME + " (" +
+                      COLLECTION_NAME + " TEXT NOT NULL PRIMARY KEY " +
+                ")"
+        );
+        this.addCollection(db, "Favourites");
+        this.addCollection(db, "Wishlist");
+        this.addCollection(db, "Currently reading");
+        this.addCollection(db, "Already read");
     }
 
     @Override
@@ -65,7 +77,76 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + PAPERS_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + COMMENTS_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + NOTES_TABLE_NAME);
+        // Delete all collection tables too
+        Cursor cursor = this.getAllCollections(db);
+        while(cursor.moveToNext()) {
+            String name = cursor.getString(0);
+            this.deleteCollection(db, name);
+        }
+        db.execSQL("DROP TABLE IF EXISTS "+ COLLECTIONS_TABLE_NAME);
         onCreate(db);
+    }
+
+    public void addCollection(String name) {
+        // The caller should make sure that name is NOT in the pre-existing collections
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLLECTION_NAME, name);
+        db.insert(COLLECTIONS_TABLE_NAME, null, contentValues);
+        db.execSQL(
+                "CREATE TABLE IF NOT EXISTS " + "Collection_" + name.replaceAll("\\s+", "_") + " (" +
+                      COLLECTION_PAPER_ID + " TEXT NOT NULL PRIMARY KEY " +
+                ")"
+        );
+    }
+
+    public void addCollection(SQLiteDatabase db, String name) {
+        // The caller should make sure that name is NOT in the pre-existing collections
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLLECTION_NAME, name);
+        db.insert(COLLECTIONS_TABLE_NAME, null, contentValues);
+        db.execSQL(
+                "CREATE TABLE IF NOT EXISTS " + "Collection_" + name.replaceAll("\\s+", "_") + " (" +
+                        COLLECTION_PAPER_ID + " TEXT NOT NULL PRIMARY KEY " +
+                        ")"
+        );
+    }
+
+    public void deleteCollection(String name) {
+        // The caller should make sure that collection with name exists
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + COLLECTIONS_TABLE_NAME + " WHERE " + COLLECTION_NAME + " = " + name);
+        db.execSQL("DROP TABLE IF EXISTS Collection_" + name.replaceAll("\\s+", "_"));
+    }
+
+    public void deleteCollection(SQLiteDatabase db, String name) {
+        // The caller should make sure that collection with name exists
+        db.execSQL("DELETE FROM " + COLLECTIONS_TABLE_NAME + " WHERE " + COLLECTION_NAME + " = " + name);
+        db.execSQL("DROP TABLE IF EXISTS Collection_" + name.replaceAll("\\s+", "_"));
+    }
+    public void renameCollection(String old_name, String new_name) {
+        // The caller should make sure that collection with old_name exists and that no collection with new_name exists
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("ALTER TABLE Collection_" + old_name.replaceAll("\\s+", "_") + " RENAME TO Collection_" + new_name.replaceAll("\\s+", "_"));
+    }
+
+    public boolean addPaperToCollection(String name, String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query("Collection_" + name.replaceAll("\\s+", "_"), null, COLLECTION_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+        if(cursor.getCount() == 0) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLLECTION_PAPER_ID, id);
+            return db.insert("Collection_" + name.replaceAll("\\s+", "_"), null, contentValues) != -1;
+        }
+        return true;
+    }
+
+    public void deletePaperFromCollection(String name, String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query("Collection_" + name.replaceAll("\\s+", "_"), null, COLLECTION_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+        if(cursor.getCount() != 0) {
+            db.delete("Collection_" + name.replaceAll("\\s+", "_"), COLLECTION_PAPER_ID + " = ?", new String[]{id});
+        }
     }
 
     public boolean updatePaperData(String id, String title, String authors, String body, String conf, String year, String cat) {
@@ -147,9 +228,28 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
         return db.query(NOTES_TABLE_NAME, null, NOTES_PAPER_ID + " = ?", new String[]{id}, null, null, null);
     }
 
-    public boolean deleteAllPapers() {
+    public Cursor getAllCollections() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(COLLECTIONS_TABLE_NAME, null, null, null, null, null, null);
+    }
+
+    public Cursor getAllCollections(SQLiteDatabase db) {
+        return db.query(COLLECTIONS_TABLE_NAME, null, null, null, null, null, null);
+    }
+
+    public boolean isPaperInCollection(String name, String id) {
+        // Caller must verify that ocllection with name exists
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query("Collection_" + name.replaceAll("\\s+", "_"), null, COLLECTION_PAPER_ID + " = ?", new String[]{id}, null, null, null).getCount() != 0;
+    }
+
+    public Cursor getAllPapersInCollection(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query("Collection_" + name.replaceAll("\\s+", "_"), null, null, null, null, null, null);
+    }
+
+    public void deleteAllPapers() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.rawQuery("DELETE FROM " + PAPERS_TABLE_NAME, null);
-        return true;
     }
 }

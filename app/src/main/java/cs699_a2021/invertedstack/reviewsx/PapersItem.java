@@ -1,6 +1,7 @@
 package cs699_a2021.invertedstack.reviewsx;
 
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.os.Build;
 import android.text.Html;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.mikepenz.iconics.view.IconicsButton;
 import com.mikepenz.iconics.view.IconicsTextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> {
@@ -73,22 +75,44 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
         @Override
         public void onClick(View v, int position, FastAdapter<PapersItem> fastAdapter, PapersItem item) {
             ArrayList<String> options = new ArrayList<>();
-            Integer[] selected_indices = new Integer[2];
-            selected_indices[0] = 0;
-            selected_indices[1] = 2;
-            options.add("Favourites");
-            options.add("Currently reading");
-            options.add("Wishlist");
-            options.add("Already read");
+            ArrayList<Integer> selected_indices = new ArrayList<>();
+            ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
+            Cursor collections = db.getAllCollections();
+            int i = 0;
+            while(collections.moveToNext()) {
+                String collection_name = collections.getString(0);
+                options.add(collection_name);
+                if(db.isPaperInCollection(collection_name, item.content_id)) {
+                    selected_indices.add(i);
+                }
+                i += 1;
+            }
+            Integer[] sel_idxs = new Integer[selected_indices.size()];
+            selected_indices.toArray(sel_idxs);
             MaterialDialog.Builder dialog = new MaterialDialog.Builder(v.getContext())
-                    .title(item.content_id)
+                    .title("Save to collections")
                     .items(options)
-                    .itemsCallbackMultiChoice(selected_indices, new MaterialDialog.ListCallbackMultiChoice() {
+                    .itemsCallbackMultiChoice(sel_idxs, new MaterialDialog.ListCallbackMultiChoice() {
                         @Override
                         public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                            return false;
+                            ArrayList<String> selected = new ArrayList<>();
+                            for(CharSequence s: text) {
+                                selected.add(s.toString());
+                            }
+                            for(String name: options) {
+                                if(selected.contains(name)) {
+                                    db.addPaperToCollection(name, item.content_id);
+                                    System.out.println("Added paper " + item.content_id + " to " + name);
+                                }
+                                else {
+                                    db.deletePaperFromCollection(name, item.content_id);
+                                    System.out.println("Removed paper " + item.content_id + " from " + name);
+                                }
+                            }
+                            return true;
                         }
-                    });
+                    })
+                    .positiveText("Done");
             dialog.show();
         }
     }
