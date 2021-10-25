@@ -29,7 +29,15 @@ public class ViewCollectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_collection);
 
-        String collection_name = "Currently reading";
+        Bundle b = getIntent().getExtras();
+        String collection_name;
+        if(b == null) {
+            // TODO: Show error and die
+            collection_name = "Currently reading";
+        }
+        else {
+            collection_name = b.getString("collection_name");
+        }
 
         RecyclerView recyclerView = findViewById(R.id.view_collection_recyclerview);
 

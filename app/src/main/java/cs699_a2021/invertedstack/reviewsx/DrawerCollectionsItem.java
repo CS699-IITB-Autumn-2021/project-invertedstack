@@ -14,9 +14,15 @@ import java.util.List;
 
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
     public String collection_name;
+    public boolean is_deletable;
 
     public DrawerCollectionsItem withCollectionName(String name) {
         this.collection_name = name;
+        return this;
+    }
+
+    public DrawerCollectionsItem withDeletable(boolean deletable) {
+        this.is_deletable = deletable;
         return this;
     }
 
@@ -45,12 +51,17 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         viewHolder.collection_name.setText(collection_name);
         viewHolder.collection_name.setTextColor(getColor(ctx));
         System.out.println(viewHolder.collection_name.getText());
-        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("You clicked " + collection_name);
-            }
-        });
+        if(is_deletable) {
+            viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("You clicked " + collection_name);
+                }
+            });
+        }
+        else {
+            viewHolder.delete.setVisibility(View.GONE);
+        }
     }
 
     public static class ViewHolder extends BaseViewHolder {
