@@ -7,15 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.ExpandableDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 public class MainActivity extends AppCompatActivity {
     private AccountHeader header;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Main Activity");
+        getSupportActionBar().setTitle("Home");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         header = new AccountHeaderBuilder()
@@ -38,17 +41,37 @@ public class MainActivity extends AppCompatActivity {
                 )
                 .withSelectionListEnabledForSingleProfile(false)
                 .build();
+        ExpandableDrawerItem collections = new ExpandableDrawerItem().withName("Collections-2").withSubItems(
+                new SecondaryDrawerItem().withName("Currenly reading").withIcon(R.drawable.ic_baseline_collections_bookmark_24),
+                new SecondaryDrawerItem().withName("Wishlist").withIcon(R.drawable.ic_baseline_collections_bookmark_24),
+                new SecondaryDrawerItem().withName("Already read").withIcon(R.drawable.ic_baseline_collections_bookmark_24),
+                new DrawerCollectionsItem().withCollectionName("STUFF")
+        );
         drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(header)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Home").withIdentifier(1).withIcon(R.drawable.ic_baseline_home_24),
-                        new SectionDrawerItem().withName("Collections"),
-                        new SecondaryDrawerItem().withName("Currenly reading").withIdentifier(2).withIcon(R.drawable.ic_baseline_collections_bookmark_24),
-                        new SecondaryDrawerItem().withName("Wishlist").withIdentifier(3).withIcon(R.drawable.ic_baseline_collections_bookmark_24),
-                        new SecondaryDrawerItem().withName("Already read").withIdentifier(4).withIcon(R.drawable.ic_baseline_collections_bookmark_24)
+                        new PrimaryDrawerItem().withName("Home").withIcon(R.drawable.ic_baseline_home_24),
+                        new ExpandableDrawerItem().withName("Collections").withSubItems(
+                            new SecondaryDrawerItem().withName("Currenly reading").withIcon(R.drawable.ic_baseline_collections_bookmark_24),
+                            new SecondaryDrawerItem().withName("Wishlist").withIcon(R.drawable.ic_baseline_collections_bookmark_24),
+                            new SecondaryDrawerItem().withName("Already read").withIcon(R.drawable.ic_baseline_collections_bookmark_24)
+                        ),
+                        collections
                 )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        /*
+                        Toast.makeText(MainActivity.this, "Clicked position " + position, Toast.LENGTH_SHORT);
+                        System.out.println("Position " + position + " ID = " + drawerItem.getIdentifier());
+                        collections.withSubItems(new SecondaryDrawerItem().withName("LMAO").withIcon(R.drawable.ic_baseline_collections_bookmark_24));
+                        drawer.getAdapter().notifyAdapterDataSetChanged();
+                         */
+                        return false;
+                    }
+                })
                 .withSavedInstance(savedInstanceState)
                 .build();
 

@@ -4,4 +4,5 @@
     <item name="discussion_item_expandable_id" type="id"/>
     <item name="paper_item_id" type="id"/>
     <item name="collection_item_id" type="id"/>
+    <item name="drawer_collection_deletable_item_id" type="id"/>
 </resources>
