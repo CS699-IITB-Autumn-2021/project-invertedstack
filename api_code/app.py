@@ -31,10 +31,10 @@ def get_parameters():
     output_dict = {}
     f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+".json")
     data = json.load(f)
-    for i in data:
-        output_dict[i["data_id"]] = {"paper_title":i["paper_title"],"forum_link":i["forum_link"],"pdf_link":i["pdf_link"],"authors":i["authors"],"abstract":i["abstract"]}
-        if "keywords" in i:
-            output_dict[i["data_id"]]["keywords"] = i["keywords"]
+    # for i in data:
+    #     output_dict[i["data_id"]] = {"paper_title":i["paper_title"],"forum_link":i["forum_link"],"pdf_link":i["pdf_link"],"authors":i["authors"],"abstract":i["abstract"]}
+    #     if "keywords" in i:
+    #         output_dict[i["data_id"]]["keywords"] = i["keywords"]
     return jsonify(output_dict)
 
 @app.route("/get_categories")
