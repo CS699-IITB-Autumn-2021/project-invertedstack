@@ -31,6 +31,13 @@ def get_parameters():
     output_dict = {}
     f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+".json")
     data = json.load(f)
+
+    for d in data:
+        for k in d.keys():
+            if type(d[k])==str:
+                if len(d[k])==0:
+                    d[k]="N.A."
+
     return jsonify(data)
 
 @app.route("/get_info")
