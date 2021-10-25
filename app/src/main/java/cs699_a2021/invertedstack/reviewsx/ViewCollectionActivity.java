@@ -1,18 +1,22 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 
 import java.util.ArrayList;
@@ -34,6 +38,18 @@ public class ViewCollectionActivity extends AppCompatActivity {
         fastAdapter.withSelectable(true);
         fastAdapter.withEventHook(new CollectionsPaperItem.ExpandBodyClickEvent());
         fastAdapter.withEventHook(new CollectionsPaperItem.CollectionRemoveEvent());
+        fastAdapter.withOnClickListener(new OnClickListener<CollectionsPaperItem>() {
+            @Override
+            public boolean onClick(@Nullable View v, IAdapter adapter, CollectionsPaperItem item, int position) {
+                Intent intent = new Intent(ViewCollectionActivity.this, PaperWithDiscussion.class);
+                intent.putExtra("conf_name", item.conf);
+                intent.putExtra("year", item.year);
+                intent.putExtra("category", item.category);
+                intent.putExtra("data_id", item.content_id);
+                startActivity(intent);;
+                return false;
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
