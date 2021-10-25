@@ -114,12 +114,18 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                                 else {
                                                     db.addCollection(new_name);
+                                                    // Something fishy is going on here
+                                                    // Either the collection addition or something related to fastadapter is messing stuff up
+                                                    // It consumes the new collection button basically which shouldn't happen
+                                                    // Anyway good enough for today
                                                     collections.withSubItems(
                                                             new DrawerCollectionsItem()
                                                                     .withCollectionName(new_name)
                                                                     .withDeletable(i>=4)
                                                                     .withIdentifier(collections_start + i)
                                                     );
+                                                    collection_names.add(new_name);
+                                                    i += 1;
                                                     drawer.updateItem(collections);
                                                     drawer.getAdapter().notifyAdapterDataSetChanged();
                                                 }
