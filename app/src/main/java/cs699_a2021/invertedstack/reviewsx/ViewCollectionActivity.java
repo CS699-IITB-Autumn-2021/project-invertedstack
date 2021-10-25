@@ -12,6 +12,7 @@ import android.view.View;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ViewCollectionActivity extends AppCompatActivity {
         fastAdapter = FastAdapter.with(itemAdapter);
         fastAdapter.withSelectable(true);
         fastAdapter.withEventHook(new CollectionsPaperItem.ExpandBodyClickEvent());
+        fastAdapter.withEventHook(new CollectionsPaperItem.CollectionRemoveEvent());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
@@ -56,6 +58,7 @@ public class ViewCollectionActivity extends AppCompatActivity {
                     item.conf = paper_data.getString(4);
                     item.year = paper_data.getString(5);
                     item.category = paper_data.getString(6);
+                    item.collection_name = collection_name;
                     items.add(item);
                 }
                 else {

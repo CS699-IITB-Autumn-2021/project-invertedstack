@@ -95,7 +95,7 @@
                 android:id="@+id/collection_card_change_collections"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modify collections {gmd-collections_bookmark}"/>
+                android:text="Remove {gmd-delete}"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

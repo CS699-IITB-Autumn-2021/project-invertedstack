@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter.listeners.ClickEventHook;
 import com.mikepenz.fastadapter.utils.EventHookUtil;
@@ -31,6 +34,7 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
     public String authors;
     public String body;
     public String content_id;
+    public String collection_name;
 
     public static class ExpandBodyClickEvent extends ClickEventHook<CollectionsPaperItem> {
         @Nullable
@@ -56,7 +60,7 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
         }
     }
 
-    public static class CollectionSaveEvent extends ClickEventHook<CollectionsPaperItem> {
+    public static class CollectionRemoveEvent extends ClickEventHook<CollectionsPaperItem> {
         @Nullable
         @Override
         public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
@@ -67,44 +71,20 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
         }
         @Override
         public void onClick(View v, int position, FastAdapter<CollectionsPaperItem> fastAdapter, CollectionsPaperItem item) {
-            ArrayList<String> options = new ArrayList<>();
-            ArrayList<Integer> selected_indices = new ArrayList<>();
             ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
-            Cursor collections = db.getAllCollections();
-            int i = 0;
-            while(collections.moveToNext()) {
-                String collection_name = collections.getString(0);
-                options.add(collection_name);
-                if(db.isPaperInCollection(collection_name, item.content_id)) {
-                    selected_indices.add(i);
-                }
-                i += 1;
-            }
-            Integer[] sel_idxs = new Integer[selected_indices.size()];
-            selected_indices.toArray(sel_idxs);
             MaterialDialog.Builder dialog = new MaterialDialog.Builder(v.getContext())
-                    .title("Save to collections")
-                    .items(options)
-                    .itemsCallbackMultiChoice(sel_idxs, new MaterialDialog.ListCallbackMultiChoice() {
+                    .title("Are you sure")
+                    .content("You are about to remove this paper from the collection")
+                    .positiveText("I'm sure")
+                    .negativeText("No, I'll keep it")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                            ArrayList<String> selected = new ArrayList<>();
-                            for(CharSequence s: text) {
-                                selected.add(s.toString());
-                            }
-                            for(String name: options) {
-                                if (selected.contains(name)) {
-                                    db.addPaperToCollection(name, item.content_id);
-                                    System.out.println("Added paper " + item.content_id + " to " + name);
-                                } else {
-                                    db.deletePaperFromCollection(name, item.content_id);
-                                    System.out.println("Removed paper " + item.content_id + " from " + name);
-                                }
-                            }
-                            return true;
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            db.deletePaperFromCollection(item.collection_name, item.content_id);
+                            fastAdapter.getAdapter(0).getAdapterItems().remove(position);
+                            fastAdapter.notifyAdapterDataSetChanged();
                         }
-                    })
-                    .positiveText("Done");
+                    });
             dialog.show();
         }
     }
