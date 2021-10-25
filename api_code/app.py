@@ -31,8 +31,7 @@ def get_parameters():
     output_dict = {}
     f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+".json")
     data = json.load(f)
-
-    return jsonify(output_dict)
+    return jsonify(data)
 
 @app.route("/get_info")
 def get_info():
@@ -77,6 +76,16 @@ def get_comments():
 
     f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+"/"+data_id+"_comments.json")
     data=json.load(f)
+
+    if year=="2020":
+        for d in data:
+            key_list = list(d["content"].keys())
+            for k in key_list:
+                if "review_assessment" in k:
+                    d["content"][k.split("review_assessment:_")[1].replace("_"," ")]=d["content"].pop(k)
+                elif "experience_assessment" in k:
+                    d["content"]["experience assessment"] = d["content"].pop(k)
+
     return jsonify(data)
 
 if __name__ == "__main__":
