@@ -1,5 +1,6 @@
 package cs699_a2021.invertedstack.reviewsx;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,10 +25,14 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private AccountHeader header;
     private Drawer drawer;
+    ExpandableDrawerItem collections;
+    ArrayList<String> collection_names;
+    int collections_start = 100, i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,30 +53,27 @@ public class MainActivity extends AppCompatActivity {
                 )
                 .withSelectionListEnabledForSingleProfile(false)
                 .build();
-        ExpandableDrawerItem collections = new ExpandableDrawerItem().withName("Collections").withIdentifier(2);
-        ArrayList<String> collection_names = new ArrayList<>();
-        int collections_start = 100, i = 0;
+
+        collections = new ExpandableDrawerItem().withName("Collections").withIdentifier(2);
+        collection_names = new ArrayList<>();
         Cursor cursor = db.getAllCollections();
         while(cursor.moveToNext()) {
             String name = cursor.getString(0);
-            boolean is_deletable = i>=4;
             collections = collections.withSubItems(
-                    new DrawerCollectionsItem().withCollectionName(name).withDeletable(is_deletable).withIdentifier(collections_start + i)
+                    new DrawerCollectionsItem().withCollectionName(name).withDeletable(i>=4).withIdentifier(collections_start + i)
             );
             collection_names.add(name);
             System.out.println(name + collections_start + i);
             i += 1;
         }
-        collections = collections.withSubItems(
-                new SecondaryDrawerItem().withName("New Collection").withIcon(FontAwesome.Icon.faw_plus).withIdentifier(3)
-        );
         drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(header)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Home").withIcon(R.drawable.ic_baseline_home_24).withIdentifier(1),
-                        collections
+                        collections,
+                        new SecondaryDrawerItem().withName("New Collection").withIcon(FontAwesome.Icon.faw_plus).withIdentifier(3)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -82,6 +84,40 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
                             intent.putExtra("collection_name", collection_names.get(idx));
                             startActivity(intent);
+                        }
+                        switch((int) drawerItem.getIdentifier()){
+                            case 3:
+                                // New Collection
+                                MaterialDialog dialog = new MaterialDialog.Builder(MainActivity.this)
+                                        .title("Add a new collection")
+                                        .input("Enter the name of new collection", null, new MaterialDialog.InputCallback() {
+                                            @Override
+                                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                                                String new_name = input.toString();
+                                                if(collection_names.contains(new_name)) {
+                                                    runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            // Safest way to use Toasts
+                                                            Toast.makeText(getApplicationContext(), "The collection already exists!", Toast.LENGTH_LONG).show();
+                                                        }
+                                                    });
+                                                }
+                                                else {
+                                                    db.addCollection(new_name);
+                                                    collections.withSubItems(
+                                                            new DrawerCollectionsItem()
+                                                                    .withCollectionName(new_name)
+                                                                    .withDeletable(i>=4)
+                                                                    .withIdentifier(collections_start + i)
+                                                    );
+                                                    drawer.updateItem(collections);
+                                                    drawer.getAdapter().notifyAdapterDataSetChanged();
+                                                }
+                                            }
+                                        })
+                                        .build();
+                                dialog.show();
                         }
                         return false;
                     }

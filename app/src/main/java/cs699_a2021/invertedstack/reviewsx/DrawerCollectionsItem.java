@@ -41,7 +41,6 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         return R.layout.drawer_collections_deleteable;
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void bindView(ViewHolder viewHolder, List payloads) {
         super.bindView(viewHolder, payloads);
