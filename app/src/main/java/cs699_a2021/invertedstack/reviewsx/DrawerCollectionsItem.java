@@ -1,6 +1,5 @@
 package cs699_a2021.invertedstack.reviewsx;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
@@ -12,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.listeners.ClickEventHook;
-import com.mikepenz.fastadapter.listeners.EventHook;
 import com.mikepenz.fastadapter.utils.EventHookUtil;
 import com.mikepenz.iconics.view.IconicsImageButton;
-import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.model.BaseDescribeableDrawerItem;
 import com.mikepenz.materialdrawer.model.BaseViewHolder;
 
@@ -23,16 +20,10 @@ import java.util.List;
 
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
     public String collection_name;
-    public boolean is_deletable;
     public View.OnClickListener deleteClicked;
 
     public DrawerCollectionsItem withCollectionName(String name) {
         this.collection_name = name;
-        return this;
-    }
-
-    public DrawerCollectionsItem withDeletable(boolean deletable) {
-        this.is_deletable = deletable;
         return this;
     }
 
@@ -82,29 +73,19 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
 
     @Override
     public void bindView(ViewHolder viewHolder, List payloads) {
-        for(Object i: payloads) {
-            System.out.println(i.getClass().toString());
-        }
         super.bindView(viewHolder, payloads);
         Context ctx = viewHolder.itemView.getContext();
-        System.out.println(collection_name);
         viewHolder.itemView.setId(R.id.drawer_collection_deletable_item_id);
         //bindViewHelper(viewHolder);
         viewHolder.collection_name.setText(collection_name);
         viewHolder.collection_name.setTextColor(getColor(ctx));
-        System.out.println(viewHolder.collection_name.getText());
-        if(is_deletable) {
-            viewHolder.delete.setOnClickListener(deleteClicked);
-        }
-        else {
-            viewHolder.delete.setVisibility(View.GONE);
-        }
+        viewHolder.delete.setOnClickListener(deleteClicked);
         onPostBindView(this, viewHolder.itemView);
     }
 
     public static class ViewHolder extends BaseViewHolder {
-        public IconicsImageButton delete;
-        public TextView collection_name;
+        final public IconicsImageButton delete;
+        final public TextView collection_name;
 
         public ViewHolder(View view) {
             super(view);

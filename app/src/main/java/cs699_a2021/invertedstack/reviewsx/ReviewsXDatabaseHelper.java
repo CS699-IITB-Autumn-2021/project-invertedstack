@@ -115,13 +115,13 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
     public void deleteCollection(String name) {
         // The caller should make sure that collection with name exists
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(COLLECTIONS_TABLE_NAME, COLLECTION_NAME + " = ?", new String[]{name.replaceAll("\\s+", "_")});
+        db.delete(COLLECTIONS_TABLE_NAME, COLLECTION_NAME + " = ?", new String[]{name});
         db.execSQL("DROP TABLE IF EXISTS Collection_" + name.replaceAll("\\s+", "_"));
     }
 
     public void deleteCollection(SQLiteDatabase db, String name) {
         // The caller should make sure that collection with name exists
-        db.delete(COLLECTIONS_TABLE_NAME, COLLECTION_NAME + " = ?", new String[]{name.replaceAll("\\s+", "_")});
+        db.delete(COLLECTIONS_TABLE_NAME, COLLECTION_NAME + " = ?", new String[]{name});
         db.execSQL("DROP TABLE IF EXISTS Collection_" + name.replaceAll("\\s+", "_"));
     }
     public void renameCollection(String old_name, String new_name) {
