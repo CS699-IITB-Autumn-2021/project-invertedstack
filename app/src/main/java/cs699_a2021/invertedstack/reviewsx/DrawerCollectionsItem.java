@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.listeners.ClickEventHook;
 import com.mikepenz.fastadapter.listeners.EventHook;
 import com.mikepenz.fastadapter.utils.EventHookUtil;
@@ -23,6 +24,7 @@ import java.util.List;
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
     public String collection_name;
     public boolean is_deletable;
+    public View.OnClickListener deleteClicked;
 
     public DrawerCollectionsItem withCollectionName(String name) {
         this.collection_name = name;
@@ -31,6 +33,11 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
 
     public DrawerCollectionsItem withDeletable(boolean deletable) {
         this.is_deletable = deletable;
+        return this;
+    }
+
+    public DrawerCollectionsItem withClickListener(View.OnClickListener listener) {
+        this.deleteClicked = listener;
         return this;
     }
 
@@ -47,6 +54,11 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         public void onClick(View v, int position, FastAdapter<DrawerCollectionsItem> fastAdapter, DrawerCollectionsItem item) {
             System.out.println("I'm inside the motherfucking fastadapter callback ! FIRST TIME CODING BABY !! I'M A FUCKING GOD IF THIS WORKS LOL");
             ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
+            db.deleteCollection(item.collection_name);
+            for(int i = 0; i < fastAdapter.getAdapter(1).getAdapterItemCount(); i++) {
+                System.out.println(i + " " + ((IItem)fastAdapter.getItem(i)).getClass().toString());
+            }
+            System.out.println(position);
             db.deleteCollection(item.collection_name);
             fastAdapter.getAdapter(1).getAdapterItems().remove(position-1);
             fastAdapter.notifyAdapterDataSetChanged();
@@ -70,27 +82,24 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
 
     @Override
     public void bindView(ViewHolder viewHolder, List payloads) {
+        for(Object i: payloads) {
+            System.out.println(i.getClass().toString());
+        }
         super.bindView(viewHolder, payloads);
         Context ctx = viewHolder.itemView.getContext();
         System.out.println(collection_name);
+        viewHolder.itemView.setId(R.id.drawer_collection_deletable_item_id);
         //bindViewHelper(viewHolder);
         viewHolder.collection_name.setText(collection_name);
         viewHolder.collection_name.setTextColor(getColor(ctx));
         System.out.println(viewHolder.collection_name.getText());
         if(is_deletable) {
-            /*
-            viewHolder.delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("You clicked " + collection_name);
-                }
-            });
-
-             */
+            viewHolder.delete.setOnClickListener(deleteClicked);
         }
         else {
             viewHolder.delete.setVisibility(View.GONE);
         }
+        onPostBindView(this, viewHolder.itemView);
     }
 
     public static class ViewHolder extends BaseViewHolder {
