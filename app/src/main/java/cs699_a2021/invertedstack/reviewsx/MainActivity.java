@@ -12,7 +12,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +74,46 @@ public class MainActivity extends AppCompatActivity {
             drawer.getAdapter().notifyAdapterDataSetChanged();
         }
     };
+    private View.OnClickListener editClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ViewGroup parent = (ViewGroup) v.getParent();
+            TextView textView = parent.findViewById(R.id.material_drawer_collection_name);
+            String old_name = (String) textView.getText();
+            MaterialDialog dialog = new MaterialDialog.Builder(MainActivity.this)
+                    .title("Edit collection name")
+                    .input("Enter new name of the collection", old_name, new MaterialDialog.InputCallback() {
+                        @Override
+                        public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                            String new_name = input.toString();
+                            if(collection_names.contains(new_name) || new_name.equals("All notes")) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Safest way to use Toasts
+                                        Toast.makeText(getApplicationContext(), "The collection already exists!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            else {
+                                db.renameCollection(old_name, new_name);
+                                drawer.getExpandableExtension().collapse(drawer.getPosition(2));
+                                List items = drawer.getDrawerItem(2).getSubItems();
+                                int idx = collection_names.indexOf(old_name);
+                                DrawerCollectionsItem item = (DrawerCollectionsItem) items.get(idx);
+                                item.collection_name = new_name;
+                                items.set(idx, item);
+                                collection_names.set(idx, new_name);
+                                drawer.getDrawerItem(2).withSubItems(items);
+                                drawer.getAdapter().notifyAdapterDataSetChanged();
+                            }
+                        }
+                    })
+                    .build();
+            dialog.show();
+
+        }
+    };
 
     private void update_collection_names() {
         i = 0;
@@ -89,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 collections = collections.withSubItems(
-                        new DrawerCollectionsItem().withCollectionName(name).withIdentifier(collections_start + i).withClickListener(deleteClicked)
+                        new DrawerCollectionsItem().withCollectionName(name).withIdentifier(collections_start + i).withDeleteClickListener(deleteClicked).withEditClickListener(editClicked)
                 );
             }
             collection_names.add(name);
@@ -160,9 +199,7 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
                                                 String new_name = input.toString();
-                                                // update collection_names using db once
-                                                //update_collection_names();
-                                                if(collection_names.contains(new_name)) {
+                                                if(collection_names.contains(new_name) || new_name.equals("All notes")) {
                                                     runOnUiThread(new Runnable() {
                                                         @Override
                                                         public void run() {
@@ -181,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
                                                                     new DrawerCollectionsItem()
                                                                             .withCollectionName(new_name)
                                                                             .withIdentifier(collections_start + i)
-                                                                            .withClickListener(deleteClicked)
+                                                                            .withDeleteClickListener(deleteClicked)
+                                                                            .withEditClickListener(editClicked)
                                                             );
                                                     drawer.getAdapter().notifyAdapterDataSetChanged();
                                                     collection_names.add(new_name);

@@ -31,7 +31,7 @@
         android:gravity="center_vertical|start"
         android:orientation="vertical"
         android:layout_toEndOf="@id/material_drawer_collection_icon"
-        android:layout_toStartOf="@id/material_drawer_collection_delete">
+        android:layout_toStartOf="@id/material_drawer_collection_edit">
 
         <TextView
             android:id="@+id/material_drawer_collection_name"
@@ -58,6 +58,22 @@
             android:textSize="@dimen/material_drawer_item_primary_description"
             tools:text="Some drawer text" /-->
     </LinearLayout>
+
+    <com.mikepenz.iconics.view.IconicsImageButton
+        android:id="@+id/material_drawer_collection_edit"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:paddingEnd="0dp"
+        android:paddingLeft="@dimen/material_drawer_vertical_padding"
+        android:paddingRight="0dp"
+        android:paddingStart="@dimen/material_drawer_vertical_padding"
+        android:scaleType="fitCenter"
+        android:layout_toStartOf="@id/material_drawer_collection_delete"
+        android:layout_centerVertical="true"
+        app:iiv_icon="gmd-edit"
+        app:iiv_color="@color/white"/>
 
     <com.mikepenz.iconics.view.IconicsImageButton
         android:id="@+id/material_drawer_collection_delete"

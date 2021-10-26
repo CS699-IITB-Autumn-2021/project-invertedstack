@@ -21,14 +21,19 @@ import java.util.List;
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
     public String collection_name;
     public View.OnClickListener deleteClicked;
+    public View.OnClickListener editClicked;
 
     public DrawerCollectionsItem withCollectionName(String name) {
         this.collection_name = name;
         return this;
     }
 
-    public DrawerCollectionsItem withClickListener(View.OnClickListener listener) {
+    public DrawerCollectionsItem withDeleteClickListener(View.OnClickListener listener) {
         this.deleteClicked = listener;
+        return this;
+    }
+    public DrawerCollectionsItem withEditClickListener(View.OnClickListener listener) {
+        this.editClicked = listener;
         return this;
     }
 
@@ -80,16 +85,19 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         viewHolder.collection_name.setText(collection_name);
         viewHolder.collection_name.setTextColor(getColor(ctx));
         viewHolder.delete.setOnClickListener(deleteClicked);
+        viewHolder.edit.setOnClickListener(editClicked);
         onPostBindView(this, viewHolder.itemView);
     }
 
     public static class ViewHolder extends BaseViewHolder {
         final public IconicsImageButton delete;
+        final public IconicsImageButton edit;
         final public TextView collection_name;
 
         public ViewHolder(View view) {
             super(view);
             delete = view.findViewById(R.id.material_drawer_collection_delete);
+            edit = view.findViewById(R.id.material_drawer_collection_edit);
             collection_name = view.findViewById(R.id.material_drawer_collection_name);
         }
     }
