@@ -266,11 +266,13 @@ public class MainActivity extends AppCompatActivity {
                                     })
                                     .build();
                             dialog.show();
+                            return true;
                         case 4:
                             // All notes
                             Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
                             intent.putExtra("collection_name", "All notes");
                             startActivity(intent);
+                            return true;
                         case 5:
                             // ref - https://github.com/mikepenz/AboutLibraries/tree/v6.2.3
                             new LibsBuilder()
@@ -279,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
                                     .withVersionShown(true)
                                     .withAboutDescription("This app is our project for CS699 software lab. Following are the open source libraries with their licenses and authors we used in our project")
                                     .start(MainActivity.this);
+                            return true;
                     }
                     return true;
                 })

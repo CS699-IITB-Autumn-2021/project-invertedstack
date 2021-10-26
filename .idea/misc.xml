@@ -24,9 +24,10 @@
   </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../ReviewsX-JavaDoc" />
-    <option name="OPTION_SCOPE" value="private" />
+    <option name="OTHER_OPTIONS" value="-sourcepath /home/ashutosh/HDD/Android/SDK/platforms/android-31/android.jar" />
     <option name="HEAP_SIZE" value="4096" />
     <option name="LOCALE" value="en" />
+    <option name="OPTION_INCLUDE_LIBS" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

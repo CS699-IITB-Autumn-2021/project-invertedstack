@@ -79,7 +79,7 @@ public class NoteTakingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note_taking);
         Toolbar toolbar = findViewById(R.id.notetaking_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("List of papers");
+        getSupportActionBar().setTitle("Notes");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
         if (b == null) { // or some error such as data_id being NULL
