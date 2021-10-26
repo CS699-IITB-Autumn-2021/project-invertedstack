@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/main_toolbar"/>
-    <Button
+    <!--Button
         android:id="@+id/main_button_papers_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,5 +38,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NoteTaking"
-        android:layout_below="@id/main_button_notetaking"/>
+        android:layout_below="@id/main_button_notetaking"/-->
 </RelativeLayout>
