@@ -47,6 +47,11 @@ import okhttp3.Response;
 public class PaperList extends AppCompatActivity {
     private FastAdapter fastAdapter;
     private ItemAdapter itemAdapter;
+    String conf_name = "iclr";
+    String conf_name_nice = "ICLR";
+    String year = "2021"; // Currently only for ICLR
+    String category = "spotlight_presentations";
+    String category_nice = "Spotlight Presentations";
 
     private String test_json = "[\n" +
             "      {\n" +
@@ -75,11 +80,20 @@ public class PaperList extends AppCompatActivity {
         getSupportActionBar().setTitle("List of papers");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Bundle b = getIntent().getExtras();
+        if(b == null) {
+            // TODO: Show error and die
+        }
+        else {
+            conf_name = b.getString("confname");
+            conf_name_nice = b.getString("confname_nice");
+            year = b.getString("year");
+            category = b.getString("category");
+            category_nice = b.getString("category_nice");
+        }
+
         TextView header = findViewById(R.id.paperlist_header);
-        String conf_name = "iclr";
-        String year = "2021"; // Currently only for ICLR
-        String category = "spotlight_presentations";
-        header.setText(conf_name + " " + year + " " + category);
+        header.setText(conf_name_nice + " " + year + " " + category_nice);
 
         RecyclerView recyclerView = findViewById(R.id.paperlist_recyclerview);
 
@@ -107,7 +121,7 @@ public class PaperList extends AppCompatActivity {
         recyclerView.setAdapter(fastAdapter);
 
         ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperList.this);
-        Cursor allPapers = db.getPapersByConfYearCat(conf_name, year, category);
+        Cursor allPapers = db.getPapersByConfYearCat(conf_name_nice, year, category_nice);
         ArrayList<IItem> items = new ArrayList<>();
 
         if(allPapers.getCount() != 0) {
@@ -184,7 +198,7 @@ public class PaperList extends AppCompatActivity {
                             body += object.has("keywords") ? object.getString("keywords") : "(Not Available)";
                             item.body = body;
                             items.add(item);
-                            System.out.println(db.updatePaperData(item.content_id, item.title, item.authors, item.body, conf_name, year, category));
+                            System.out.println(db.updatePaperData(item.content_id, item.title, item.authors, item.body, conf_name_nice, year, category_nice));
                             System.out.println("-----------------------------");
                         }
                     } catch (JSONException e) {

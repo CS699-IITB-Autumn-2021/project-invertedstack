@@ -1,6 +1,7 @@
 package cs699_a2021.invertedstack.reviewsx;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,8 +18,10 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -31,8 +34,21 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private AccountHeader header;
@@ -185,12 +201,25 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.main_activity_recyclerview);
         ItemAdapter itemAdapter = new ItemAdapter();
         FastAdapter fastAdapter = FastAdapter.with(itemAdapter);
+        fastAdapter.withOnClickListener(new OnClickListener<MainActivityItem>() {
+            @Override
+            public boolean onClick(@Nullable View v, IAdapter adapter, MainActivityItem item, int position) {
+                Intent intent = new Intent(MainActivity.this, PaperList.class);
+                intent.putExtra("confname", item.confname);
+                intent.putExtra("confname_nice", item.confname_nice);
+                intent.putExtra("year", item.year);
+                intent.putExtra("category", item.category);
+                intent.putExtra("category_nice", item.category_nice);
+                startActivity(intent);
+                return true;
+            }
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
         recyclerView.setAdapter(fastAdapter);
-
         ArrayList<IItem> items = new ArrayList<IItem>();
+        /*
         for(int i = 0; i < 10; i++) {
             MainActivityItem item = new MainActivityItem();
             item.confname = "Conf" + i;
@@ -225,6 +254,66 @@ public class MainActivity extends AppCompatActivity {
         collection.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
             startActivity(intent);
+        });
+        */
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(50, TimeUnit.SECONDS)
+                .build();
+        String url = getString(R.string.server_url) + "/get_info";
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    String rcvd_string = response.body().string();
+                    String confname, confname_nice, year, category, category_nice;
+                    try {
+                        JSONArray array = new JSONArray(rcvd_string);
+                        for(int i = 0; i < array.length(); i++) {
+                            JSONObject conf = array.getJSONObject(i);
+                            confname = conf.getString("name");
+                            confname_nice = conf.getString("readable_name");
+                            JSONArray data = conf.getJSONArray("data");
+                            for(int j = 0; j < data.length(); j++) {
+                                JSONObject year_obj = data.getJSONObject(j);
+                                year = year_obj.getString("year");
+                                JSONObject cats = year_obj.getJSONObject("categories");
+                                Iterator<String> keys = cats.keys();
+                                while(keys.hasNext()) {
+                                    String key = keys.next();
+                                    category = key;
+                                    category_nice = cats.getString(key);
+                                    MainActivityItem item = new MainActivityItem();
+                                    item.confname = confname;
+                                    item.confname_nice = confname_nice;
+                                    item.year = year;
+                                    item.category = category;
+                                    item.category_nice = category_nice;
+                                    items.add(item);
+                                }
+                            }
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                itemAdapter.add(items);
+                            }
+                        });
+                    } catch(JSONException e) {
+
+                    }
+                }
+            }
         });
     }
 }
