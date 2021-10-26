@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -184,6 +185,11 @@ public class PaperWithDiscussion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper_with_discussion);
 
+        Toolbar toolbar = findViewById(R.id.paper_discussion_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Discussion");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle b = getIntent().getExtras();
         if(b == null) {
             // TODO: Sow proper error screen
@@ -325,6 +331,9 @@ public class PaperWithDiscussion extends AppCompatActivity {
                 noteIntent.putExtra("paper_title", paper_title);
                 startActivity(noteIntent);
                 return true;
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }

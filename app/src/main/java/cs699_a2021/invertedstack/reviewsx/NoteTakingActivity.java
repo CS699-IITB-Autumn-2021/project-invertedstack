@@ -3,8 +3,10 @@ package cs699_a2021.invertedstack.reviewsx;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.animation.LayoutTransition;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -41,6 +43,10 @@ public class NoteTakingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_taking);
+        Toolbar toolbar = findViewById(R.id.notetaking_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("List of papers");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
         if(b == null) { // or some error such as data_id being NULL
             // TODO: Do a nice fancy graphical error here
@@ -178,6 +184,9 @@ public class NoteTakingActivity extends AppCompatActivity {
                     System.out.println("Saving to DB when new_weight = " + new_weight);
                 }
                 return true;
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.LayoutTransition;
 import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,7 +16,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.textclassifier.TextLinks;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +69,11 @@ public class PaperList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper_list);
+
+        Toolbar toolbar = findViewById(R.id.paperlist_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("List of papers");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView header = findViewById(R.id.paperlist_header);
         String conf_name = "iclr";
@@ -225,5 +234,17 @@ public class PaperList extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

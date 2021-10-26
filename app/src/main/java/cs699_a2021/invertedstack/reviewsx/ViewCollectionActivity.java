@@ -2,6 +2,7 @@ package cs699_a2021.invertedstack.reviewsx;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.mikepenz.fastadapter.FastAdapter;
@@ -28,6 +30,11 @@ public class ViewCollectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_collection);
+
+        Toolbar toolbar = findViewById(R.id.collection_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Collection");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
         String collection_name;
@@ -94,6 +101,18 @@ public class ViewCollectionActivity extends AppCompatActivity {
         }
         else {
             // TODO: Show Errors
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
