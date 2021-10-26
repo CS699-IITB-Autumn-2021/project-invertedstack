@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IExpandable;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.adapters.ModelAdapter;
@@ -34,6 +36,7 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(textView.getText());
             System.out.println("Inside clicked stuff " + v.getClass());
             System.out.println("I have access to drawer " + drawer.getAdapter().getItemCount());
+            drawer.getExpandableExtension().collapse(drawer.getPosition(2));
+            // https://github.com/mikepenz/MaterialDrawer/issues/2154#issuecomment-355746149
+            List items = drawer.getDrawerItem(2).getSubItems();
+            int idx = collection_names.indexOf(textView.getText());
+            items.remove(idx);
+            collection_names.remove(idx);
+            drawer.getDrawerItem(2).withSubItems(items);
+            drawer.getAdapter().notifyAdapterDataSetChanged();
         }
     };
 
@@ -102,27 +113,15 @@ public class MainActivity extends AppCompatActivity {
                 .withAccountHeader(header)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Home").withIcon(R.drawable.ic_baseline_home_24).withIdentifier(1),
-                        new SecondaryDrawerItem().withName("New Collection").withIcon(FontAwesome.Icon.faw_plus).withIdentifier(3),
-                        collections
+                        collections,
+                        new SecondaryDrawerItem().withName("New Collection").withIcon(FontAwesome.Icon.faw_plus).withIdentifier(3)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         System.out.println(drawerItem.getIdentifier());
                         System.out.println("View " + view.getClass());
-                        /*
-                        if(view instanceof RelativeLayout) {
-                            IconicsImageButton button = view.findViewById(R.id.material_drawer_collection_delete);
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    System.out.println("HAHA");
-                                }
-                            });
-                        }
-                        */
-                        return true;
-                        /*
+
                         if(drawerItem.getIdentifier() >= collections_start) {
                             int idx = (int) (drawerItem.getIdentifier() - collections_start);
                             Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
@@ -156,15 +155,19 @@ public class MainActivity extends AppCompatActivity {
                                                     // Either the collection addition or something related to fastadapter is messing stuff up
                                                     // It consumes the new collection button basically which shouldn't happen
                                                     // Anyway good enough for today
+                                                    drawer.getExpandableExtension().collapse(drawer.getPosition(2));
+                                                    // https://github.com/mikepenz/MaterialDrawer/issues/2154#issuecomment-355746149
                                                     drawer.getDrawerItem(2).getSubItems().add(
-                                                            new DrawerCollectionsItem()
-                                                                    .withCollectionName(new_name)
-                                                                    .withDeletable(i>=4)
-                                                                    .withIdentifier(collections_start + i)
-                                                    );
+                                                            //Arrays.asList(
+                                                                    new DrawerCollectionsItem()
+                                                                            .withCollectionName(new_name)
+                                                                            .withDeletable(i >= 4)
+                                                                            .withIdentifier(collections_start + i)
+                                                                            .withClickListener(deleteClicked)
+                                                            );
+                                                    drawer.getAdapter().notifyAdapterDataSetChanged();
                                                     collection_names.add(new_name);
                                                     i += 1;
-                                                    drawer.getAdapter().notifyAdapterDataSetChanged();
                                                     System.out.println(i + new_name + collection_names);
                                                     for(int j = 0; j < drawer.getAdapter().getItemCount(); j++) {
                                                         System.out.println(j + " " + ((IItem)drawer.getAdapter().getItem(j)).getClass());
@@ -176,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                                 dialog.show();
                         }
                         return false;
-                         */
                     }
                 })
                 .withSavedInstance(savedInstanceState);
