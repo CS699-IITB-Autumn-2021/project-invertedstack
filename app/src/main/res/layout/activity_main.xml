@@ -9,12 +9,18 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_activity_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_toolbar"/>
     <Button
         android:id="@+id/main_button_papers_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Papers List"
-        android:layout_below="@id/main_toolbar"/>
+        android:layout_below="@id/main_activity_recyclerview"/>
     <Button
         android:id="@+id/main_button_discussion"
         android:layout_width="wrap_content"

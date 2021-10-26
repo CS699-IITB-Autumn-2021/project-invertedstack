@@ -3,6 +3,8 @@ package cs699_a2021.invertedstack.reviewsx;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,7 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -102,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
         update_collection_names();
 
-        //fastAdapter.withEventHook(new DrawerCollectionsItem.RemoveViewEvent());
         drawerBuilder = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
@@ -176,6 +181,26 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .withSavedInstance(savedInstanceState);
         drawer = drawerBuilder.build();
+
+        RecyclerView recyclerView = findViewById(R.id.main_activity_recyclerview);
+        ItemAdapter itemAdapter = new ItemAdapter();
+        FastAdapter fastAdapter = FastAdapter.with(itemAdapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new SlideDownAlphaAnimator());
+        recyclerView.setAdapter(fastAdapter);
+
+        ArrayList<IItem> items = new ArrayList<IItem>();
+        for(int i = 0; i < 10; i++) {
+            MainActivityItem item = new MainActivityItem();
+            item.confname = "Conf" + i;
+            item.confname_nice = "Conf " + i;
+            item.year = "201" + i;
+            item.category = "cat_" + i;
+            item.category_nice = "Cat " + i;
+            items.add(item);
+        }
+        itemAdapter.add(items);
 
         Button papers_list = findViewById(R.id.main_button_papers_list);
         Button discussions = findViewById(R.id.main_button_discussion);

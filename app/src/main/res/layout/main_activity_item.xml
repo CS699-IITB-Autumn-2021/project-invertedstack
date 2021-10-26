@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Derived from https://github.com/mikepenz/MaterialDrawer/blob/v6.1.2/app/src/main/res/layout/material_drawer_item_overflow_menu_primary.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/material_drawer_item_primary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/material_drawer_vertical_padding"
+    android:paddingLeft="@dimen/material_drawer_vertical_padding"
+    android:paddingRight="@dimen/material_drawer_vertical_padding"
+    android:paddingStart="@dimen/material_drawer_vertical_padding">
+
+    <com.mikepenz.iconics.view.IconicsImageView
+        android:id="@+id/main_screen_icon"
+        android:layout_width="@dimen/material_drawer_item_primary_icon"
+        android:layout_height="@dimen/material_drawer_item_primary"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="@dimen/material_drawer_item_primary_icon_padding"
+        android:paddingEnd="@dimen/material_drawer_item_primary_icon_padding_right"
+        android:paddingLeft="0dp"
+        android:paddingRight="@dimen/material_drawer_item_primary_icon_padding_right"
+        android:paddingStart="0dp"
+        android:paddingTop="@dimen/material_drawer_item_primary_icon_padding"
+        app:iiv_icon="faw-dot-circle"
+        app:iiv_color="@color/white"
+        android:layout_alignParentLeft="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|start"
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/main_screen_icon">
+
+        <TextView
+            android:id="@+id/conf_name_and_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical|start"
+            android:singleLine="true"
+            android:text="Some drawer text"
+            android:textColor="@color/white"
+            android:textDirection="anyRtl"
+            android:textSize="@dimen/material_drawer_item_primary_text" />
+
+        <TextView
+            android:id="@+id/conf_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|start"
+            android:singleLine="true"
+            android:textDirection="anyRtl"
+            android:textSize="@dimen/material_drawer_item_primary_description"
+            android:text="Some drawer text" />
+    </LinearLayout>
+</RelativeLayout>

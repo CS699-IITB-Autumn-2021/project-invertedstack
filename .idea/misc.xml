@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_baseline_notes_24.xml" value="0.2234375" />
+        <entry key="app/src/main/res/drawable/main_screen_card.xml" value="0.38" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_note_taking.xml" value="0.2128623188405797" />
         <entry key="app/src/main/res/layout/activity_paper_list.xml" value="0.17958459979736577" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/layout/collection_card.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/discussion_card.xml" value="0.4737827715355805" />
         <entry key="app/src/main/res/layout/drawer_collections_deleteable.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/main_activity_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/notetaking_menu.xml" value="0.266304347826087" />
         <entry key="app/src/main/res/layout/paper_card.xml" value="0.38269927536231885" />
         <entry key="app/src/main/res/menu/discussion_menu.xml" value="0.3697916666666667" />
