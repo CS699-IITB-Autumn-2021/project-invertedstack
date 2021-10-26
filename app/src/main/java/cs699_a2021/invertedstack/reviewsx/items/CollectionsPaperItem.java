@@ -26,16 +26,48 @@ import java.util.List;
 import cs699_a2021.invertedstack.reviewsx.R;
 import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
+/**
+ * Item for the RecyclerView of `ViewCollectionActivity`
+ *
+ * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ */
 public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, CollectionsPaperItem.ViewHolder> {
+    /**
+     * Name of the conference for the paper
+     */
     public String conf;
+    /**
+     * Year of the conference for the paper
+     */
     public String year;
+    /**
+     * Category of the paper within the conference
+     */
     public String category;
+    /**
+     * Title of the paper
+     */
     public String title;
+    /**
+     * Authors of the paper
+     */
     public String authors;
+    /**
+     * More info regarding the paper (one line summary, abstract etc.)
+     */
     public String body;
+    /**
+     * ID of the paper
+     */
     public String content_id;
+    /**
+     * Name of the collection this paper belongs to
+     */
     public String collection_name;
 
+    /**
+     * EventHook handling the "expand body" event corresponding to the layout of the item
+     */
     public static class ExpandBodyClickEvent extends ClickEventHook<CollectionsPaperItem> {
         @Nullable
         @Override
@@ -60,6 +92,9 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
         }
     }
 
+    /**
+     * EventHook handling the "remove paper from the collection" event
+     */
     public static class CollectionRemoveEvent extends ClickEventHook<CollectionsPaperItem> {
         @Nullable
         @Override

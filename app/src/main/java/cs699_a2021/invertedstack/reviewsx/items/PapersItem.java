@@ -27,12 +27,32 @@ import java.util.List;
 import cs699_a2021.invertedstack.reviewsx.R;
 import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
+/**
+ * Item for RecyclerView in activity `PaperList`
+ *
+ * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ */
 public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> {
+    /**
+     * Title of the paper
+     */
     public String title;
+    /**
+     * Authors of the paper
+     */
     public String authors;
+    /**
+     * Body of the paper -- has info like one-line-summary and abstract etc.
+     */
     public String body;
+    /**
+     * ID of the paper
+     */
     public String content_id;
 
+    /**
+     * EventHook handling the "expand body" event corresponding to the layout of the item
+     */
     public static class ExpandBodyClickEvent extends ClickEventHook<PapersItem> {
         @Nullable
         @Override
@@ -57,6 +77,9 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
         }
     }
 
+    /**
+     * EventHook handling the "save to collection" event
+     */
     public static class CollectionSaveEvent extends ClickEventHook<PapersItem> {
         @Nullable
         @Override

@@ -21,9 +21,23 @@ import java.util.List;
 import cs699_a2021.invertedstack.reviewsx.R;
 import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
+/**
+ * Item for showing the collection in the MaterialDrawer in the MainActivity
+ *
+ * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ */
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
+    /**
+     * Name of the collection
+     */
     public String collection_name;
+    /**
+     * onClickListener for "delete" action -- it's much more convenient to have this passed to the class rather than define it here
+     */
     public View.OnClickListener deleteClicked;
+    /**
+     * onClickListener for "edit" action -- it's much more convenient to have this passed to the class rather than define it here
+     */
     public View.OnClickListener editClicked;
 
     public DrawerCollectionsItem withCollectionName(String name) {

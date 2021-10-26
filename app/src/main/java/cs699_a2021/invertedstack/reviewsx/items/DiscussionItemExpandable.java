@@ -29,13 +29,37 @@ import java.util.List;
 
 import cs699_a2021.invertedstack.reviewsx.R;
 
+/**
+ * Expandable `DiscussionItem` for the use in RecyclerView of `PaperWithDiscussion` activity. This implements
+ * expandable sub items feature that is needed in case of nested comments. Note that this item corresponds to
+ * a single comment -- this comment can ether be toplevel (padding_left=0) or child (padding_left != 0)
+ *
+ * `DiscussionItemExpandable` can be a subItem of `DiscussionItemExpandable` too -- which is much more convenient
+ * than having 2 separate types of items. In future, `DiscussionItem` should be deprecated
+ *
+ * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ * @param <Parent>
+ * @param <SubItem>
+ */
 public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubItem extends IItem & ISubItem> extends AbstractExpandableItem<DiscussionItemExpandable<Parent, SubItem>, DiscussionItemExpandable.ViewHolder, SubItem> {
+    /**
+     * Title of the comment
+     */
     public String title;
+    /**
+     * Body of the comment
+     */
     public String body;
+    /**
+     * Value of left padding for the layout of this comment
+     */
     public int padding_left;
 
     private OnClickListener<DiscussionItemExpandable> mOnClickListener;
 
+    /**
+     * EventHook handling the "expand body" event corresponding to the layout of the item
+     */
     public static class ExpandBodyClickEvent extends ClickEventHook<DiscussionItemExpandable> {
         @Nullable
         @Override
@@ -61,6 +85,9 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
     }
 
     //we define a clickListener in here so we can directly animate
+    /**
+     * onClickListener for directly animating the expand children animation
+     */
     final private OnClickListener<DiscussionItemExpandable<Parent, SubItem>> onClickListener = new OnClickListener<DiscussionItemExpandable<Parent, SubItem>>() {
         @Override
         public boolean onClick(View v, IAdapter adapter, @NonNull DiscussionItemExpandable item, int position) {

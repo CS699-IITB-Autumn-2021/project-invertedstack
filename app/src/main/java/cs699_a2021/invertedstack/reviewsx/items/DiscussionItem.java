@@ -16,9 +16,23 @@ import java.util.List;
 
 import cs699_a2021.invertedstack.reviewsx.R;
 
+/**
+ * Item for RecyclerView of Discussion/Comment activity in case the comment has no children
+ *
+ * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ */
 public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.ViewHolder> {
+    /**
+     * Title of the comment
+     */
     public String title;
+    /**
+     * Body of the comment
+     */
     public String body;
+    /**
+     * Left padding for the layout of this comment. 0 for root level, 16 for 1st level children, 32 for 2nd and so on
+     */
     public int padding_left;
 
     @NonNull

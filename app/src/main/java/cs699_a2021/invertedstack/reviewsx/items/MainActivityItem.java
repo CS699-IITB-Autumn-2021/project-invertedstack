@@ -12,11 +12,32 @@ import java.util.List;
 
 import cs699_a2021.invertedstack.reviewsx.R;
 
+/**
+ * Item displaying the name of the conference, year of the conference and a particular category
+ * in the MainActivity
+ *
+ * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ */
 public class MainActivityItem extends AbstractItem<MainActivityItem, MainActivityItem.ViewHolder> {
+    /**
+     * Name of the conference -- this will be used in API calls further down the line
+     */
     public String confname;
+    /**
+     * "Nicer" name of the conference -- this will be used for actually showing the name of the conference
+     */
     public String confname_nice;
+    /**
+     * Year of the cofnerence
+     */
     public String year;
+    /**
+     * Name of the category -- this will be used in API calls futher down the line
+     */
     public String category;
+    /**
+     * "Nicer" name of the category -- this will be used for actually showing the name of the category
+     */
     public String category_nice;
 
     @NonNull
