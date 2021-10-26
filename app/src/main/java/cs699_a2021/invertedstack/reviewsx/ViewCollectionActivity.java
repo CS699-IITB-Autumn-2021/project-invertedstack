@@ -6,26 +6,47 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.itemanimators.SlideDownAlphaAnimator;
 
 import java.util.ArrayList;
 
+import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
+import cs699_a2021.invertedstack.reviewsx.items.CollectionsPaperItem;
+
+/**
+ * View a particular collection of papers.
+ * The collections MUST be all uniquely named. Also special name "All notes" is reserved for collection of ALL the notes that exist in the
+ * database
+ */
 public class ViewCollectionActivity extends AppCompatActivity {
+    /**
+     * FastAdapter for showing the list of papers in the RecyclerView
+     */
     private FastAdapter fastAdapter;
+    /**
+     * ItemAdapter for FastAdapter
+     */
     private ItemAdapter itemAdapter;
+
+    /**
+     * onCreate method for the activity. The lookup is only local. No need to fetch from the server
+     * Collections are ALWAYS local in this version
+     *
+     * In the future versions -- maybe allow an optional "sync to server" feature ?
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,17 +73,14 @@ public class ViewCollectionActivity extends AppCompatActivity {
         fastAdapter.withSelectable(true);
         fastAdapter.withEventHook(new CollectionsPaperItem.ExpandBodyClickEvent());
         fastAdapter.withEventHook(new CollectionsPaperItem.CollectionRemoveEvent());
-        fastAdapter.withOnClickListener(new OnClickListener<CollectionsPaperItem>() {
-            @Override
-            public boolean onClick(@Nullable View v, IAdapter adapter, CollectionsPaperItem item, int position) {
-                Intent intent = new Intent(ViewCollectionActivity.this, PaperWithDiscussion.class);
-                intent.putExtra("conf_name", item.conf);
-                intent.putExtra("year", item.year);
-                intent.putExtra("category", item.category);
-                intent.putExtra("data_id", item.content_id);
-                startActivity(intent);;
-                return false;
-            }
+        fastAdapter.withOnClickListener((OnClickListener<CollectionsPaperItem>) (v, adapter, item, position) -> {
+            Intent intent = new Intent(ViewCollectionActivity.this, PaperWithDiscussion.class);
+            intent.putExtra("conf_name", item.conf);
+            intent.putExtra("year", item.year);
+            intent.putExtra("category", item.category);
+            intent.putExtra("data_id", item.content_id);
+            startActivity(intent);;
+            return false;
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -100,9 +118,15 @@ public class ViewCollectionActivity extends AppCompatActivity {
         }
         else {
             // TODO: Show Errors
+            Toast.makeText(getApplicationContext(), "Empty collection! Contact server administrator if this is an error", Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Click handler for taking the user back to home activity on clicking the "Back" button in ActionBar
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

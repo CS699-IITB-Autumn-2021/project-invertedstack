@@ -8,17 +8,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.LayoutTransition;
-import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.textclassifier.TextLinks;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,38 +34,56 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
+import cs699_a2021.invertedstack.reviewsx.items.PapersItem;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * This activity is responsible for displaying the list of papers for a particular category for a particular
+ * year of a particular conference
+ */
 public class PaperList extends AppCompatActivity {
+    /**
+     * Instance of FastAdapter that will be used by RecyclerView
+     */
     private FastAdapter fastAdapter;
+    /**
+     * Instance of ItemAdapter that will be used by FastAdapter
+     */
     private ItemAdapter itemAdapter;
+    /**
+     * Name of the conference for which this activity is being used. This will be used as a parameter in API call
+     */
     String conf_name = "iclr";
+    /**
+     * "Nicer" name of the conference for display
+     */
     String conf_name_nice = "ICLR";
+    /**
+     * Year of the conference
+     */
     String year = "2021"; // Currently only for ICLR
+    /**
+     * Category of the papers being shown in this activity. This will be used as a parameter in API call
+     */
     String category = "spotlight_presentations";
+    /**
+     * "Nicer" name of the category for the display
+     */
     String category_nice = "Spotlight Presentations";
+    /**
+     * The string holding the main JSON response
+     */
+    private String main_json = null;
 
-    private String test_json = "[\n" +
-            "      {\n" +
-            "            \"data_id\": \"ryQu7f-RZ\",\n" +
-            "            \"paper_title\": \"On the Convergence of Adam and Beyond\",\n" +
-            "            \"forum_link\": \"https://openreview.net/forum?id=ryQu7f-RZ\",\n" +
-            "            \"pdf_link\": \"https://openreview.net/pdf?id=ryQu7f-RZ\",\n" +
-            "            \"authors\": [\n" +
-            "                  \"Sashank J. Reddi\",\n" +
-            "                  \"Satyen Kale\",\n" +
-            "                  \"Sanjiv Kumar\"\n" +
-            "            ],\n" +
-            "            \"abstract\": \"Several recently proposed stochastic optimization methods that have been successfully used in training deep networks such as RMSProp, Adam, Adadelta, Nadam are based on using gradient updates scaled by square roots of exponential moving averages of squared past gradients. In many applications, e.g. learning with large output spaces, it has been empirically observed that these algorithms fail to converge to an optimal solution (or a critical point in nonconvex settings). We show that one cause for such failures is the exponential moving average used in the algorithms. We provide an explicit example of a simple convex optimization setting where Adam does not converge to the optimal solution, and describe the precise problems with the previous analysis of Adam algorithm. Our analysis suggests that the convergence issues can be fixed by endowing such algorithms with ``long-term memory'' of past gradients, and propose new variants of the Adam algorithm which not only fix the convergence issues but often also lead to improved empirical performance.\",\n" +
-            "            \"tl;dr\": \"We investigate the convergence of popular optimization algorithms like Adam , RMSProp and propose new variants of these methods which provably converge to optimal solution in convex  settings.\",\n" +
-            "            \"keywords\": \"optimization, deep learning, adam, rmsprop\"\n" +
-            "      }" + // NOTE: VERY IMPORTANT, DON'T HAVE A RUNNING COMMA HERE. JAVA JSON PARSER IS STUPID AS FUCK
-            "]";
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,17 +117,14 @@ public class PaperList extends AppCompatActivity {
         fastAdapter.withSelectable(true);
         fastAdapter.withEventHook(new PapersItem.ExpandBodyClickEvent());
         fastAdapter.withEventHook(new PapersItem.CollectionSaveEvent());
-        fastAdapter.withOnClickListener(new OnClickListener<PapersItem>() {
-            @Override
-            public boolean onClick(@Nullable View v, IAdapter<PapersItem> adapter, PapersItem item, int position) {
-                Intent intent = new Intent(PaperList.this, PaperWithDiscussion.class);
-                intent.putExtra("conf_name", conf_name);
-                intent.putExtra("year", year);
-                intent.putExtra("category", category);
-                intent.putExtra("data_id", item.content_id);
-                startActivity(intent);;
-                return false;
-            }
+        fastAdapter.withOnClickListener((OnClickListener<PapersItem>) (v, adapter, item, position) -> {
+            Intent intent = new Intent(PaperList.this, PaperWithDiscussion.class);
+            intent.putExtra("conf_name", conf_name);
+            intent.putExtra("year", year);
+            intent.putExtra("category", category);
+            intent.putExtra("data_id", item.content_id);
+            startActivity(intent);;
+            return false;
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -127,21 +138,27 @@ public class PaperList extends AppCompatActivity {
         if(allPapers.getCount() != 0) {
             while(allPapers.moveToNext()) {
                 PapersItem item = new PapersItem();
-                System.out.println(allPapers.toString());
-                System.out.println(allPapers.getColumnCount());
+                Log.d("PapersList", allPapers.toString());
+                Log.d("PapersList", "Column Count = " + allPapers.getColumnCount());
                 String[] names = allPapers.getColumnNames();
                 for(String name: names)
-                    System.out.println(name);
-                System.out.println(allPapers.getString(0));
-                System.out.println(allPapers.getString(1));
-                System.out.println(allPapers.getString(2));
-                System.out.println(allPapers.getString(3));
-                System.out.println("-------------------------------");
-                item.content_id = allPapers.getString(0);
-                item.title = allPapers.getString(1);
-                item.authors = allPapers.getString(2);
-                item.body = allPapers.getString(3);
-                items.add(item);
+                    Log.d("PapersList", name);
+                try {
+                    Log.d("PapersList", allPapers.getString(0));
+                    Log.d("PapersList", allPapers.getString(1));
+                    Log.d("PapersList", allPapers.getString(2));
+                    Log.d("PapersList", allPapers.getString(3));
+                    Log.d("PapersList", "-------------------------------");
+                    item.content_id = allPapers.getString(0);
+                    item.title = allPapers.getString(1);
+                    item.authors = allPapers.getString(2);
+                    item.body = allPapers.getString(3);
+                    items.add(item);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // ref - https://stackoverflow.com/a/7959379
+                    Log.wtf("PapersList", "WTF did just happen ?");
+                }
             }
             itemAdapter.add(items);
             findViewById(R.id.paperlist_progressbar).setVisibility(View.GONE);
@@ -160,6 +177,7 @@ public class PaperList extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Network error. Check your internet connection or contact the server admin", Toast.LENGTH_LONG).show());
                 e.printStackTrace();
             }
 
@@ -167,10 +185,10 @@ public class PaperList extends AppCompatActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if(response.isSuccessful()) {
                     String rcvd_string = response.body().string();
-                    test_json = rcvd_string;
+                    main_json = rcvd_string;
                     try {
-                        JSONArray array = new JSONArray(test_json);
-                        System.out.println(array.length());
+                        JSONArray array = new JSONArray(main_json);
+                        Log.d("PapersList", "Array length = " + array.length());
                         for(int i = 0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
                             PapersItem item = new PapersItem();
@@ -183,7 +201,7 @@ public class PaperList extends AppCompatActivity {
                                 JSONArray authors = object.getJSONArray("authors");
                                 for (int j = 0; j < authors.length(); j++) {
                                     authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
-                                    System.out.println(authors_string);
+                                    Log.d("PapersList", authors_string);
                                 }
                             }
                             else {
@@ -198,15 +216,14 @@ public class PaperList extends AppCompatActivity {
                             body += object.has("keywords") ? object.getString("keywords") : "(Not Available)";
                             item.body = body;
                             items.add(item);
-                            System.out.println(db.updatePaperData(item.content_id, item.title, item.authors, item.body, conf_name_nice, year, category_nice));
-                            System.out.println("-----------------------------");
+                            boolean result = db.updatePaperData(item.content_id, item.title, item.authors, item.body, conf_name_nice, year, category_nice);
+                            Log.d("PapersList", "DB update result = " + result);
+                            Log.d("PapersList", "-----------------------------");
                         }
                     } catch (JSONException e) {
                         // TODO: Show proper error message
                         e.printStackTrace();
-                        // TODO: Check if items is empty
-                        // If it is empty, show full blown error screen
-                        // Else show whatever items we got correct and then show a toast notification
+                        Toast.makeText(getApplicationContext(), "JSON parsing error. Contact the server admin", Toast.LENGTH_LONG).show();
                     }
                     PaperList.this.runOnUiThread(new Runnable() {
                         @Override
@@ -219,9 +236,15 @@ public class PaperList extends AppCompatActivity {
             }
         });
     }
-    // ref - https://www.youtube.com/watch?v=CTvzoVtKoJ8
+
+    /**
+     * Menu inflater for the activity. The main job is to initialize and handle search based filtering of the RecyclerView in the activity
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // ref - https://www.youtube.com/watch?v=CTvzoVtKoJ8
         getMenuInflater().inflate(R.menu.paperlist_menu, menu);
         MenuItem item = menu.findItem(R.id.paperlist_search);
         SearchView searchView = (SearchView) item.getActionView();
@@ -234,15 +257,12 @@ public class PaperList extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 itemAdapter.filter(newText);
-                itemAdapter.getItemFilter().withFilterPredicate(new IItemAdapter.Predicate<PapersItem>() {
-                    @Override
-                    public boolean filter(PapersItem item, @Nullable CharSequence constraint) {
-                        String title = item.title.toLowerCase();
-                        String authors = item.authors.toLowerCase();
-                        String body = item.body.toLowerCase();
-                        String key = constraint.toString().toLowerCase();
-                        return (title.contains(key) || authors.contains(key) || body.contains(key));
-                    }
+                itemAdapter.getItemFilter().withFilterPredicate((IItemAdapter.Predicate<PapersItem>) (item1, constraint) -> {
+                    String title = item1.title.toLowerCase();
+                    String authors = item1.authors.toLowerCase();
+                    String body = item1.body.toLowerCase();
+                    String key = constraint.toString().toLowerCase();
+                    return (title.contains(key) || authors.contains(key) || body.contains(key));
                 });
                 return false;
             }
@@ -250,6 +270,11 @@ public class PaperList extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * Click handler for the "back" key in the ActionBar
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

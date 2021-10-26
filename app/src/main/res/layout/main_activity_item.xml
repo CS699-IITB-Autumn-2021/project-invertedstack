@@ -55,5 +55,7 @@
             android:textDirection="anyRtl"
             android:textSize="@dimen/material_drawer_item_primary_description"
             android:text="Some drawer text" />
+
     </LinearLayout>
+
 </RelativeLayout>

@@ -1,9 +1,9 @@
-package cs699_a2021.invertedstack.reviewsx;
+package cs699_a2021.invertedstack.reviewsx.items;
 
-import android.animation.LayoutTransition;
 import android.content.res.Resources;
 import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +26,8 @@ import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fastadapter.utils.EventHookUtil;
 
 import java.util.List;
+
+import cs699_a2021.invertedstack.reviewsx.R;
 
 public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubItem extends IItem & ISubItem> extends AbstractExpandableItem<DiscussionItemExpandable<Parent, SubItem>, DiscussionItemExpandable.ViewHolder, SubItem> {
     public String title;
@@ -47,10 +48,10 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
         @Override
         public void onClick(View v, int position, FastAdapter<DiscussionItemExpandable> fastAdapter, DiscussionItemExpandable item) {
             if(v.getId() == View.NO_ID) {
-                System.out.println("v has no ID");
+                Log.d("DiscussionItemExpandable", "v has no ID");
             }
             else {
-                System.out.println("v has ID = " + v.getResources().getResourceName(v.getId()));
+                Log.d("DiscussionItemExpandable", "v has ID = " + v.getResources().getResourceName(v.getId()));
             }
             RelativeLayout expand_body_wrapper = ((ViewGroup)v.getParent().getParent()).findViewById(R.id.discussion_card_body_wrapper);
             if(expand_body_wrapper != null) {
@@ -75,11 +76,7 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
         }
     };
     // Ref: https://github.com/mikepenz/FastAdapter/blob/v3.3.1/app/src/main/java/com/mikepenz/fastadapter/app/items/expandable/SimpleSubExpandableItem.java
-    /**
-     * we overwrite the item specific click listener so we can automatically animate within the item
-     *
-     * @return
-     */
+
     @Override
     public OnClickListener<DiscussionItemExpandable<Parent, SubItem>> getOnItemClickListener() {
         return onClickListener;
@@ -87,7 +84,6 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
 
     @Override
     public boolean isSelectable() {
-        //this might not be true for your application
         return getSubItems() == null;
     }
     @NonNull

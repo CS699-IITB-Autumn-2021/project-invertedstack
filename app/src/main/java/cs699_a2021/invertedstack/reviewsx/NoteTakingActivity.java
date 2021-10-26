@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.editor.MarkwonEditor;
 import io.noties.markwon.editor.MarkwonEditorTextWatcher;
@@ -30,15 +32,46 @@ import io.noties.markwon.html.HtmlPlugin;
 import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin;
 import io.noties.markwon.linkify.LinkifyPlugin;
 
+/**
+ * This activity is responsible for actually taking notes
+ * The activity contains an instance of `markwon` library that handles the markdown
+ * The activity also implements a nice animated live editor for markdown
+ */
 public class NoteTakingActivity extends AppCompatActivity {
-
+    /**
+     * The default string to use in case there are no notes corresponding to `paper_id` in the DB
+     */
     String notes_string = "# Notes";
+    /**
+     * The ID of the paper for which we're showing the notes
+     */
     String data_id = null;
+    /**
+     * Title of the paper -- this will be concatenated with `notes_string` in case there are no notes corresponding
+     * to `paper_id` in the DB
+     */
     String paper_title = null;
+    /**
+     * The TextView that will hold (markdown) notes
+     */
     TextView textView;
+    /**
+     * The EditText that will be used to edit (markdown) notes
+     */
     EditText editText;
+    /**
+     * Instance of database helper
+     */
     ReviewsXDatabaseHelper db;
 
+    /**
+     * `onCreate` method for NoteTakingActivity. This method is responsible for setting up `markwon` and
+     * using it to render markdown. There is lot more scope to do more fun things with Markdown here
+     * The activity MUST be called with parameters `paper_id` and `paper_title`
+     * The activity will check if notes exist for `paper_id`, if they don't we present a boilerplate using `paper_title`
+     * Else we fetch from the DB and show it here
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +96,7 @@ public class NoteTakingActivity extends AppCompatActivity {
         if(data.getCount() != 0) {
             data.moveToFirst();
             notes_string = data.getString(1);
-            System.out.println("Got notes from DB");
+            Log.d("NoteTakingActivity", "Got notes from DB");
         }
         // TODO: Change orientation of the parent LinearLayout depending on the aspect ratio
         textView = findViewById(R.id.main_text);
@@ -71,28 +104,25 @@ public class NoteTakingActivity extends AppCompatActivity {
         final Markwon markwon = Markwon.builder(this)
                 .usePlugin(MarkwonInlineParserPlugin.create())
                 .usePlugin(JLatexMathPlugin.create(textView.getTextSize(),
-                        new JLatexMathPlugin.BuilderConfigure() {
-                            @Override
-                            public void configureBuilder(@NonNull JLatexMathPlugin.Builder builder) {
-                                // enable inlines (require `MarkwonInlineParserPlugin`), by default `false`
-                                builder.inlinesEnabled(true);
+                        builder -> {
+                            // enable inlines (require `MarkwonInlineParserPlugin`), by default `false`
+                            builder.inlinesEnabled(true);
 
-                                // use pre-4.3.0 LaTeX block parsing (by default `false`)
-                                builder.blocksLegacy(true);
+                            // use pre-4.3.0 LaTeX block parsing (by default `false`)
+                            builder.blocksLegacy(true);
 
-                                // by default true
-                                builder.blocksEnabled(true);
+                            // by default true
+                            builder.blocksEnabled(true);
 
-                                // @since 4.3.0
-                                builder.errorHandler(new JLatexMathPlugin.ErrorHandler() {
-                                    @Nullable
-                                    @Override
-                                    public Drawable handleError(@NonNull String latex, @NonNull Throwable error) {
-                                        // Receive error and optionally return drawable to be displayed instead
-                                        return null;
-                                    }
-                                });
-                            }
+                            // @since 4.3.0
+                            builder.errorHandler(new JLatexMathPlugin.ErrorHandler() {
+                                @Nullable
+                                @Override
+                                public Drawable handleError(@NonNull String latex, @NonNull Throwable error) {
+                                    // Receive error and optionally return drawable to be displayed instead
+                                    return null;
+                                }
+                            });
                         }))
                 .usePlugin(StrikethroughPlugin.create())
                 .usePlugin(TablePlugin.create(this))
@@ -122,41 +152,26 @@ public class NoteTakingActivity extends AppCompatActivity {
                 markwon.setMarkdown(textView, notes_string);
             }
         });
-
-        /*
-        Button button = findViewById(R.id.dummy_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*
-                 * References:
-                 * https://developer.android.com/guide/topics/graphics/prop-animation#layout
-                 * https://stackoverflow.com/a/49159490
-                 *//*
-                ViewGroup editor_view = findViewById(R.id.main_layout_for_edittext);
-                ViewGroup text_view = findViewById(R.id.main_layout_for_text);
-                editor_view.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-                text_view.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) editor_view.getLayoutParams();
-                float new_weight = params.weight != 0 ? 0 : 1;
-                editor_view.setLayoutParams(new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        0,
-                        new_weight
-                ));
-            }
-        });
-        */
     }
 
+    /**
+     * Menu inflater -- responsible for inflating the toggleable "edit" and "save" menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.notetaking_menu, menu);
         return true;
     }
 
-
-
+    /**
+     * Click handler for the menu. The functionality is quite simple and implemented quite elegantly too
+     * (edit) -> click -> (open editText, switch to "save" icon)
+     * (save) -> click -> (close editText, update notes, switch to "edit" icon)
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -181,7 +196,7 @@ public class NoteTakingActivity extends AppCompatActivity {
                 // Save the note depending on state
                 if(new_icon == R.drawable.ic_baseline_edit_24) {
                     db.updateNotesData(data_id, notes_string);
-                    System.out.println("Saving to DB when new_weight = " + new_weight);
+                    Log.d("NoteTakingActivity", "Saving to DB when new_weight = " + new_weight);
                 }
                 return true;
             case android.R.id.home:

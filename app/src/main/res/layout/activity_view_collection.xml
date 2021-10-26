@@ -12,6 +12,7 @@
         android:id="@+id/collection_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/view_collection_header"
         android:layout_width="match_parent"
@@ -23,9 +24,11 @@
         android:layout_height="match_parent"
         android:padding="8dp"
         android:layout_below="@id/view_collection_header"/>
+
     <ProgressBar
         android:id="@+id/view_collection_progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="128dp"/>
+
 </LinearLayout>

@@ -12,6 +12,7 @@
         android:id="@+id/paper_discussion_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
@@ -20,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TextView
                 android:id="@+id/paper_discussion_title"
                 android:layout_width="match_parent"
@@ -28,6 +28,7 @@
                 android:padding="8dp"
                 android:text="Paper Title"
                 android:textSize="20sp"/>
+
             <TextView
                 android:id="@+id/paper_discussion_authors"
                 android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                 android:padding="8dp"
                 android:text="Paper Authors"
                 android:layout_below="@id/paper_discussion_title"/>
+
             <TextView
                 android:id="@+id/paper_discussion_body"
                 android:layout_width="match_parent"
@@ -42,17 +44,22 @@
                 android:padding="8dp"
                 android:text="Paper Info"
                 android:layout_below="@id/paper_discussion_authors"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/discussion_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="8dp"
                 android:layout_below="@id/paper_discussion_body"/>
+
             <ProgressBar
                 android:id="@+id/paper_discussion_progressbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="128dp"/>
+
         </RelativeLayout>
+
     </ScrollView>
+
 </LinearLayout>

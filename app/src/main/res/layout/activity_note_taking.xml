@@ -20,12 +20,6 @@
         android:orientation="vertical"
         android:animateLayoutChanges="true">
 
-        <!--Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Toggle Layout"
-            android:id="@+id/dummy_button"/-->
-
         <LinearLayout
             android:id="@+id/main_layout_for_edittext"
             android:layout_width="match_parent"
@@ -33,6 +27,7 @@
             android:layout_weight="0"
             android:orientation="vertical"
             android:animateLayoutChanges="true">
+
             <EditText
                 android:id="@+id/main_edit_text"
                 android:layout_width="match_parent"
@@ -47,6 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@android:color/darker_gray"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -56,7 +52,8 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:animateLayoutChanges="true">
-        <!-- https://stackoverflow.com/a/4233683 -->
+
+            <!-- https://stackoverflow.com/a/4233683 -->
             <TextView
                 android:id="@+id/main_text"
                 android:layout_width="match_parent"
@@ -64,7 +61,9 @@
                 android:text="Hello World!"
                 android:layout_margin="12dp"
                 android:animateLayoutChanges="true"/>
+
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

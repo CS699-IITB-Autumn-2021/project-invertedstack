@@ -1,8 +1,8 @@
-package cs699_a2021.invertedstack.reviewsx;
+package cs699_a2021.invertedstack.reviewsx.items;
 
-import android.database.Cursor;
 import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter.listeners.ClickEventHook;
 import com.mikepenz.fastadapter.utils.EventHookUtil;
 import com.mikepenz.iconics.view.IconicsButton;
 import com.mikepenz.iconics.view.IconicsTextView;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import cs699_a2021.invertedstack.reviewsx.R;
+import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
 public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, CollectionsPaperItem.ViewHolder> {
     public String conf;
@@ -48,10 +48,10 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
         @Override
         public void onClick(View v, int position, FastAdapter<CollectionsPaperItem> fastAdapter, CollectionsPaperItem item) {
             if(v.getId() == View.NO_ID) {
-                System.out.println("v has no ID");
+                Log.d("CollectionsPaperItem", "v has no ID");
             }
             else {
-                System.out.println("v has ID = " + v.getResources().getResourceName(v.getId()));
+                Log.d("CollectionsPaperItem", "v has ID = " + v.getResources().getResourceName(v.getId()));
             }
             RelativeLayout expand_body_wrapper = ((ViewGroup)v.getParent().getParent()).findViewById(R.id.collection_card_body_wrapper);
             if(expand_body_wrapper != null) {
@@ -77,13 +77,10 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
                     .content("You are about to remove this paper from the collection")
                     .positiveText("I'm sure")
                     .negativeText("No, I'll keep it")
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            db.deletePaperFromCollection(item.collection_name, item.content_id);
-                            fastAdapter.getAdapter(0).getAdapterItems().remove(position);
-                            fastAdapter.notifyAdapterDataSetChanged();
-                        }
+                    .onPositive((dialog1, which) -> {
+                        db.deletePaperFromCollection(item.collection_name, item.content_id);
+                        fastAdapter.getAdapter(0).getAdapterItems().remove(position);
+                        fastAdapter.notifyAdapterDataSetChanged();
                     });
             dialog.show();
         }

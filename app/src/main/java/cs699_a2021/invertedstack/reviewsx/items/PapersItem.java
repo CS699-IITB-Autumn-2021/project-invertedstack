@@ -1,37 +1,31 @@
-package cs699_a2021.invertedstack.reviewsx;
+package cs699_a2021.invertedstack.reviewsx.items;
 
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Build;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
-import com.mikepenz.fastadapter.IExpandable;
-import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.ISubItem;
-import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter.listeners.ClickEventHook;
-import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fastadapter.utils.EventHookUtil;
 import com.mikepenz.iconics.view.IconicsButton;
 import com.mikepenz.iconics.view.IconicsTextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import cs699_a2021.invertedstack.reviewsx.R;
+import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
 public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> {
     public String title;
@@ -43,21 +37,21 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
         @Nullable
         @Override
         public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if(viewHolder instanceof PapersItem.ViewHolder) {
-                return EventHookUtil.toList(((ViewHolder)viewHolder).expand_body);
+            if (viewHolder instanceof PapersItem.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder) viewHolder).expand_body);
             }
             return super.onBindMany(viewHolder);
         }
+
         @Override
         public void onClick(View v, int position, FastAdapter<PapersItem> fastAdapter, PapersItem item) {
-            if(v.getId() == View.NO_ID) {
-                System.out.println("v has no ID");
+            if (v.getId() == View.NO_ID) {
+                Log.d("PapersItem", "v has no ID");
+            } else {
+                Log.d("PapersItem", "v has ID = " + v.getResources().getResourceName(v.getId()));
             }
-            else {
-                System.out.println("v has ID = " + v.getResources().getResourceName(v.getId()));
-            }
-            RelativeLayout expand_body_wrapper = ((ViewGroup)v.getParent().getParent()).findViewById(R.id.paper_card_body_wrapper);
-            if(expand_body_wrapper != null) {
+            RelativeLayout expand_body_wrapper = ((ViewGroup) v.getParent().getParent()).findViewById(R.id.paper_card_body_wrapper);
+            if (expand_body_wrapper != null) {
                 expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
             }
         }
@@ -67,11 +61,12 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
         @Nullable
         @Override
         public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if(viewHolder instanceof PapersItem.ViewHolder) {
-                return EventHookUtil.toList(((ViewHolder)viewHolder).collections_button);
+            if (viewHolder instanceof PapersItem.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder) viewHolder).collections_button);
             }
             return super.onBindMany(viewHolder);
         }
+
         @Override
         public void onClick(View v, int position, FastAdapter<PapersItem> fastAdapter, PapersItem item) {
             ArrayList<String> options = new ArrayList<>();
@@ -79,10 +74,10 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
             ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
             Cursor collections = db.getAllCollections();
             int i = 0;
-            while(collections.moveToNext()) {
+            while (collections.moveToNext()) {
                 String collection_name = collections.getString(0);
                 options.add(collection_name);
-                if(db.isPaperInCollection(collection_name, item.content_id)) {
+                if (db.isPaperInCollection(collection_name, item.content_id)) {
                     selected_indices.add(i);
                 }
                 i += 1;
@@ -92,25 +87,21 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
             MaterialDialog.Builder dialog = new MaterialDialog.Builder(v.getContext())
                     .title("Save to collections")
                     .items(options)
-                    .itemsCallbackMultiChoice(sel_idxs, new MaterialDialog.ListCallbackMultiChoice() {
-                        @Override
-                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                            ArrayList<String> selected = new ArrayList<>();
-                            for(CharSequence s: text) {
-                                selected.add(s.toString());
-                            }
-                            for(String name: options) {
-                                if(selected.contains(name)) {
-                                    db.addPaperToCollection(name, item.content_id);
-                                    System.out.println("Added paper " + item.content_id + " to " + name);
-                                }
-                                else {
-                                    db.deletePaperFromCollection(name, item.content_id);
-                                    System.out.println("Removed paper " + item.content_id + " from " + name);
-                                }
-                            }
-                            return true;
+                    .itemsCallbackMultiChoice(sel_idxs, (dialog1, which, text) -> {
+                        ArrayList<String> selected = new ArrayList<>();
+                        for (CharSequence s : text) {
+                            selected.add(s.toString());
                         }
+                        for (String name : options) {
+                            if (selected.contains(name)) {
+                                db.addPaperToCollection(name, item.content_id);
+                                Log.d("PapersItem", "Added paper " + item.content_id + " to " + name);
+                            } else {
+                                db.deletePaperFromCollection(name, item.content_id);
+                                Log.d("PapersItem", "Removed paper " + item.content_id + " from " + name);
+                            }
+                        }
+                        return true;
                     })
                     .positiveText("Done");
             dialog.show();
@@ -136,12 +127,11 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
     @Override
     public void bindView(ViewHolder viewHolder, List<Object> payloads) {
         super.bindView(viewHolder, payloads);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             viewHolder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
             viewHolder.authors.setText(Html.fromHtml(authors, Html.FROM_HTML_MODE_COMPACT));
             viewHolder.body.setText(Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT));
-        }
-        else {
+        } else {
             viewHolder.title.setText(Html.fromHtml(title));
             viewHolder.authors.setText(Html.fromHtml(authors));
             viewHolder.body.setText(Html.fromHtml(body));

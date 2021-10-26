@@ -1,4 +1,4 @@
-package cs699_a2021.invertedstack.reviewsx;
+package cs699_a2021.invertedstack.reviewsx.items;
 
 import android.content.Context;
 import android.view.View;
@@ -18,6 +18,9 @@ import com.mikepenz.materialdrawer.model.BaseViewHolder;
 
 import java.util.List;
 
+import cs699_a2021.invertedstack.reviewsx.R;
+import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
+
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
     public String collection_name;
     public View.OnClickListener deleteClicked;
@@ -35,30 +38,6 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
     public DrawerCollectionsItem withEditClickListener(View.OnClickListener listener) {
         this.editClicked = listener;
         return this;
-    }
-
-    public static class RemoveViewEvent extends ClickEventHook<DrawerCollectionsItem> {
-        @Nullable
-        @Override
-        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if(viewHolder instanceof DrawerCollectionsItem.ViewHolder) {
-                return EventHookUtil.toList(((ViewHolder)viewHolder).delete);
-            }
-            return super.onBindMany(viewHolder);
-        }
-        @Override
-        public void onClick(View v, int position, FastAdapter<DrawerCollectionsItem> fastAdapter, DrawerCollectionsItem item) {
-            System.out.println("I'm inside the motherfucking fastadapter callback ! FIRST TIME CODING BABY !! I'M A FUCKING GOD IF THIS WORKS LOL");
-            ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
-            db.deleteCollection(item.collection_name);
-            for(int i = 0; i < fastAdapter.getAdapter(1).getAdapterItemCount(); i++) {
-                System.out.println(i + " " + ((IItem)fastAdapter.getItem(i)).getClass().toString());
-            }
-            System.out.println(position);
-            db.deleteCollection(item.collection_name);
-            fastAdapter.getAdapter(1).getAdapterItems().remove(position-1);
-            fastAdapter.notifyAdapterDataSetChanged();
-        }
     }
 
     @Override
@@ -81,7 +60,6 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         super.bindView(viewHolder, payloads);
         Context ctx = viewHolder.itemView.getContext();
         viewHolder.itemView.setId(R.id.drawer_collection_deletable_item_id);
-        //bindViewHelper(viewHolder);
         viewHolder.collection_name.setText(collection_name);
         viewHolder.collection_name.setTextColor(getColor(ctx));
         viewHolder.delete.setOnClickListener(deleteClicked);

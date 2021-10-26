@@ -1,4 +1,4 @@
-package cs699_a2021.invertedstack.reviewsx;
+package cs699_a2021.invertedstack.reviewsx.items;
 
 import android.content.res.Resources;
 import android.os.Build;
@@ -8,14 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
 import java.util.List;
+
+import cs699_a2021.invertedstack.reviewsx.R;
 
 public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.ViewHolder> {
     public String title;

@@ -1,15 +1,16 @@
-package cs699_a2021.invertedstack.reviewsx;
+package cs699_a2021.invertedstack.reviewsx.items;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
 import java.util.List;
+
+import cs699_a2021.invertedstack.reviewsx.R;
 
 public class MainActivityItem extends AbstractItem<MainActivityItem, MainActivityItem.ViewHolder> {
     public String confname;
