@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
@@ -27,6 +29,7 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.ExpandableDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
@@ -170,7 +173,10 @@ public class MainActivity extends AppCompatActivity {
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Home").withIcon(R.drawable.ic_baseline_home_24).withIdentifier(1),
                         collections,
-                        new SecondaryDrawerItem().withName("New Collection").withIcon(FontAwesome.Icon.faw_plus).withIdentifier(3)
+                        new SecondaryDrawerItem().withName("New Collection").withIcon(FontAwesome.Icon.faw_plus).withIdentifier(3),
+                        new SecondaryDrawerItem().withName("All Notes").withIcon(FontAwesome.Icon.faw_sticky_note).withIdentifier(4),
+                        new DividerDrawerItem(),
+                        new SecondaryDrawerItem().withName("About").withIcon(FontAwesome.Icon.faw_github).withIdentifier(5)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -229,6 +235,18 @@ public class MainActivity extends AppCompatActivity {
                                         })
                                         .build();
                                 dialog.show();
+                            case 4:
+                                Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
+                                intent.putExtra("collection_name", "All notes");
+                                startActivity(intent);
+                            case 5:
+                                // ref - https://github.com/mikepenz/AboutLibraries/tree/v6.2.3
+                                new LibsBuilder()
+                                        .withActivityStyle(Libs.ActivityStyle.DARK)
+                                        .withAboutIconShown(true)
+                                        .withVersionShown(true)
+                                        .withAboutDescription("This app is our project for CS699 software lab. Following are the open source libraries with their licenses and authors we used in our project")
+                                        .start(MainActivity.this);
                         }
                         return true;
                     }

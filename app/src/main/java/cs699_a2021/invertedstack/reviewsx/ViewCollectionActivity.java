@@ -39,8 +39,7 @@ public class ViewCollectionActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String collection_name;
         if(b == null) {
-            // TODO: Show error and die
-            collection_name = "Currently reading";
+            collection_name = "All notes";
         }
         else {
             collection_name = b.getString("collection_name");

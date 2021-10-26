@@ -72,6 +72,8 @@ dependencies {
 
     implementation 'com.mikepenz:actionitembadge:3.3.2'
 
+    implementation "com.mikepenz:aboutlibraries:6.2.3"
+
     //the core iconics library (without any widgets)
     implementation "com.mikepenz:iconics-core:${latestAndroidIconicsRelease}"
     implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"

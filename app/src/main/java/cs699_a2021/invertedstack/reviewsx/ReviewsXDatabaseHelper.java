@@ -143,9 +143,18 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
 
     public void deletePaperFromCollection(String name, String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query("Collection_" + name.replaceAll("\\s+", "_"), null, COLLECTION_PAPER_ID + " = ?", new String[]{id}, null, null, null);
-        if(cursor.getCount() != 0) {
-            db.delete("Collection_" + name.replaceAll("\\s+", "_"), COLLECTION_PAPER_ID + " = ?", new String[]{id});
+        if(name.equals("All notes")) {
+            Cursor cursor = db.query(NOTES_TABLE_NAME, null, NOTES_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+            if (cursor.getCount() != 0) {
+                db.delete(NOTES_TABLE_NAME, NOTES_PAPER_ID + " = ?", new String[]{id});
+            }
+
+        }
+        else {
+            Cursor cursor = db.query("Collection_" + name.replaceAll("\\s+", "_"), null, COLLECTION_PAPER_ID + " = ?", new String[]{id}, null, null, null);
+            if (cursor.getCount() != 0) {
+                db.delete("Collection_" + name.replaceAll("\\s+", "_"), COLLECTION_PAPER_ID + " = ?", new String[]{id});
+            }
         }
     }
 
@@ -245,7 +254,12 @@ public class ReviewsXDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllPapersInCollection(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.query("Collection_" + name.replaceAll("\\s+", "_"), null, null, null, null, null, null);
+        if(name.equals("All notes")) {
+            return db.query(NOTES_TABLE_NAME, null, null, null, null, null, null);
+        }
+        else {
+            return db.query("Collection_" + name.replaceAll("\\s+", "_"), null, null, null, null, null, null);
+        }
     }
 
     public void deleteAllPapers() {
