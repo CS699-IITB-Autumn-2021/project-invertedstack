@@ -15,7 +15,7 @@ import cs699_a2021.invertedstack.reviewsx.R;
 /**
  * Item displaying the name of the conference, year of the conference and a particular category
  * in the MainActivity
- *
+ * <p>
  * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
  */
 public class MainActivityItem extends AbstractItem<MainActivityItem, MainActivityItem.ViewHolder> {
@@ -59,6 +59,7 @@ public class MainActivityItem extends AbstractItem<MainActivityItem, MainActivit
     public static class ViewHolder extends FastAdapter.ViewHolder<MainActivityItem> {
         TextView name_and_year;
         TextView category;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_and_year = itemView.findViewById(R.id.conf_name_and_year);

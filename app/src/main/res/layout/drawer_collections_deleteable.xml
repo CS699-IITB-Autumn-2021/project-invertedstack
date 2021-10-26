@@ -1,37 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Derived from https://github.com/mikepenz/MaterialDrawer/blob/v6.1.2/app/src/main/res/layout/material_drawer_item_overflow_menu_primary.xml -->
+<?xml version="1.0" encoding="utf-8"?><!-- Derived from https://github.com/mikepenz/MaterialDrawer/blob/v6.1.2/app/src/main/res/layout/material_drawer_item_overflow_menu_primary.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_drawer_item_primary"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:paddingEnd="@dimen/material_drawer_vertical_padding"
+    android:paddingStart="@dimen/material_drawer_vertical_padding"
     android:paddingLeft="@dimen/material_drawer_vertical_padding"
-    android:paddingRight="@dimen/material_drawer_vertical_padding"
-    android:paddingStart="@dimen/material_drawer_vertical_padding">
+    android:paddingEnd="@dimen/material_drawer_vertical_padding"
+    android:paddingRight="@dimen/material_drawer_vertical_padding">
 
     <ImageView
         android:id="@+id/material_drawer_collection_icon"
         android:layout_width="@dimen/material_drawer_item_primary_icon"
         android:layout_height="@dimen/material_drawer_item_primary"
+        android:layout_alignParentLeft="true"
         android:layout_gravity="center_vertical"
-        android:paddingBottom="@dimen/material_drawer_item_primary_icon_padding"
-        android:paddingEnd="@dimen/material_drawer_item_primary_icon_padding_right"
-        android:paddingLeft="0dp"
-        android:paddingRight="@dimen/material_drawer_item_primary_icon_padding_right"
         android:paddingStart="0dp"
+        android:paddingLeft="0dp"
         android:paddingTop="@dimen/material_drawer_item_primary_icon_padding"
-        android:src="@drawable/ic_baseline_collections_bookmark_24"
-        android:layout_alignParentLeft="true"/>
+        android:paddingEnd="@dimen/material_drawer_item_primary_icon_padding_right"
+        android:paddingRight="@dimen/material_drawer_item_primary_icon_padding_right"
+        android:paddingBottom="@dimen/material_drawer_item_primary_icon_padding"
+        android:src="@drawable/ic_baseline_collections_bookmark_24" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|start"
-        android:orientation="vertical"
+        android:layout_toStartOf="@id/material_drawer_collection_edit"
         android:layout_toEndOf="@id/material_drawer_collection_icon"
-        android:layout_toStartOf="@id/material_drawer_collection_edit">
+        android:gravity="center_vertical|start"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/material_drawer_collection_name"
@@ -52,32 +50,32 @@
         android:id="@+id/material_drawer_collection_edit"
         android:layout_width="28dp"
         android:layout_height="28dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/material_drawer_collection_delete"
         android:background="@android:color/transparent"
         android:gravity="center"
-        android:paddingEnd="0dp"
-        android:paddingLeft="@dimen/material_drawer_vertical_padding"
-        android:paddingRight="0dp"
         android:paddingStart="@dimen/material_drawer_vertical_padding"
+        android:paddingLeft="@dimen/material_drawer_vertical_padding"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
         android:scaleType="fitCenter"
-        android:layout_toStartOf="@id/material_drawer_collection_delete"
-        android:layout_centerVertical="true"
-        app:iiv_icon="gmd-edit"
-        app:iiv_color="@color/white"/>
+        app:iiv_color="@color/white"
+        app:iiv_icon="gmd-edit" />
 
     <com.mikepenz.iconics.view.IconicsImageButton
         android:id="@+id/material_drawer_collection_delete"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:paddingEnd="0dp"
-        android:paddingLeft="@dimen/material_drawer_vertical_padding"
-        android:paddingRight="0dp"
-        android:paddingStart="@dimen/material_drawer_vertical_padding"
-        android:scaleType="fitCenter"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        app:iiv_icon="gmd-delete"
-        app:iiv_color="@color/white"/>
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:paddingStart="@dimen/material_drawer_vertical_padding"
+        android:paddingLeft="@dimen/material_drawer_vertical_padding"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:scaleType="fitCenter"
+        app:iiv_color="@color/white"
+        app:iiv_icon="gmd-delete" />
 
 </RelativeLayout>

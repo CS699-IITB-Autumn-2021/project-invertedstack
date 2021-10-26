@@ -1,11 +1,5 @@
 package cs699_a2021.invertedstack.reviewsx;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,8 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
@@ -43,8 +41,9 @@ public class ViewCollectionActivity extends AppCompatActivity {
     /**
      * onCreate method for the activity. The lookup is only local. No need to fetch from the server
      * Collections are ALWAYS local in this version
-     *
+     * <p>
      * In the future versions -- maybe allow an optional "sync to server" feature ?
+     *
      * @param savedInstanceState
      */
     @Override
@@ -59,10 +58,9 @@ public class ViewCollectionActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         String collection_name;
-        if(b == null) {
+        if (b == null) {
             collection_name = "All notes";
-        }
-        else {
+        } else {
             collection_name = b.getString("collection_name");
         }
 
@@ -79,7 +77,8 @@ public class ViewCollectionActivity extends AppCompatActivity {
             intent.putExtra("year", item.year);
             intent.putExtra("category", item.category);
             intent.putExtra("data_id", item.content_id);
-            startActivity(intent);;
+            startActivity(intent);
+            ;
             return false;
         });
 
@@ -92,11 +91,11 @@ public class ViewCollectionActivity extends AppCompatActivity {
 
         ArrayList<IItem> items = new ArrayList<IItem>();
 
-        if(allPapers.getCount() != 0) {
-            while(allPapers.moveToNext()) {
+        if (allPapers.getCount() != 0) {
+            while (allPapers.moveToNext()) {
                 String id = allPapers.getString(0);
                 Cursor paper_data = db.getPaperByDataID(id);
-                if(paper_data.getCount() != 0) {
+                if (paper_data.getCount() != 0) {
                     paper_data.moveToFirst();
                     CollectionsPaperItem item = new CollectionsPaperItem();
                     item.content_id = paper_data.getString(0);
@@ -108,15 +107,13 @@ public class ViewCollectionActivity extends AppCompatActivity {
                     item.category = paper_data.getString(6);
                     item.collection_name = collection_name;
                     items.add(item);
-                }
-                else {
+                } else {
                     // TODO: Something gone wrong, ignore for now
                 }
             }
             itemAdapter.add(items);
             findViewById(R.id.view_collection_progressbar).setVisibility(View.GONE);
-        }
-        else {
+        } else {
             // TODO: Show Errors
             Toast.makeText(getApplicationContext(), "Empty collection! Contact server administrator if this is an error", Toast.LENGTH_LONG).show();
         }
@@ -124,6 +121,7 @@ public class ViewCollectionActivity extends AppCompatActivity {
 
     /**
      * Click handler for taking the user back to home activity on clicking the "Back" button in ActionBar
+     *
      * @param item
      * @return
      */

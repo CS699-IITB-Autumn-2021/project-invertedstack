@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingTop="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaperWithDiscussion"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    tools:context=".PaperWithDiscussion">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/paper_discussion_toolbar"
@@ -14,8 +13,8 @@
         android:layout_height="wrap_content" />
 
     <ScrollView
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,36 +26,36 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="Paper Title"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/paper_discussion_authors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/paper_discussion_title"
                 android:padding="8dp"
-                android:text="Paper Authors"
-                android:layout_below="@id/paper_discussion_title"/>
+                android:text="Paper Authors" />
 
             <TextView
                 android:id="@+id/paper_discussion_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/paper_discussion_authors"
                 android:padding="8dp"
-                android:text="Paper Info"
-                android:layout_below="@id/paper_discussion_authors"/>
+                android:text="Paper Info" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/discussion_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp"
-                android:layout_below="@id/paper_discussion_body"/>
+                android:layout_below="@id/paper_discussion_body"
+                android:padding="8dp" />
 
             <ProgressBar
                 android:id="@+id/paper_discussion_progressbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="128dp"/>
+                android:padding="128dp" />
 
         </RelativeLayout>
 

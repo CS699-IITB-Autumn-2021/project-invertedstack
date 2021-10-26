@@ -29,7 +29,7 @@ import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
 /**
  * Item for RecyclerView in activity `PaperList`
- *
+ * <p>
  * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
  */
 public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> {
@@ -49,6 +49,44 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
      * ID of the paper
      */
     public String content_id;
+
+    @NonNull
+    @Override
+    public ViewHolder getViewHolder(View v) {
+        return new ViewHolder(v);
+    }
+
+    @Override
+    public int getType() {
+        return R.id.paper_item_id;
+    }
+
+    @Override
+    public int getLayoutRes() {
+        return R.layout.paper_card;
+    }
+
+    @Override
+    public void bindView(ViewHolder viewHolder, List<Object> payloads) {
+        super.bindView(viewHolder, payloads);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            viewHolder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
+            viewHolder.authors.setText(Html.fromHtml(authors, Html.FROM_HTML_MODE_COMPACT));
+            viewHolder.body.setText(Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            viewHolder.title.setText(Html.fromHtml(title));
+            viewHolder.authors.setText(Html.fromHtml(authors));
+            viewHolder.body.setText(Html.fromHtml(body));
+        }
+    }
+
+    @Override
+    public void unbindView(ViewHolder viewHolder) {
+        super.unbindView(viewHolder);
+        viewHolder.title.setText("");
+        viewHolder.authors.setText("");
+        viewHolder.body.setText("");
+    }
 
     /**
      * EventHook handling the "expand body" event corresponding to the layout of the item
@@ -129,44 +167,6 @@ public class PapersItem extends AbstractItem<PapersItem, PapersItem.ViewHolder> 
                     .positiveText("Done");
             dialog.show();
         }
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder getViewHolder(View v) {
-        return new ViewHolder(v);
-    }
-
-    @Override
-    public int getType() {
-        return R.id.paper_item_id;
-    }
-
-    @Override
-    public int getLayoutRes() {
-        return R.layout.paper_card;
-    }
-
-    @Override
-    public void bindView(ViewHolder viewHolder, List<Object> payloads) {
-        super.bindView(viewHolder, payloads);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            viewHolder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
-            viewHolder.authors.setText(Html.fromHtml(authors, Html.FROM_HTML_MODE_COMPACT));
-            viewHolder.body.setText(Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            viewHolder.title.setText(Html.fromHtml(title));
-            viewHolder.authors.setText(Html.fromHtml(authors));
-            viewHolder.body.setText(Html.fromHtml(body));
-        }
-    }
-
-    @Override
-    public void unbindView(ViewHolder viewHolder) {
-        super.unbindView(viewHolder);
-        viewHolder.title.setText("");
-        viewHolder.authors.setText("");
-        viewHolder.body.setText("");
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {

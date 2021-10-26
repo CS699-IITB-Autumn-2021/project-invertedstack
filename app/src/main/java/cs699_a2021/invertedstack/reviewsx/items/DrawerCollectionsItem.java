@@ -4,14 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.listeners.ClickEventHook;
-import com.mikepenz.fastadapter.utils.EventHookUtil;
 import com.mikepenz.iconics.view.IconicsImageButton;
 import com.mikepenz.materialdrawer.model.BaseDescribeableDrawerItem;
 import com.mikepenz.materialdrawer.model.BaseViewHolder;
@@ -19,11 +11,10 @@ import com.mikepenz.materialdrawer.model.BaseViewHolder;
 import java.util.List;
 
 import cs699_a2021.invertedstack.reviewsx.R;
-import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
 /**
  * Item for showing the collection in the MaterialDrawer in the MainActivity
- *
+ * <p>
  * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
  */
 public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerCollectionsItem, DrawerCollectionsItem.ViewHolder> {
@@ -49,6 +40,7 @@ public class DrawerCollectionsItem extends BaseDescribeableDrawerItem<DrawerColl
         this.deleteClicked = listener;
         return this;
     }
+
     public DrawerCollectionsItem withEditClickListener(View.OnClickListener listener) {
         this.editClicked = listener;
         return this;

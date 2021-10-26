@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
+    android:id="@+id/collection_card_parent_linear"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:orientation="vertical"
-    android:id="@+id/collection_card_parent_linear">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:gravity="center_vertical|start"
         android:orientation="vertical"
-        android:layout_margin="4dp"
-        card_view:contentPadding="4dp"
+        card_view:cardCornerRadius="4dp"
         card_view:cardElevation="4dp"
-        card_view:cardCornerRadius="4dp">
+        card_view:contentPadding="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,12 +38,12 @@
                     android:id="@+id/collection_card_expand_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="{faw-window-minimize}"
-                    android:textSize="16sp"
-                    android:rotation="180"
-                    android:padding="4dp"
+                    android:layout_alignParentRight="true"
                     android:gravity="center_vertical|end"
-                    android:layout_alignParentRight="true"/>
+                    android:padding="4dp"
+                    android:rotation="180"
+                    android:text="{faw-window-minimize}"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
@@ -57,34 +56,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Conference:"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/collection_card_conference"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Year:"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/collection_card_year"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category:"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/collection_card_category"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -102,7 +101,7 @@
                 <TextView
                     android:id="@+id/collection_card_body"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </RelativeLayout>
 
@@ -110,7 +109,7 @@
                 android:id="@+id/collection_card_change_collections"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remove {gmd-delete}"/>
+                android:text="Remove {gmd-delete}" />
 
         </LinearLayout>
 

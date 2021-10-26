@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
@@ -28,7 +27,7 @@ import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 
 /**
  * Item for the RecyclerView of `ViewCollectionActivity`
- *
+ * <p>
  * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
  */
 public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, CollectionsPaperItem.ViewHolder> {
@@ -65,62 +64,6 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
      */
     public String collection_name;
 
-    /**
-     * EventHook handling the "expand body" event corresponding to the layout of the item
-     */
-    public static class ExpandBodyClickEvent extends ClickEventHook<CollectionsPaperItem> {
-        @Nullable
-        @Override
-        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if(viewHolder instanceof CollectionsPaperItem.ViewHolder) {
-                return EventHookUtil.toList(((ViewHolder)viewHolder).expand_body);
-            }
-            return super.onBindMany(viewHolder);
-        }
-        @Override
-        public void onClick(View v, int position, FastAdapter<CollectionsPaperItem> fastAdapter, CollectionsPaperItem item) {
-            if(v.getId() == View.NO_ID) {
-                Log.d("CollectionsPaperItem", "v has no ID");
-            }
-            else {
-                Log.d("CollectionsPaperItem", "v has ID = " + v.getResources().getResourceName(v.getId()));
-            }
-            RelativeLayout expand_body_wrapper = ((ViewGroup)v.getParent().getParent()).findViewById(R.id.collection_card_body_wrapper);
-            if(expand_body_wrapper != null) {
-                expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
-            }
-        }
-    }
-
-    /**
-     * EventHook handling the "remove paper from the collection" event
-     */
-    public static class CollectionRemoveEvent extends ClickEventHook<CollectionsPaperItem> {
-        @Nullable
-        @Override
-        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if(viewHolder instanceof CollectionsPaperItem.ViewHolder) {
-                return EventHookUtil.toList(((ViewHolder)viewHolder).collections_button);
-            }
-            return super.onBindMany(viewHolder);
-        }
-        @Override
-        public void onClick(View v, int position, FastAdapter<CollectionsPaperItem> fastAdapter, CollectionsPaperItem item) {
-            ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
-            MaterialDialog.Builder dialog = new MaterialDialog.Builder(v.getContext())
-                    .title("Are you sure")
-                    .content("You are about to remove this paper from the collection")
-                    .positiveText("I'm sure")
-                    .negativeText("No, I'll keep it")
-                    .onPositive((dialog1, which) -> {
-                        db.deletePaperFromCollection(item.collection_name, item.content_id);
-                        fastAdapter.getAdapter(0).getAdapterItems().remove(position);
-                        fastAdapter.notifyAdapterDataSetChanged();
-                    });
-            dialog.show();
-        }
-    }
-
     @NonNull
     @Override
     public ViewHolder getViewHolder(View v) {
@@ -143,12 +86,11 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
         viewHolder.conf.setText(conf);
         viewHolder.year.setText(year);
         viewHolder.category.setText(category);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             viewHolder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
             viewHolder.authors.setText(Html.fromHtml(authors, Html.FROM_HTML_MODE_COMPACT));
             viewHolder.body.setText(Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT));
-        }
-        else {
+        } else {
             viewHolder.title.setText(Html.fromHtml(title));
             viewHolder.authors.setText(Html.fromHtml(authors));
             viewHolder.body.setText(Html.fromHtml(body));
@@ -164,6 +106,63 @@ public class CollectionsPaperItem extends AbstractItem<CollectionsPaperItem, Col
         viewHolder.title.setText("");
         viewHolder.authors.setText("");
         viewHolder.body.setText("");
+    }
+
+    /**
+     * EventHook handling the "expand body" event corresponding to the layout of the item
+     */
+    public static class ExpandBodyClickEvent extends ClickEventHook<CollectionsPaperItem> {
+        @Nullable
+        @Override
+        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
+            if (viewHolder instanceof CollectionsPaperItem.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder) viewHolder).expand_body);
+            }
+            return super.onBindMany(viewHolder);
+        }
+
+        @Override
+        public void onClick(View v, int position, FastAdapter<CollectionsPaperItem> fastAdapter, CollectionsPaperItem item) {
+            if (v.getId() == View.NO_ID) {
+                Log.d("CollectionsPaperItem", "v has no ID");
+            } else {
+                Log.d("CollectionsPaperItem", "v has ID = " + v.getResources().getResourceName(v.getId()));
+            }
+            RelativeLayout expand_body_wrapper = ((ViewGroup) v.getParent().getParent()).findViewById(R.id.collection_card_body_wrapper);
+            if (expand_body_wrapper != null) {
+                expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            }
+        }
+    }
+
+    /**
+     * EventHook handling the "remove paper from the collection" event
+     */
+    public static class CollectionRemoveEvent extends ClickEventHook<CollectionsPaperItem> {
+        @Nullable
+        @Override
+        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
+            if (viewHolder instanceof CollectionsPaperItem.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder) viewHolder).collections_button);
+            }
+            return super.onBindMany(viewHolder);
+        }
+
+        @Override
+        public void onClick(View v, int position, FastAdapter<CollectionsPaperItem> fastAdapter, CollectionsPaperItem item) {
+            ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(v.getContext());
+            MaterialDialog.Builder dialog = new MaterialDialog.Builder(v.getContext())
+                    .title("Are you sure")
+                    .content("You are about to remove this paper from the collection")
+                    .positiveText("I'm sure")
+                    .negativeText("No, I'll keep it")
+                    .onPositive((dialog1, which) -> {
+                        db.deletePaperFromCollection(item.collection_name, item.content_id);
+                        fastAdapter.getAdapter(0).getAdapterItems().remove(position);
+                        fastAdapter.notifyAdapterDataSetChanged();
+                    });
+            dialog.show();
+        }
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {

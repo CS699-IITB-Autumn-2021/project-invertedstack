@@ -33,11 +33,12 @@ import cs699_a2021.invertedstack.reviewsx.R;
  * Expandable `DiscussionItem` for the use in RecyclerView of `PaperWithDiscussion` activity. This implements
  * expandable sub items feature that is needed in case of nested comments. Note that this item corresponds to
  * a single comment -- this comment can ether be toplevel (padding_left=0) or child (padding_left != 0)
- *
+ * <p>
  * `DiscussionItemExpandable` can be a subItem of `DiscussionItemExpandable` too -- which is much more convenient
  * than having 2 separate types of items. In future, `DiscussionItem` should be deprecated
- *
+ * <p>
  * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
+ *
  * @param <Parent>
  * @param <SubItem>
  */
@@ -56,35 +57,6 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
     public int padding_left;
 
     private OnClickListener<DiscussionItemExpandable> mOnClickListener;
-
-    /**
-     * EventHook handling the "expand body" event corresponding to the layout of the item
-     */
-    public static class ExpandBodyClickEvent extends ClickEventHook<DiscussionItemExpandable> {
-        @Nullable
-        @Override
-        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if(viewHolder instanceof DiscussionItemExpandable.ViewHolder) {
-                return EventHookUtil.toList(((ViewHolder)viewHolder).expand_body);
-            }
-            return super.onBindMany(viewHolder);
-        }
-        @Override
-        public void onClick(View v, int position, FastAdapter<DiscussionItemExpandable> fastAdapter, DiscussionItemExpandable item) {
-            if(v.getId() == View.NO_ID) {
-                Log.d("DiscussionItemExpandable", "v has no ID");
-            }
-            else {
-                Log.d("DiscussionItemExpandable", "v has ID = " + v.getResources().getResourceName(v.getId()));
-            }
-            RelativeLayout expand_body_wrapper = ((ViewGroup)v.getParent().getParent()).findViewById(R.id.discussion_card_body_wrapper);
-            if(expand_body_wrapper != null) {
-                expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
-            }
-        }
-    }
-
-    //we define a clickListener in here so we can directly animate
     /**
      * onClickListener for directly animating the expand children animation
      */
@@ -102,17 +74,20 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
             return mOnClickListener != null && mOnClickListener.onClick(v, adapter, item, position);
         }
     };
-    // Ref: https://github.com/mikepenz/FastAdapter/blob/v3.3.1/app/src/main/java/com/mikepenz/fastadapter/app/items/expandable/SimpleSubExpandableItem.java
+
+    //we define a clickListener in here so we can directly animate
 
     @Override
     public OnClickListener<DiscussionItemExpandable<Parent, SubItem>> getOnItemClickListener() {
         return onClickListener;
     }
+    // Ref: https://github.com/mikepenz/FastAdapter/blob/v3.3.1/app/src/main/java/com/mikepenz/fastadapter/app/items/expandable/SimpleSubExpandableItem.java
 
     @Override
     public boolean isSelectable() {
         return getSubItems() == null;
     }
+
     @NonNull
     @Override
     public ViewHolder getViewHolder(View v) {
@@ -132,11 +107,10 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
     @Override
     public void bindView(ViewHolder viewHolder, List<Object> payloads) {
         super.bindView(viewHolder, payloads);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             viewHolder.title.setText(Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT));
             viewHolder.body.setText(Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT));
-        }
-        else {
+        } else {
             viewHolder.title.setText(Html.fromHtml(title));
             viewHolder.body.setText(Html.fromHtml(body));
         }
@@ -162,6 +136,33 @@ public class DiscussionItemExpandable<Parent extends IItem & IExpandable, SubIte
         viewHolder.title.setText("");
         viewHolder.body.setText("");
         viewHolder.icon.clearAnimation();
+    }
+
+    /**
+     * EventHook handling the "expand body" event corresponding to the layout of the item
+     */
+    public static class ExpandBodyClickEvent extends ClickEventHook<DiscussionItemExpandable> {
+        @Nullable
+        @Override
+        public List<View> onBindMany(@NonNull RecyclerView.ViewHolder viewHolder) {
+            if (viewHolder instanceof DiscussionItemExpandable.ViewHolder) {
+                return EventHookUtil.toList(((ViewHolder) viewHolder).expand_body);
+            }
+            return super.onBindMany(viewHolder);
+        }
+
+        @Override
+        public void onClick(View v, int position, FastAdapter<DiscussionItemExpandable> fastAdapter, DiscussionItemExpandable item) {
+            if (v.getId() == View.NO_ID) {
+                Log.d("DiscussionItemExpandable", "v has no ID");
+            } else {
+                Log.d("DiscussionItemExpandable", "v has ID = " + v.getResources().getResourceName(v.getId()));
+            }
+            RelativeLayout expand_body_wrapper = ((ViewGroup) v.getParent().getParent()).findViewById(R.id.discussion_card_body_wrapper);
+            if (expand_body_wrapper != null) {
+                expand_body_wrapper.setVisibility(expand_body_wrapper.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            }
+        }
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {

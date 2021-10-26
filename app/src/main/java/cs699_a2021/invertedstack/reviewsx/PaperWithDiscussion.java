@@ -48,15 +48,6 @@ import okhttp3.Response;
  */
 public class PaperWithDiscussion extends AppCompatActivity {
     /**
-     * Instance of FastAdapter for the comments
-     */
-    private FastAdapter fastAdapter;
-    /**
-     * Instance of ExpandableExtension for FastAdapter -- we technically don't need this as a member but it's
-     * nice to have it as a member for future extensions with "auto" collapse and "conditioned" collapse
-     */
-    private ExpandableExtension expandableExtension;
-    /**
      * Name of the conference the paper belongs to
      */
     String conf_name = null;
@@ -77,6 +68,15 @@ public class PaperWithDiscussion extends AppCompatActivity {
      */
     String paper_title = null;
     /**
+     * Instance of FastAdapter for the comments
+     */
+    private FastAdapter fastAdapter;
+    /**
+     * Instance of ExpandableExtension for FastAdapter -- we technically don't need this as a member but it's
+     * nice to have it as a member for future extensions with "auto" collapse and "conditioned" collapse
+     */
+    private ExpandableExtension expandableExtension;
+    /**
      * String hosting the main response JSON on fetching the comments
      */
     private String main_json = null;
@@ -84,7 +84,8 @@ public class PaperWithDiscussion extends AppCompatActivity {
     /**
      * Recursive function building a `DiscussionItemExpandable` item from the given JSON
      * The JSON is nested hence the recursion
-     * @param obj - The actual JSON object
+     *
+     * @param obj     - The actual JSON object
      * @param padding - Controls how far right the generated element should be. Higher the depth of comment, higher the padding
      * @return - A `DiscussionItemExpandable` item corresponding to `obj`
      */
@@ -92,23 +93,22 @@ public class PaperWithDiscussion extends AppCompatActivity {
         DiscussionItemExpandable ret = new DiscussionItemExpandable();
         try {
             JSONObject content = obj.getJSONObject("content");
-            if(content.has("title")) {
+            if (content.has("title")) {
                 ret.title = content.getString("title");
                 content.remove("title");
-            }
-            else {
+            } else {
                 ret.title = "(Not Available)";
             }
             String body = "";
             Iterator<String> keys = content.keys();
             // ref - https://stackoverflow.com/a/10593838
-            while(keys.hasNext()) {
+            while (keys.hasNext()) {
                 String key = keys.next();
                 body += "<b>" + key + "</b><br>" + content.getString(key).replaceAll("\n", "<br>") + "<br>";
             }
             ret.body = body;
             ret.padding_left = padding;
-            if(obj.has("reply")) {
+            if (obj.has("reply")) {
                 JSONArray reply = obj.getJSONArray("reply");
                 if (reply != null && reply.length() > 0) {
                     ArrayList<IItem> subItems = new ArrayList<>();
@@ -119,8 +119,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
                     ret.withSubItems(subItems);
                 }
             }
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
             runOnUiThread(() -> Toast.makeText(getApplicationContext(), "JSON parsing error. Contact server admin", Toast.LENGTH_LONG).show());
         }
@@ -131,6 +130,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
     /**
      * onCreate method for the activity. This method will look up the DB for discussion data
      * If the data exists locally, show it directly else fetch it from the server
+     *
      * @param savedInstanceState
      */
     @Override
@@ -144,12 +144,11 @@ public class PaperWithDiscussion extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        if(b == null) {
+        if (b == null) {
             // TODO: Sow proper error screen
             Toast.makeText(PaperWithDiscussion.this, "This intent is illegal", Toast.LENGTH_LONG);
             return;
-        }
-        else {
+        } else {
             conf_name = b.getString("conf_name");
             year = b.getString("year");
             category = b.getString("category");
@@ -178,20 +177,18 @@ public class PaperWithDiscussion extends AppCompatActivity {
         // See if the received data_id exists under the database
         ReviewsXDatabaseHelper db = new ReviewsXDatabaseHelper(PaperWithDiscussion.this);
         Cursor data = db.getPaperByDataID(data_id);
-        if(data.getCount() == 0) {
+        if (data.getCount() == 0) {
             title.setText("No paper title for paper ID = " + data_id);
             authors.setText("No authors info for paper ID = " + data_id);
             body.setText("No paper info for paper ID = " + data_id);
-        }
-        else {
+        } else {
             data.moveToFirst();
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 title.setText(Html.fromHtml(data.getString(1), Html.FROM_HTML_MODE_COMPACT));
                 authors.setText(Html.fromHtml(data.getString(2), Html.FROM_HTML_MODE_COMPACT));
                 body.setText(Html.fromHtml(data.getString(3), Html.FROM_HTML_MODE_COMPACT));
                 paper_title = data.getString(1);
-            }
-            else {
+            } else {
                 title.setText(Html.fromHtml(data.getString(1)));
                 authors.setText(Html.fromHtml(data.getString(2)));
                 body.setText(Html.fromHtml(data.getString(3)));
@@ -199,12 +196,12 @@ public class PaperWithDiscussion extends AppCompatActivity {
         }
 
         Cursor comments_data = db.getCommentsForPaperID(data_id);
-        if(comments_data.getCount() != 0) {
+        if (comments_data.getCount() != 0) {
             comments_data.moveToFirst();
             main_json = comments_data.getString(1);
             try {
                 JSONArray comments = new JSONArray(main_json);
-                for(int i = 0; i < comments.length(); i++) {
+                for (int i = 0; i < comments.length(); i++) {
                     items.add(get_item_from_json(comments.getJSONObject(i), 0));
                 }
             } catch (Exception e) {
@@ -226,13 +223,13 @@ public class PaperWithDiscussion extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     String rcvd_string = response.body().string();
                     main_json = rcvd_string;
                     db.updateCommentsData(finalData_id, main_json);
                     try {
                         JSONArray comments = new JSONArray(main_json);
-                        for(int i = 0; i < comments.length(); i++) {
+                        for (int i = 0; i < comments.length(); i++) {
                             items.add(get_item_from_json(comments.getJSONObject(i), 0));
                         }
                     } catch (Exception e) {
@@ -242,8 +239,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
                         itemAdapter.add(items);
                         findViewById(R.id.paper_discussion_progressbar).setVisibility(View.GONE);
                     });
-                }
-                else {
+                } else {
                     runOnUiThread(() -> Toast.makeText(PaperWithDiscussion.this,
                             "Error in response, please contact admin",
                             Toast.LENGTH_LONG).show());
@@ -261,6 +257,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
 
     /**
      * Menu inflater for the activity
+     *
      * @param menu
      * @return
      */
@@ -273,6 +270,7 @@ public class PaperWithDiscussion extends AppCompatActivity {
     /**
      * Menu click handler for the activity.
      * This either takes you to a WebIntent for viewing the PDF or takes you to `NoteTakingActivity` for viewing/editing notes
+     *
      * @param item
      * @return
      */

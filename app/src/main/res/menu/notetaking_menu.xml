@@ -5,6 +5,5 @@
         android:id="@+id/notetaking_action_edit"
         android:icon="@drawable/ic_baseline_edit_24"
         android:title="Edit"
-        app:showAsAction="ifRoom">
-    </item>
+        app:showAsAction="ifRoom"></item>
 </menu>

@@ -1,13 +1,5 @@
 package cs699_a2021.invertedstack.reviewsx;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,8 +10,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.IItemAdapter;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
@@ -48,14 +46,6 @@ import okhttp3.Response;
  */
 public class PaperList extends AppCompatActivity {
     /**
-     * Instance of FastAdapter that will be used by RecyclerView
-     */
-    private FastAdapter fastAdapter;
-    /**
-     * Instance of ItemAdapter that will be used by FastAdapter
-     */
-    private ItemAdapter itemAdapter;
-    /**
      * Name of the conference for which this activity is being used. This will be used as a parameter in API call
      */
     String conf_name = "iclr";
@@ -76,12 +66,19 @@ public class PaperList extends AppCompatActivity {
      */
     String category_nice = "Spotlight Presentations";
     /**
+     * Instance of FastAdapter that will be used by RecyclerView
+     */
+    private FastAdapter fastAdapter;
+    /**
+     * Instance of ItemAdapter that will be used by FastAdapter
+     */
+    private ItemAdapter itemAdapter;
+    /**
      * The string holding the main JSON response
      */
     private String main_json = null;
 
     /**
-     *
      * @param savedInstanceState
      */
     @Override
@@ -95,10 +92,9 @@ public class PaperList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        if(b == null) {
+        if (b == null) {
             // TODO: Show error and die
-        }
-        else {
+        } else {
             conf_name = b.getString("confname");
             conf_name_nice = b.getString("confname_nice");
             year = b.getString("year");
@@ -123,7 +119,8 @@ public class PaperList extends AppCompatActivity {
             intent.putExtra("year", year);
             intent.putExtra("category", category);
             intent.putExtra("data_id", item.content_id);
-            startActivity(intent);;
+            startActivity(intent);
+            ;
             return false;
         });
 
@@ -135,13 +132,13 @@ public class PaperList extends AppCompatActivity {
         Cursor allPapers = db.getPapersByConfYearCat(conf_name_nice, year, category_nice);
         ArrayList<IItem> items = new ArrayList<>();
 
-        if(allPapers.getCount() != 0) {
-            while(allPapers.moveToNext()) {
+        if (allPapers.getCount() != 0) {
+            while (allPapers.moveToNext()) {
                 PapersItem item = new PapersItem();
                 Log.d("PapersList", allPapers.toString());
                 Log.d("PapersList", "Column Count = " + allPapers.getColumnCount());
                 String[] names = allPapers.getColumnNames();
-                for(String name: names)
+                for (String name : names)
                     Log.d("PapersList", name);
                 try {
                     Log.d("PapersList", allPapers.getString(0));
@@ -183,13 +180,13 @@ public class PaperList extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     String rcvd_string = response.body().string();
                     main_json = rcvd_string;
                     try {
                         JSONArray array = new JSONArray(main_json);
                         Log.d("PapersList", "Array length = " + array.length());
-                        for(int i = 0; i < array.length(); i++) {
+                        for (int i = 0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
                             PapersItem item = new PapersItem();
                             item.content_id = object.getString("data_id");
@@ -197,14 +194,13 @@ public class PaperList extends AppCompatActivity {
                             String authors_string = "";
                             authors_string += "<b>Authors: </b><i>";
                             // Authors
-                            if(object.has("authors")) {
+                            if (object.has("authors")) {
                                 JSONArray authors = object.getJSONArray("authors");
                                 for (int j = 0; j < authors.length(); j++) {
                                     authors_string += authors.getString(j) + (j == authors.length() - 1 ? "</i>" : ", ");
                                     Log.d("PapersList", authors_string);
                                 }
-                            }
-                            else {
+                            } else {
                                 authors_string += "(Not Available)";
                             }
                             item.authors = authors_string;
@@ -239,6 +235,7 @@ public class PaperList extends AppCompatActivity {
 
     /**
      * Menu inflater for the activity. The main job is to initialize and handle search based filtering of the RecyclerView in the activity
+     *
      * @param menu
      * @return
      */
@@ -272,6 +269,7 @@ public class PaperList extends AppCompatActivity {
 
     /**
      * Click handler for the "back" key in the ActionBar
+     *
      * @param item
      * @return
      */

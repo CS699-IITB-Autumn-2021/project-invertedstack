@@ -1,12 +1,5 @@
 package cs699_a2021.invertedstack.reviewsx;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,11 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
@@ -35,7 +33,6 @@ import com.mikepenz.materialdrawer.model.ExpandableDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,18 +62,6 @@ import okhttp3.Response;
  */
 public class MainActivity extends AppCompatActivity {
     /**
-     * The `header` part of the `MaterialDrawer`
-     */
-    private AccountHeader header;
-    /**
-     * The `DrawerBuilder` used for building `MaterialDrawer`
-     */
-    private DrawerBuilder drawerBuilder;
-    /**
-     * The actual `MaterialDrawer` object
-     */
-    private Drawer drawer;
-    /**
      * List of collections as a `MaterialDrawer.ExpandableDrawerItem` instance -- this is updated dynamically based on added/deleted/edited collections
      */
     ExpandableDrawerItem collections;
@@ -89,6 +74,18 @@ public class MainActivity extends AppCompatActivity {
      */
     ReviewsXDatabaseHelper db;
     int collections_start = 100, i = 0;
+    /**
+     * The `header` part of the `MaterialDrawer`
+     */
+    private AccountHeader header;
+    /**
+     * The `DrawerBuilder` used for building `MaterialDrawer`
+     */
+    private DrawerBuilder drawerBuilder;
+    /**
+     * The actual `MaterialDrawer` object
+     */
+    private Drawer drawer;
     /**
      * Click listener for listening to "delete" action on a collection. Note that the 4 default collections cannot be deleted
      */
@@ -123,13 +120,12 @@ public class MainActivity extends AppCompatActivity {
                     .title("Edit collection name")
                     .input("Enter new name of the collection", old_name, (dialog1, input) -> {
                         String new_name = input.toString();
-                        if(collection_names.contains(new_name) || new_name.equals("All notes")) {
+                        if (collection_names.contains(new_name) || new_name.equals("All notes")) {
                             runOnUiThread(() -> {
                                 // Safest way to use Toasts
                                 Toast.makeText(getApplicationContext(), "The collection already exists!", Toast.LENGTH_LONG).show();
                             });
-                        }
-                        else {
+                        } else {
                             db.renameCollection(old_name, new_name);
                             drawer.getExpandableExtension().collapse(drawer.getPosition(2));
                             List items = drawer.getDrawerItem(2).getSubItems();
@@ -156,14 +152,13 @@ public class MainActivity extends AppCompatActivity {
         i = 0;
         collection_names = new ArrayList<>();
         Cursor cursor = db.getAllCollections();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             String name = cursor.getString(0);
-            if(i < 4) {
+            if (i < 4) {
                 collections = collections.withSubItems(
                         new PrimaryDrawerItem().withName(name).withIcon(FontAwesome.Icon.faw_bookmark).withIdentifier(collections_start + i)
                 );
-            }
-            else {
+            } else {
                 collections = collections.withSubItems(
                         new DrawerCollectionsItem().withCollectionName(name).withIdentifier(collections_start + i).withDeleteClickListener(deleteClicked).withEditClickListener(editClicked)
                 );
@@ -177,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * `onCreate` method for MainActivity. This method is responsible for fetching the conference data,
      * laying it out in recyclerView and handling clicks for drawer items and recyclerView items
+     *
      * @param savedInstanceState
      */
     @Override
@@ -221,11 +217,10 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("MainActivity", "drawerItem ID = " + drawerItem.getIdentifier());
                     Log.d("MainActivity", "View " + view.getClass());
                     int idx = 0;
-                    if(drawerItem.getIdentifier() >= collections_start) {
-                        if(drawerItem instanceof DrawerCollectionsItem) {
+                    if (drawerItem.getIdentifier() >= collections_start) {
+                        if (drawerItem instanceof DrawerCollectionsItem) {
                             idx = collection_names.indexOf(((DrawerCollectionsItem) drawerItem).collection_name);
-                        }
-                        else {
+                        } else {
                             idx = (int) (drawerItem.getIdentifier() - collections_start);
                         }
                         Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
@@ -233,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    switch((int) drawerItem.getIdentifier()){
+                    switch ((int) drawerItem.getIdentifier()) {
                         case 3:
                             // New Collection
                             MaterialDialog dialog = new MaterialDialog.Builder(MainActivity.this)
@@ -242,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
                                             String new_name = input.toString();
-                                            if(collection_names.contains(new_name) || new_name.equals("All notes")) {
+                                            if (collection_names.contains(new_name) || new_name.equals("All notes")) {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
@@ -250,20 +245,19 @@ public class MainActivity extends AppCompatActivity {
                                                         Toast.makeText(getApplicationContext(), "The collection already exists!", Toast.LENGTH_LONG).show();
                                                     }
                                                 });
-                                            }
-                                            else {
+                                            } else {
                                                 Log.d("MainActivity", "i = " + i);
                                                 db.addCollection(new_name);
                                                 drawer.getExpandableExtension().collapse(drawer.getPosition(2));
                                                 // https://github.com/mikepenz/MaterialDrawer/issues/2154#issuecomment-355746149
                                                 drawer.getDrawerItem(2).getSubItems().add(
                                                         //Arrays.asList(
-                                                                new DrawerCollectionsItem()
-                                                                        .withCollectionName(new_name)
-                                                                        .withIdentifier(collections_start + i)
-                                                                        .withDeleteClickListener(deleteClicked)
-                                                                        .withEditClickListener(editClicked)
-                                                        );
+                                                        new DrawerCollectionsItem()
+                                                                .withCollectionName(new_name)
+                                                                .withIdentifier(collections_start + i)
+                                                                .withDeleteClickListener(deleteClicked)
+                                                                .withEditClickListener(editClicked)
+                                                );
                                                 drawer.getAdapter().notifyAdapterDataSetChanged();
                                                 collection_names.add(new_name);
                                                 i += 1;
@@ -329,22 +323,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     String rcvd_string = response.body().string();
                     String confname, confname_nice, year, category, category_nice;
                     try {
                         JSONArray array = new JSONArray(rcvd_string);
-                        for(int i = 0; i < array.length(); i++) {
+                        for (int i = 0; i < array.length(); i++) {
                             JSONObject conf = array.getJSONObject(i);
                             confname = conf.getString("name");
                             confname_nice = conf.getString("readable_name");
                             JSONArray data = conf.getJSONArray("data");
-                            for(int j = 0; j < data.length(); j++) {
+                            for (int j = 0; j < data.length(); j++) {
                                 JSONObject year_obj = data.getJSONObject(j);
                                 year = year_obj.getString("year");
                                 JSONObject cats = year_obj.getJSONObject("categories");
                                 Iterator<String> keys = cats.keys();
-                                while(keys.hasNext()) {
+                                while (keys.hasNext()) {
                                     String key = keys.next();
                                     category = key;
                                     category_nice = cats.getString(key);
@@ -359,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         runOnUiThread(() -> itemAdapter.add(items));
-                    } catch(JSONException e) {
+                    } catch (JSONException e) {
                         runOnUiThread(() -> Toast.makeText(getApplicationContext(), "There was an error while parsing JSON. Contact server admin", Toast.LENGTH_LONG).show());
                     }
                 }

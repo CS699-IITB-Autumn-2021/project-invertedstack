@@ -18,7 +18,7 @@ import cs699_a2021.invertedstack.reviewsx.R;
 
 /**
  * Item for RecyclerView of Discussion/Comment activity in case the comment has no children
- *
+ * <p>
  * As with other items, most of the methods in this class are just setting up FastAdapter with correct layout
  */
 public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.ViewHolder> {
@@ -62,14 +62,14 @@ public class DiscussionItem extends AbstractItem<DiscussionItem, DiscussionItem.
             body = view.findViewById(R.id.discussion_card_body);
             container = view.findViewById(R.id.discussion_card_parent_linear);
         }
+
         @Override
         public void bindView(DiscussionItem item, List<Object> payloads) {
             // ref - https://stackoverflow.com/a/2116191
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 title.setText(Html.fromHtml(item.title, Html.FROM_HTML_MODE_COMPACT));
                 body.setText(Html.fromHtml(item.body, Html.FROM_HTML_MODE_COMPACT));
-            }
-            else {
+            } else {
                 title.setText(Html.fromHtml(item.title));
                 body.setText(Html.fromHtml(item.body));
             }

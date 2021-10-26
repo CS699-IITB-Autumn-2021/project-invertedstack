@@ -1,10 +1,5 @@
 package cs699_a2021.invertedstack.reviewsx;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.animation.LayoutTransition;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import cs699_a2021.invertedstack.reviewsx.helpers.ReviewsXDatabaseHelper;
 import io.noties.markwon.Markwon;
@@ -70,6 +70,7 @@ public class NoteTakingActivity extends AppCompatActivity {
      * The activity MUST be called with parameters `paper_id` and `paper_title`
      * The activity will check if notes exist for `paper_id`, if they don't we present a boilerplate using `paper_title`
      * Else we fetch from the DB and show it here
+     *
      * @param savedInstanceState
      */
     @Override
@@ -81,11 +82,10 @@ public class NoteTakingActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("List of papers");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
-        if(b == null) { // or some error such as data_id being NULL
+        if (b == null) { // or some error such as data_id being NULL
             // TODO: Do a nice fancy graphical error here
             return;
-        }
-        else {
+        } else {
             data_id = b.getString("data_id");
             paper_title = b.getString("paper_title");
             notes_string += " on " + paper_title + "\n\nThis is just default note template. Note that this is NOT saved on the disk by default\n\nGet started by clicking on the _edit_ icon to view the markdown source for these notes. Then click on _save_ icon to save the note to the device. After saving, this note will ALWAYS be available on the device";
@@ -93,7 +93,7 @@ public class NoteTakingActivity extends AppCompatActivity {
         // Do we already have the notes for this `data_id`
         db = new ReviewsXDatabaseHelper(NoteTakingActivity.this);
         Cursor data = db.getNotesForPaperID(data_id);
-        if(data.getCount() != 0) {
+        if (data.getCount() != 0) {
             data.moveToFirst();
             notes_string = data.getString(1);
             Log.d("NoteTakingActivity", "Got notes from DB");
@@ -156,6 +156,7 @@ public class NoteTakingActivity extends AppCompatActivity {
 
     /**
      * Menu inflater -- responsible for inflating the toggleable "edit" and "save" menu
+     *
      * @param menu
      * @return
      */
@@ -169,6 +170,7 @@ public class NoteTakingActivity extends AppCompatActivity {
      * Click handler for the menu. The functionality is quite simple and implemented quite elegantly too
      * (edit) -> click -> (open editText, switch to "save" icon)
      * (save) -> click -> (close editText, update notes, switch to "edit" icon)
+     *
      * @param item
      * @return
      */
@@ -194,7 +196,7 @@ public class NoteTakingActivity extends AppCompatActivity {
                 int new_icon = new_weight == 1 ? R.drawable.ic_baseline_save_24 : R.drawable.ic_baseline_edit_24;
                 item.setIcon(getDrawable(new_icon));
                 // Save the note depending on state
-                if(new_icon == R.drawable.ic_baseline_edit_24) {
+                if (new_icon == R.drawable.ic_baseline_edit_24) {
                     db.updateNotesData(data_id, notes_string);
                     Log.d("NoteTakingActivity", "Saving to DB when new_weight = " + new_weight);
                 }
