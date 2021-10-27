@@ -129,9 +129,7 @@ def get_info():
 
         # Code to retrieve the years and the conferences.
         for item in dir_contents:
-            print(item)
             if os.path.isdir(database_folder + item):
-                print(item)
                 years.add(item.split("_")[1])
                 conferences.add(item.split("_")[0])
 
