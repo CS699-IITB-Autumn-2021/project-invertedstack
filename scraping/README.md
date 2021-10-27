@@ -78,10 +78,10 @@ data
 │       │   <paper_id1>.json
 │       │   <paper_id1>.json
 │       │   ... 
-    │   iclr_2021_oral_presentation.json
-    │   iclr_2021_poster_presentations.json
-    |   iclr_2021_spotlight_presentations.json
-    │   iclr_2021_withdrawn_rejected_submissions.json
+|   │   iclr_2021_oral_presentation.json
+|   │   iclr_2021_poster_presentations.json
+|   |   iclr_2021_spotlight_presentations.json
+|   │   iclr_2021_withdrawn_rejected_submissions.json
 ```
 
 All the json files for different conferences in separate folders. For e.g., if the config file has 4 years - 2021,2020,2019 and 2018 - then 4 separate folders will get created - 
@@ -136,3 +136,17 @@ The structure of the json files for comments is as follows -
         "reply": [the same nested comment structure, if any replies are there]
     },
 ```
+
+## References ##
+
+1. https://selenium-python.readthedocs.io/locating-elements.html
+2. https://www.guru99.com/xpath-selenium.html
+3. https://stackoverflow.com/questions/59113577/selenium-in-python-finding-an-element-via-relative-xpath
+4. https://pythonbasics.org/selenium-find-element/
+5. https://iqss.github.io/dss-webscrape/finding-web-elements.html
+6. https://www.browserstack.com/guide/css-selectors-in-selenium
+7. https://towardsdatascience.com/web-scraping-e-commerce-website-using-selenium-1088131c8541
+8. https://stackoverflow.com/questions/20461194/conversion-of-curl-to-python-requests
+9. https://reqbin.com/req/python/c-xgafmluu/convert-curl-to-python-requests
+10. https://www.w3schools.com/python/module_requests.asp
+11. https://www.samueltaylor.org/articles/speed-up-web-scraping.html
