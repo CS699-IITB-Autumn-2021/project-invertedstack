@@ -124,17 +124,21 @@ def get_comments():
     json output containing comments.
     """
     try:
-
+        # Get arguments from the api call.
         year = request.args["year"]
         category = request.args["category"]
         conference = request.args["conference"]
         data_id = request.args["data_id"]
 
+        # Read the json file corresponding to the api arguments.
         f = open(
             database_folder + conference + "_" + year + "/" + conference + "_" + year + "_" + category + "/" + data_id
             + "_comments.json")
+
+        # Load the json file.
         data = json.load(f)
 
+        # Preprocessing of the json before returning. Handling of the improper keys.
         if year == "2020":
             for d in data:
                 key_list = list(d["content"].keys())
@@ -144,10 +148,14 @@ def get_comments():
                     elif "experience_assessment" in k:
                         d["content"]["experience assessment"] = d["content"].pop(k)
     except:
+        # Return if some error occurs.
         return jsonify("Invalid arguments please check.")
 
+    # Return the data.
     return jsonify(data)
 
 
+# Main function declaration.
 if __name__ == "__main__":
+    # App run call.
     app.run()
