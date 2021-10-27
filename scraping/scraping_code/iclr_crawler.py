@@ -2,8 +2,10 @@
 
 **Task** - This file contains the methods for scraping all the papers
 of a conferences of ICLR from Openreview.
-This file contains a PageCrawler class defining various methods
-related to scraping the papers from openreviews.net
+
+Contains class PageCrawler which contains methods to 
+scrape data of all papers of all categories for 
+all the years of conferences of a venue.
 
 This file is imported in the main.py file 
 
