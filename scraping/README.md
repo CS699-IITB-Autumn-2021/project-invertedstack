@@ -13,6 +13,17 @@
     - json
     - time
    
+## Chromedriver ##
+
+To run the scraping code, please go to [this link](https://chromedriver.chromium.org/downloads) and download the chromedriver compatible with the version of your Chrome browser.
+
+To find the version of your Chrome Browser, please follow [this link](https://help.zenplanner.com/hc/en-us/articles/204253654-How-to-Find-Your-Internet-Browser-Version-Number-Google-Chrome).
+
+After downloading the zip file, extract the chromedriver file and save it on your computer. 
+
+The path of this chromedriver should be provided in the chrome_driver_path variable in Config.py file.
+
+
 ## How to run? ##
 
 To run the code, go to the directory containing main.py file and run the following command - 
