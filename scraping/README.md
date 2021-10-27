@@ -57,55 +57,69 @@ The main code which imports Config.py, iclr_crawler.py and crawl_forum_comments.
 
 ## Structure of json files and folders ##
 
+The following sample tree structure is showing considering only 2021 year i.e. in the Config.py file the years variable is '2021'
+
+```
+data
+└───iclr_2021
+│   └───iclr_2021_oral_presentations
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   └───iclr_2021_poster_presentations
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   └───iclr_2021_spotlight_presentations
+│       │   file111.txt
+│       │   file112.txt
+│       │   ... 
+│   └───iclr_2021_withdrawn_rejected_submissions
+│       │   file111.txt
+│       │   file112.txt
+│       │   ... 
+    │   iclr_2021_oral_presentation.json
+    │   iclr_2021_poster_presentations.json
+    |   iclr_2021_spotlight_presentations.json
+    │   iclr_2021_withdrawn_rejected_submissions.json
+```
+
 All the json files for different conferences in separate folders. For e.g., if the config file has 4 years - 2021,2020,2019 and 2018 - then 4 separate folders will get created - 
 with the name iclr_year. Inside the folder, json files containing extracted information for all the papers for a particular category will be stored. 
 
 The comments scraped from each paper discussions are stored in separate json files per paper. These files are stored in a separate folder for each category with the name paper-id.json
 
-### Year wise categories of ICLR conferences are scraped and saved in - iclr_year_categories.json for the years 2021, 2020, 2019 and 2018 ###
+### Year wise categories of ICLR conferences are scraped and saved in - iclr_year_categories.json ###
     
 For instance the ICLR categories for the year 2021 in the file iclr_2021_categories.json - 
 
+```
 {
-
       "Oral Presentations": "https://openreview.net/group?id=ICLR.cc/2021/Conference#oral-presentations",
-      
       "Spotlight Presentations": "https://openreview.net/group?id=ICLR.cc/2021/Conference#spotlight-presentations",
-      
       "Poster Presentations": "https://openreview.net/group?id=ICLR.cc/2021/Conference#poster-presentations",
-      
       "Withdrawn/Rejected Submissions": "https://openreview.net/group?id=ICLR.cc/2021/Conference#withdrawn-rejected-submissions"
-
 }
+```
 
 ### Json files are created for every ICLR conference per category ###
 The structure of the values in the json files is as follows - 
 
+```
 {
-
-            "data_id": "",
-            
+            "data_id": "",          
             "paper_title": "",
-
-            "forum_link": "",
-              
-            "pdf_link": "",
-            
-            "authors": [            ],
-            
-            "reviewed-version-(pdf)": "",
-            
-            "keywords": "",
-            
-            "abstract": "",
-            
+            "forum_link": "",             
+            "pdf_link": "",           
+            "authors": [            ],           
+            "reviewed-version-(pdf)": "",           
+            "keywords": "",           
+            "abstract": "",           
             "code-of-ethics": "",
-            
             "one-sentence-summary": "",
-            
-            "supplementary-material": ""
-            
+            "supplementary-material": ""          
  }
+```
 
 ### Comments information for each paper is saved in a separate json file ###
 The structure of the json files for comments is as follows -
