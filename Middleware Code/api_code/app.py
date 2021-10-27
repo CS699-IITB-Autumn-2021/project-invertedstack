@@ -33,7 +33,6 @@ from conference file is used to map the comment file and fetch all the comments.
 
 """
 
-
 # Importing libraries.
 from flask import Flask, request, jsonify
 from flask_ngrok import run_with_ngrok
@@ -48,6 +47,7 @@ app = Flask(__name__)
 
 # Json files location.
 database_folder = "/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"
+
 
 # Dummy API call.
 @app.route('/')
@@ -87,7 +87,7 @@ def get_parameters():
 
         # Read the json file corresponding to the api call arguments.
         f = open(database_folder + conference + "_" + year + "/" + conference + "_" + year + "_" + category + ".json")
-        
+
         # Load the json file.
         data = json.load(f)
 
@@ -130,7 +130,7 @@ def get_info():
         # Code to retrieve the years and the conferences.
         for item in dir_contents:
             print(item)
-            if os.path.isdir(database_folder+item):
+            if os.path.isdir(database_folder + item):
                 print(item)
                 years.add(item.split("_")[1])
                 conferences.add(item.split("_")[0])
@@ -147,7 +147,7 @@ def get_info():
             conference_dict = {}
             data = []
 
-            #Looping over all years.
+            # Looping over all years.
             for year in years:
                 temp_dict = {}
                 categories = {}
