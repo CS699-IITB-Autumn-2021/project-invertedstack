@@ -24,11 +24,11 @@ Minimalist OpenReview client with support for native markdown notes
 
 ## Technology Stack
 - **Python**
-- <mark>Beautiful Soup</mark>
-- <mark>Selenium</mark>
+- **Beautiful Soup**
+- **Selenium**
 - Flask
-- <mark>Shell Scripting</mark>
-- <mark>Android</mark>
+- **Shell Scripting**
+- **Android**
 
 ## List of Deliverables
 - [x] Server - capable of scraping the data from OpenReview for a given conference and serving the data to the android app 
