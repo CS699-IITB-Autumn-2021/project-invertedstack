@@ -66,29 +66,48 @@ def get_info():
     json output
     """
     try:
+        # Setting up years and conference. 
         years = ["2018", "2019", "2020", "2021"]
         conferences = ["iclr"]
+
+        # global_conf_list collects data to be returned.
         global_conf_list = []
+
+        # Looping over all conferences.
         for conference in conferences:
             conference_dict = {}
             data = []
+
+            #Looping over all years.
             for year in years:
                 temp_dict = {}
                 categories = {}
+
+                # Reading from the appropriate json file corresponding to the conference and year.
                 f = open(database_folder + conference + "_" + year + "_categories.json")
+
+                # Load json file.
                 file_data = json.load(f)
+
+                # Preprocessing the data before returning it. Replace empty space with _
                 for i in list(file_data.keys()):
                     categories[i.lower().replace(" ", "_")] = i
+
+                # Collect the data for each year in a list.
                 temp_dict["year"] = year
                 temp_dict["categories"] = categories
                 data.append(temp_dict)
+
+            # Collect data corresponding to each conference in a list.
             conference_dict["name"] = conference
             conference_dict["readable_name"] = conference.upper()
             conference_dict["data"] = data
             global_conf_list.append(conference_dict)
     except:
+        # Return if some error occurs.
         return jsonify("Invalid arguments please check.")
 
+    # Return the data.
     return jsonify(global_conf_list)
 
 
