@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import json,time,os
+import json
+import time
+import os
 import pprint
 from tqdm import tqdm
 import Config
@@ -10,45 +12,46 @@ config = Config.Config()
 
 class PageCrawler:
     '''
-    This class contains methods which can be used to scraped from openreview.net
+    This class contains methods which
+    can be used to scraped from openreview.net
     '''
     def __init__(self):
-        '''
-        This method initialzes the PageCrawler object with chrome options and chrome path to enable use of selenium
+        '''This method initialzes the PageCrawler object with
+        chrome options and chrome path to enable use of selenium
         Parameters
         ----------
         None
-        
+
         Returns
         -------
         None
         '''
         self.chrome_options = Options()
-        self.chrome_options.add_argument("--headless") # Hides the browser window
+        self.chrome_options.add_argument("--headless")
         # Reference the local Chromedriver instance
         self.chrome_path = config.chrome_driver_path
-      
 
-    def get_all_venues(self,url):
-        '''
-        This method scrapes all the venues which are available in the home_url 
+    def get_all_venues(self, url):
+        '''This method scrapes all the venues
+        which are available in the home_url
         Parameters
         ----------
         url : str
             url or the home page of open review
-        
+
         Returns
         -------
         A dictionary containing all venues along with their url
         '''
-        driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
+        driver = webdriver.Chrome(executable_path=self.chrome_path,
+                    options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
         driver.get(url)
 
         ele_available = False
         while not ele_available:
             elements = driver.find_elements_by_css_selector("div#all-venues a")
-            if(len(elements)>0):
+            if(len(elements) > 0):
                 ele_available = True
         all_venues = {}
         for element in elements:
@@ -60,18 +63,16 @@ class PageCrawler:
 
         return all_venues
 
-    
-    def get_list_of_iclr_conf(self,url):
-
-        driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
+    def get_list_of_iclr_conf(self, url):
+        driver = webdriver.Chrome(executable_path=self.chrome_path,
+                                    options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
         driver.get(url)
-
 
         ele_available = False
         while not ele_available:
             elements = driver.find_elements_by_css_selector("div#notes a")
-            if(len(elements)>0):
+            if(len(elements) > 0):
                 ele_available = True
         iclr_confs = {}
         for element in elements:
@@ -83,37 +84,36 @@ class PageCrawler:
 
         return iclr_confs
 
-
-    def get_iclr_conf_link(self,url):
-        driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
+    def get_iclr_conf_link(self, url):
+        driver = webdriver.Chrome(executable_path=self.chrome_path,
+                                    options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
         driver.get(url)
 
         ele_available = False
         while not ele_available:
             elements = driver.find_elements_by_css_selector("div#notes a")
-            if(len(elements)>0):
+            if(len(elements) > 0):
                 ele_available = True
-        iclr_conf_link=""
+        iclr_conf_link = ""
         for element in elements:
             if("conference" in element.get_attribute("innerHTML").lower()):
-                iclr_conf_link =  element.get_attribute("href")
-            
+                iclr_conf_link = element.get_attribute("href")
 
         driver.quit()
 
         return iclr_conf_link
 
-    def get_categories_from_iclr_conf(self,url):
-        driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
+    def get_categories_from_iclr_conf(self, url):
+        driver = webdriver.Chrome(executable_path=self.chrome_path,
+                    options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
         driver.get(url)
-
 
         ele_available = False
         while not ele_available:
             elements = driver.find_elements_by_css_selector("ul.nav-tabs a")
-            if(len(elements)>0):
+            if(len(elements) > 0):
                 ele_available = True
         iclr_conf_cats = {}
         for element in elements:
@@ -126,8 +126,10 @@ class PageCrawler:
 
         return iclr_conf_cats
 
-    def get_conf_papers_from_category(self, category_url, year, category, output_path, limit=config.limit):
-        driver = webdriver.Chrome(executable_path=self.chrome_path, options=self.chrome_options)
+    def get_conf_papers_from_category(self, category_url, year, category,
+            output_path, limit=config.limit):
+        driver = webdriver.Chrome(executable_path=self.chrome_path,
+                    options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
         driver.get(category_url)
         print(category_url)
@@ -135,60 +137,60 @@ class PageCrawler:
         time.sleep(30)
 
         ele_available = False
-        count=0
+        count = 0
         while not ele_available:
-            li_of_all_papers = driver.find_elements_by_css_selector("ul.submissions-list li.note")
-            count+=1
-            print("count -",count, len(li_of_all_papers))
-            if(len(li_of_all_papers)>0):
+            li_of_all_papers = driver.find_elements_by_css_selector("""ul.submissions-list li.note""")
+            count += 1
+            print("count -", count, len(li_of_all_papers))
+            if(len(li_of_all_papers) > 0):
                 ele_available = True
-                
+
         list_of_all_papers = []
         if not limit:
             limit = len(li_of_all_papers)
         for element in tqdm(li_of_all_papers[:limit], "creating data"):
             details_of_curr_paper = {}
-            #get data-id
-            details_of_curr_paper["data_id"]= element.get_attribute("data-id")
-            #get forum and pdf links
+            # get data-id
+            details_of_curr_paper["data_id"] = element.get_attribute("data-id")
+            # get forum and pdf links
             links = element.find_elements_by_css_selector("h4 a")
             details_of_curr_paper["paper_title"] = links[0].get_attribute("innerHTML").strip()
             details_of_curr_paper["forum_link"] = links[0].get_attribute("href")
-            if len(links) >1:
+            if len(links) > 1:
                 details_of_curr_paper["pdf_link"] = links[1].get_attribute("href")
             else:
                 details_of_curr_paper["pdf_link"] = ""
-            #get all authors
+            # get all authors
             authors = []
-            author_list = element.find_elements_by_css_selector("div.note-authors a.profile-link")
+            author_list = element.find_elements_by_css_selector("""div.note-authors
+                                                        a.profile-link""")
             for author in author_list:
                 authors.append(author.get_attribute("innerHTML"))
             details_of_curr_paper["authors"] = authors
-            #get meta-info
+            # get meta-info
             meta_info = element.find_elements_by_css_selector("ul.note-content li")
             for ele in meta_info:
-                key = ele.find_element_by_css_selector("strong.note-content-field").get_attribute("innerHTML").strip()
-                value = ele.find_element_by_css_selector("span.note-content-value ").get_attribute("innerHTML").strip()
-                details_of_curr_paper[key[:-1].lower().replace(' ','-')]=value
+                key = ele.find_element_by_css_selector("""strong.
+                        note-content-field""").get_attribute("innerHTML")
+                key = key.strip()
+                value = ele.find_element_by_css_selector("""span.
+                            note-content-value""").get_attribute("innerHTML")
+                value = value.strip()
+                details_of_curr_paper[key[:-1].lower().replace(' ', '-')] = value
             list_of_all_papers.append(details_of_curr_paper)
 
-
-        outputfile = output_path+"/iclr_"+year+"_"+category.lower().replace("/"," ").replace(" ","_")+".json"
-        print("creating file : ",outputfile)
-        with open(outputfile,"w") as f:
-            json.dump(list_of_all_papers,f,indent=6)
+        outputfile = output_path + "/iclr_" + year + "_" + category.lower().replace("/", " ").replace(" ", "_")+".json"
+        print("creating file : ", outputfile)
+        with open(outputfile, "w") as f:
+            json.dump(list_of_all_papers, f, indent=6)
         print("File created!!")
         driver.quit()
 
         return list_of_all_papers
-        
 
-    def save_json_of_all_iclr(self,url,year,categories,output_dir):
+    def save_json_of_all_iclr(self, url, year, categories, output_dir):
         output_path = output_dir + "iclr_" + year
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         for cat in categories:
-            self.get_conf_papers_from_category(categories[cat],year,cat,output_path)
-        
-
-
+            self.get_conf_papers_from_category(categories[cat], year, cat, output_path)
