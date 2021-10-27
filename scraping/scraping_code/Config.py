@@ -36,10 +36,10 @@ class Config:
     # this version scrapes all conferences of ICLR venue
     venue_name = 'ICLR'
     # specify the list of years which needs to be scraped
-    years = ['2021']
+    years = ['2021', '2020', '2019', '2018']
     # specify the maximum number of papers that needs to be scraped for every category
     # if all papers need to be scraped then keep limit as None
-    limit = 10
+    limit = 500
     
     
     
