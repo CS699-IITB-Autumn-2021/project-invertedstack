@@ -1,7 +1,30 @@
 # ReviewsX
 
+## Problem Statement/Motivation
+- During RnD, you read a lot of papers and take notes of those for future reads
+- You can probably use Google Keep or Microsoft OneNote for this
+- But they aren't the greatest of the tools for the job -- they don't support many rich text facilities such as 
+	- Maths
+	- Code 
+	- Markdown
+- Often these apps will also need internet 
+- There's also no in-built way in Google Keep / Microsoft OneNote to look at reviews of the paper from a site such as OpenReview
+
 ## Slogan
 Minimalist OpenReview client with support for native markdown notes
+
+## List of Features
+- Build a note taking app that -
+	- Runs offline
+	- Supports math, code and markdown notes
+	- Allows the user to favourite some of the notes 
+	- Allows viewing and downloading papers and discussions from OpenReview 
+	- Supports collections of papers 
+	- Supports reading lists -- currently reading, already read and wishlist
+
+## List of Deliverables
+[x] Server - capable of scraping the data from OpenReview for a given conference and serving the data to the android app 
+[x] Android app - with all the features stated above
 
 ## Hardware/Software Requirements.
 
