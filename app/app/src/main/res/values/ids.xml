@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="discussion_item_id" type="id" />
+    <item name="discussion_item_expandable_id" type="id" />
+    <item name="paper_item_id" type="id" />
+    <item name="collection_item_id" type="id" />
+    <item name="drawer_collection_deletable_item_id" type="id" />
+    <item name="main_activity_item_id" type="id" />
+</resources>
