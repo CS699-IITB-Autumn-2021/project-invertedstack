@@ -64,6 +64,18 @@ class PageCrawler:
         return all_venues
 
     def get_list_of_iclr_conf(self, url):
+        """This method scrapes and gets a list of
+        all available iclr conferences.
+        Parameters
+        ----------
+        url : str
+            url of the venue home page
+        
+        Returns
+        -------
+        A dictionary containing all conferences of the
+        venue along with the urls
+        """
         driver = webdriver.Chrome(executable_path=self.chrome_path,
                                     options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
@@ -85,6 +97,17 @@ class PageCrawler:
         return iclr_confs
 
     def get_iclr_conf_link(self, url):
+        """This method finds the conference link
+        out of other links from the venues. 
+        Parameters
+        ----------
+        url : str
+            url of the venure for a particular year
+        
+        Returns
+        -------
+        url string of the conference link for a particular year
+        """
         driver = webdriver.Chrome(executable_path=self.chrome_path,
                                     options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
@@ -105,6 +128,17 @@ class PageCrawler:
         return iclr_conf_link
 
     def get_categories_from_iclr_conf(self, url):
+        """This method scrapes the categories 
+        from a particular iclr conf. 
+        Parameters
+        ----------
+        url : str
+            url of the conference for a particular year
+        
+        Returns
+        -------
+        A dictionary containing the category name and the link
+        """
         driver = webdriver.Chrome(executable_path=self.chrome_path,
                     options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
@@ -128,6 +162,25 @@ class PageCrawler:
 
     def get_conf_papers_from_category(self, category_url, year, category,
             output_path, limit=config.limit):
+        """This method scrapes the papers 
+        from a particular iclr conf category.
+        Parameters
+        ----------
+        category_url : str
+            url of the conference for a category for a particular year
+        year : str
+            year of the conference
+        category : str
+            category of the conference
+        output_path : str
+            path of the output for json files
+        limit : int
+            maximum number of files to be scraped
+        
+        Returns
+        -------
+        None
+        """
         driver = webdriver.Chrome(executable_path=self.chrome_path,
                     options=self.chrome_options)
         # Run the Webdriver, save page an quit browser
@@ -189,6 +242,23 @@ class PageCrawler:
         return list_of_all_papers
 
     def save_json_of_all_iclr(self, url, year, categories, output_dir):
+        """This method saves json files
+        for all the categories of a particular conf
+        Parameters
+        ----------
+        url : str
+            url of the conference for a category for a particular year
+        year : str
+            year of the conference
+        category : str
+            category of the conference
+        output_path : str
+            path of the output for json files
+        
+        Returns
+        -------
+        None
+        """
         output_path = output_dir + "iclr_" + year
         if not os.path.exists(output_path):
             os.makedirs(output_path)

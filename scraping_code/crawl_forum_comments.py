@@ -109,6 +109,16 @@ def get_all_comments_for_forum_id(forum_id, path):
                     if comment['id'] == child:
                         details['content'] = comment['content']
                         details['date'] = int(comment['cdate'])
+                        if 'signatures' in comment:
+                            if len(comment['signatures'])>0:
+                                sign = comment['signatures'][0]
+                                sign = sign.replace("/", " ").replace("_", " ").replace("~", "")
+                                if 'conference' not in sign.lower():
+                                    details['signatures'] = ''.join([i for i in sign if not i.isdigit()])
+                                else:
+                                    details['signatures'] = sign.replace(".cc", "")
+                            else:
+                                details['signatures'] = ""
                 details['reply'] = []
 
                 populate_json(child, json_data, details['reply'])
