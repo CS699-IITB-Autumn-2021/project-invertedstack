@@ -65,6 +65,10 @@ Alternatively,
 - Professors.
 - Anyone interested in reading research papers!
 
+**Regarding concerns about NOT having the search functionality across conferences** - This was brought up in the discussion during the final demo and we (authors of this project) felt that we did not explain this properly. The main reason behind not having this functionality was primarily because of our stakeholders. Intended users of this app already know a thing-or-two about the topic they're interested in. Mainly the stakeholders are often going to think like "Hey what are some spotlight papers at ICLR 2022 that I might be interested in ?". These questions will always be specific to a particular category of the conference because often when attending these big conferences, you want to make sure that you don't miss a talk or a poster. If the conference happened in previous years, it's still valuable to search in a particular category so that you can catch up on that particular talk or poster using archives. For these types of users, a general purpose, all-conference search serves "less" functionality because then the users will have to parse through more info.
+
+Therefore, there is technically no need to have this functionality on the home screen and hence we did not promise it in any of the presentations before. While we agree that this functionality could be useful for more general public, we decided to omit this from the demo since we did not promise it at all in any of our previous presentations. Moreover, implementing this functionality is a trivial task given the modularity of the app and middleware code. Even then, we wanted to focus more on delivering the promised requirements super well hence we focussed a LOT more on testing the promised requirements.
+
 ## Team details and contribution.
 
 ### Scraping the data off of OpenReview - Ashita Saxena - 21Q050009
