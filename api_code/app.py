@@ -1,3 +1,39 @@
+# Author - Tejpalsingh Siledar - 21Q050008
+
+
+"""
+This file contains code for all the api's to support the linking and fetching 
+of the data from the json files.
+
+API calls present in the file
+
+** /
+- This is a dummy api call to check if the server is working. This will return a simple
+message saying that the "Flask is running!"
+
+** /get_parameters
+- This api call is to fetch the information from conference json files. 
+- Further improvements
+    - This call can be modified to serve only specific key value information from the 
+    conference json files.
+
+** /get_info
+- This api call is to fetch all the category files present in the json database. 
+- Further improvements 
+    - The year and conference can be automated based on the json files 
+    present in the database.
+    - NULL values can be handled at the server side to improve this further.
+
+** /get_comments
+- This api call is to fetch all the comments specific to a particular paper. The paper id 
+from conference file is used to map the comment file and fetch all the comments.
+- Further improvements 
+    - Comments are hierarchical and can be parsed at the server side to
+    preprocess all the comments in proper format before sending it as the api response
+
+"""
+
+
 # Importing libraries.
 from flask import Flask, request, jsonify
 from flask_ngrok import run_with_ngrok
