@@ -1,3 +1,8 @@
+# ReviewsX
+
+## Slogan
+Minimalist OpenReview client with support for native markdown notes
+
 ## Hardware/Software Requirements.
 
 ### Hardware Requirements.
