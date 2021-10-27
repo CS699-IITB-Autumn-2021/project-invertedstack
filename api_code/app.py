@@ -74,6 +74,12 @@ def get_parameters():
     """
     try:
         # Get arguments from api call.
+        """
+        Three arguments are retrieved through the api call
+        year - year of the conference.
+        category - categories of the year and the specific conference
+        conference - conference such as "iclr"
+        """
         year = request.args["year"]
         category = request.args["category"]
         conference = request.args["conference"]
@@ -109,7 +115,11 @@ def get_info():
     json output containing all the info.
     """
     try:
-        # Setting up years and conference. 
+        # Setting up years and conference.
+        """
+        The process of getting the years and conference can be automated. 
+        Database folder can be searched for getting the year and conference.
+        """
         years = ["2018", "2019", "2020", "2021"]
         conferences = ["iclr"]
 
@@ -166,6 +176,13 @@ def get_comments():
     """
     try:
         # Get arguments from the api call.
+        """
+        Four arguments are retrieved through the api call
+        year - year of the conference.
+        category - categories of the year and the specific conference
+        conference - conference such as "iclr"
+        data_id - id of the paper for which the comments are to be retrieved.
+        """
         year = request.args["year"]
         category = request.args["category"]
         conference = request.args["conference"]
