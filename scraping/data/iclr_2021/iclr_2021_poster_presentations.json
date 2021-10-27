@@ -1,0 +1,166 @@
+[
+      {
+            "data_id": "YwpZmcAehZ",
+            "paper_title": "Revisiting Dynamic Convolution via Matrix Decomposition",
+            "forum_link": "https://openreview.net/forum?id=YwpZmcAehZ",
+            "pdf_link": "https://openreview.net/pdf?id=YwpZmcAehZ",
+            "authors": [
+                  "Yunsheng Li",
+                  "Yinpeng Chen",
+                  "Xiyang Dai",
+                  "mengchen liu",
+                  "Dongdong Chen",
+                  "Ye Yu",
+                  "Lu Yuan",
+                  "Zicheng Liu",
+                  "Mei Chen",
+                  "Nuno Vasconcelos"
+            ],
+            "keywords": "supervised representation learning, efficient network, dynamic network, matrix decomposition",
+            "abstract": "Recent research in dynamic convolution shows substantial performance boost for efficient CNNs, due to the adaptive aggregation of K static convolution kernels. It has two limitations: (a) it increases the number of convolutional weights by K-times, and (b) the joint optimization of dynamic attention and static convolution kernels is challenging. In this paper, we revisit it from a new perspective of matrix decomposition and reveal the key issue is that dynamic convolution applies dynamic attention over channel groups after projecting into a higher dimensional latent space. To address this issue, we propose dynamic channel fusion to replace dynamic attention over channel groups. Dynamic channel fusion not only enables significant dimension reduction of the latent space, but also mitigates the joint optimization difficulty. As a result, our method is easier to train and requires significantly fewer parameters without sacrificing accuracy. Source code is at https://github.com/liyunsheng13/dcd.",
+            "one-sentence-summary": "Efficient network with dynamic matrix decomposition",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "A5VV3UyIQz",
+            "paper_title": "Explainable Deep One-Class Classification",
+            "forum_link": "https://openreview.net/forum?id=A5VV3UyIQz",
+            "pdf_link": "https://openreview.net/pdf?id=A5VV3UyIQz",
+            "authors": [
+                  "Philipp Liznerski",
+                  "Lukas Ruff",
+                  "Robert A. Vandermeulen",
+                  "Billy Joe Franks",
+                  "Marius Kloft",
+                  "Klaus Robert Muller"
+            ],
+            "keywords": "anomaly-detection, deep-learning, explanations, interpretability, xai, one-class-classification, deep-anomaly-detection, novelty-detection, outlier-detection",
+            "abstract": "Deep one-class classification variants for anomaly detection learn a mapping that concentrates nominal samples in feature space causing anomalies to be mapped away. Because this transformation is highly non-linear, finding interpretations poses a significant challenge. In this paper we present an explainable deep one-class classification method, Fully Convolutional Data Description (FCDD), where the mapped samples are themselves also an explanation heatmap. FCDD yields competitive detection performance and provides reasonable explanations on common anomaly detection benchmarks with CIFAR-10 and ImageNet. On MVTec-AD, a recent manufacturing dataset offering ground-truth anomaly maps, FCDD sets a new state of the art in the unsupervised setting. Our method can incorporate ground-truth anomaly maps during training and using even a few of these (~5) improves performance significantly. Finally, using FCDD's explanations we demonstrate the vulnerability of deep one-class classification models to spurious image features such as image watermarks.",
+            "one-sentence-summary": "We introduce an approach to explainable deep anomaly detection based on fully convolutional neural networks.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "lU5Rs_wCweN",
+            "paper_title": "Taking Notes on the Fly Helps Language Pre-Training",
+            "forum_link": "https://openreview.net/forum?id=lU5Rs_wCweN",
+            "pdf_link": "https://openreview.net/pdf?id=lU5Rs_wCweN",
+            "authors": [
+                  "Qiyu Wu",
+                  "Chen Xing",
+                  "Yatao Li",
+                  "Guolin Ke",
+                  "Di He",
+                  "Tie-Yan Liu"
+            ],
+            "keywords": "Natural Language Processing, Pre-training",
+            "abstract": "How to make unsupervised language pre-training more efficient and less resource-intensive is an important research direction in NLP. In this paper, we focus on improving the efficiency of language pre-training methods through providing better data utilization. It is well-known that in language data corpus, words follow a heavy-tail distribution. A large proportion of words appear only very few times and the embeddings of rare words are usually poorly optimized. We argue that such embeddings carry inadequate semantic signals, which could make the data utilization inefficient and slow down the pre-training of the entire model. To mitigate this problem, we propose Taking Notes on the Fly (TNF), which takes notes for rare words on the fly during pre-training to help the model understand them when they occur next time. Specifically, TNF maintains a note dictionary and saves a rare word's contextual information in it as notes when the rare word occurs in a sentence. When the same rare word occurs again during training, the note information saved beforehand can be employed to enhance the semantics of the current sentence. By doing so, TNF provides a better data utilization since cross-sentence information is employed to cover the inadequate semantics caused by rare words in the sentences. We implement TNF on both BERT and ELECTRA to check its efficiency and effectiveness.  Experimental results show that TNF's training time is 60% less than its backbone pre-training models when reaching the same performance.  When trained with same number of iterations, TNF outperforms its backbone methods on most of downstream tasks and the average GLUE score. Code is attached in the supplementary material.",
+            "supplementary-material": "<a href=\"/attachment?id=lU5Rs_wCweN&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We improve the efficiency of language pre-training methods through providing better data utilization."
+      },
+      {
+            "data_id": "l-LGlk4Yl6G",
+            "paper_title": "Mixed-Features Vectors and Subspace Splitting",
+            "forum_link": "https://openreview.net/forum?id=l-LGlk4Yl6G",
+            "pdf_link": "https://openreview.net/pdf?id=l-LGlk4Yl6G",
+            "authors": [
+                  "Alejandro Pimentel-Alarc\u00f3n",
+                  "Daniel L. Pimentel-Alarc\u00f3n"
+            ],
+            "abstract": "Motivated by metagenomics, recommender systems, dictionary learning, and related problems, this paper introduces subspace splitting(SS): the task of clustering the entries of what we call amixed-features vector, that is, a vector whose subsets of coordinates agree with a collection of subspaces. We derive precise identifiability conditions under which SS is well-posed, thus providing the first fundamental theory for this problem. We also propose the first three practical SS algorithms, each with advantages and disadvantages: a random sampling method , a projection-based greedy heuristic , and an alternating Lloyd-type algorithm ; all allow noise, outliers, and missing data. Our extensive experiments outline the performance of our algorithms, and in lack of other SS algorithms, for reference we compare against methods for tightly related problems, like robust matched subspace detection and maximum feasible subsystem, which are special simpler cases of SS.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "o966_Is_nPA",
+            "paper_title": "Neural Pruning via Growing Regularization",
+            "forum_link": "https://openreview.net/forum?id=o966_Is_nPA",
+            "pdf_link": "https://openreview.net/pdf?id=o966_Is_nPA",
+            "authors": [
+                  "Huan Wang",
+                  "Can Qin",
+                  "Yulun Zhang",
+                  "Yun Fu"
+            ],
+            "keywords": "model compression, deep neural network pruning, Hessian matrix, regularization",
+            "abstract": "Regularization has long been utilized to learn sparsity in deep neural network pruning. However, its role is mainly explored in the small penalty strength regime. In this work, we extend its application to a new scenario where the regularization grows large gradually to tackle two central problems of pruning: pruning schedule and weight importance scoring. (1) The former topic is newly brought up in this work, which we find critical to the pruning performance while receives little research attention. Specifically, we propose an L2 regularization variant with rising penalty factors and show it can bring significant accuracy gains compared with its one-shot counterpart, even when the same weights are removed. (2) The growing penalty scheme also brings us an approach to exploit the Hessian information for more accurate pruning without knowing their specific values, thus not bothered by the common Hessian approximation problems. Empirically, the proposed algorithms are easy to implement and scalable to large datasets and networks in both structured and unstructured pruning. Their effectiveness is demonstrated with modern deep neural networks on the CIFAR and ImageNet datasets, achieving competitive results compared to many state-of-the-art algorithms. Our code and trained models are publicly available at https://github.com/mingsun-tse/regularization-pruning.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We propose two new deep network pruning algorithms based a growing regularization paradigm."
+      },
+      {
+            "data_id": "6k7VdojAIK",
+            "paper_title": "Practical Massively Parallel Monte-Carlo Tree Search Applied to Molecular Design",
+            "forum_link": "https://openreview.net/forum?id=6k7VdojAIK",
+            "pdf_link": "https://openreview.net/pdf?id=6k7VdojAIK",
+            "authors": [
+                  "Xiufeng Yang",
+                  "Tanuj Aasawat",
+                  "Kazuki Yoshizoe"
+            ],
+            "keywords": "parallel Monte Carlo Tree Search (MCTS), Upper Confidence bound applied to Trees (UCT), molecular design",
+            "abstract": "It is common practice to use large computational resources to train neural networks, known from many examples, such as reinforcement learning applications. However, while massively parallel computing is often used for training models, it is rarely used to search solutions for combinatorial optimization problems. This paper proposes a novel massively parallel Monte-Carlo Tree Search (MP-MCTS) algorithm that works efficiently for a 1,000 worker scale on a distributed memory environment using multiple compute nodes and applies it to molecular design. This paper is the first work that applies distributed MCTS to a real-world and non-game problem. Existing works on large-scale parallel MCTS show efficient scalability in terms of the number of rollouts up to 100 workers. Still, they suffer from the degradation in the quality of the solutions. MP-MCTS maintains the search quality at a larger scale. By running MP-MCTS on 256 CPU cores for only 10 minutes, we obtained candidate molecules with similar scores to non-parallel MCTS running for 42 hours. Moreover, our results based on parallel MCTS (combined with a simple RNN model) significantly outperform existing state-of-the-art work. Our method is generic and is expected to speed up other applications of MCTS.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "Novel massively parallel MCTS achieves state-of-the-art score in molecular design benchmark.",
+            "supplementary-material": "<a href=\"/attachment?id=6k7VdojAIK&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "5jRVa89sZk",
+            "paper_title": "Empirical Analysis of Unlabeled Entity Problem in Named Entity Recognition",
+            "forum_link": "https://openreview.net/forum?id=5jRVa89sZk",
+            "pdf_link": "https://openreview.net/pdf?id=5jRVa89sZk",
+            "authors": [
+                  "Yangming Li",
+                  "lemao liu",
+                  "Shuming Shi"
+            ],
+            "keywords": "Named Entity Recognition, Unlabeled Entity Problem, Negative Sampling",
+            "abstract": "In many scenarios, named entity recognition (NER) models severely suffer from unlabeled entity problem, where the entities of a sentence may not be fully annotated. Through empirical studies performed on synthetic datasets, we find two causes of performance degradation. One is the reduction of annotated entities and the other is treating unlabeled entities as negative instances. The first cause has less impact than the second one and can be mitigated by adopting pretraining language models. The second cause seriously misguides a model in training and greatly affects its performances. Based on the above observations, we propose a general approach, which can almost eliminate the misguidance brought by unlabeled entities. The key idea is to use negative sampling that, to a large extent, avoids training NER models with unlabeled entities. Experiments on synthetic datasets and real-world datasets show that our model is robust to unlabeled entity problem and surpasses prior baselines. On well-annotated datasets, our model is competitive with the state-of-the-art method.",
+            "one-sentence-summary": "This work studys what are the impacts of unlabeled entity problem on NER models and how to effectively eliminate them by a general method.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "O-6Pm_d_Q-",
+            "paper_title": "Deep Networks and the Multiple Manifold Problem",
+            "forum_link": "https://openreview.net/forum?id=O-6Pm_d_Q-",
+            "pdf_link": "https://openreview.net/pdf?id=O-6Pm_d_Q-",
+            "authors": [
+                  "Sam Buchanan",
+                  "Dar Gilboa",
+                  "John Wright"
+            ],
+            "keywords": "deep learning, overparameterized neural networks, low-dimensional structure",
+            "abstract": "We study the multiple manifold problem, a binary classification task modeled on applications in machine vision, in which a deep fully-connected neural network is trained to separate two low-dimensional submanifolds of the unit sphere. We provide an analysis of the one-dimensional case, proving for a simple manifold configuration that when the network depth <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"0\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>L</mi></math></mjx-assistive-mml></mjx-container> is large relative to certain geometric and statistical properties of the data, the network width <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"1\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D45B TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>n</mi></math></mjx-assistive-mml></mjx-container> grows as a sufficiently large polynomial in <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"2\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>L</mi></math></mjx-assistive-mml></mjx-container>, and the number of i.i.d. samples from the manifolds is polynomial in <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"3\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>L</mi></math></mjx-assistive-mml></mjx-container>, randomly-initialized gradient descent rapidly learns to classify the two manifolds perfectly with high probability. Our analysis demonstrates concrete benefits of depth and width in the context of a practically-motivated model problem: the depth acts as a fitting resource, with larger depths corresponding to smoother networks that can more readily separate the class manifolds, and the width acts as a statistical resource, enabling concentration of the randomly-initialized network and its gradients. The argument centers around the \"neural tangent kernel\" of Jacot et al. and its role in the nonasymptotic analysis of training overparameterized neural networks; to this literature, we contribute essentially optimal rates of concentration for the neural tangent kernel of deep fully-connected ReLU networks, requiring width <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"4\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D45B TEX-I\"></mjx-c></mjx-mi><mjx-mo class=\"mjx-n\" space=\"4\"><mjx-c class=\"mjx-c2265\"></mjx-c></mjx-mo><mjx-mi class=\"mjx-i\" space=\"4\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi><mjx-mstyle><mjx-mspace style=\"width: 0.167em;\"></mjx-mspace></mjx-mstyle><mjx-texatom texclass=\"ORD\"><mjx-mi class=\"mjx-n\"><mjx-c class=\"mjx-c70\"></mjx-c></mjx-mi><mjx-mi class=\"mjx-n\"><mjx-c class=\"mjx-c6F\"></mjx-c></mjx-mi><mjx-mi class=\"mjx-n\"><mjx-c class=\"mjx-c6C\"></mjx-c></mjx-mi><mjx-mi class=\"mjx-n\"><mjx-c class=\"mjx-c79\"></mjx-c></mjx-mi></mjx-texatom><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-c28\"></mjx-c></mjx-mo><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D451 TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.15em;\"><mjx-mn class=\"mjx-n\" size=\"s\"><mjx-c class=\"mjx-c30\"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-c29\"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>n</mi><mo>\u2265</mo><mi>L</mi><mstyle scriptlevel=\"0\"><mspace width=\"thinmathspace\"></mspace></mstyle><mrow><mi mathvariant=\"normal\">p</mi><mi mathvariant=\"normal\">o</mi><mi mathvariant=\"normal\">l</mi><mi mathvariant=\"normal\">y</mi></mrow><mo stretchy=\"false\">(</mo><msub><mi>d</mi><mn>0</mn></msub><mo stretchy=\"false\">)</mo></math></mjx-assistive-mml></mjx-container> to achieve uniform concentration of the initial kernel over a <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"5\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D451 TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.15em;\"><mjx-mn class=\"mjx-n\" size=\"s\"><mjx-c class=\"mjx-c30\"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>d</mi><mn>0</mn></msub></math></mjx-assistive-mml></mjx-container>-dimensional submanifold of the unit sphere <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"6\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-msup><mjx-texatom texclass=\"ORD\"><mjx-mi class=\"mjx-ds mjx-b\"><mjx-c class=\"mjx-c1D54A TEX-A\"></mjx-c></mjx-mi></mjx-texatom><mjx-script style=\"vertical-align: 0.429em;\"><mjx-texatom size=\"s\" texclass=\"ORD\"><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D45B TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.201em;\"><mjx-mn class=\"mjx-n\" style=\"font-size: 83.3%;\"><mjx-c class=\"mjx-c30\"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-c2212\"></mjx-c></mjx-mo><mjx-mn class=\"mjx-n\"><mjx-c class=\"mjx-c31\"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msup><mrow><mi mathvariant=\"double-struck\">S</mi></mrow><mrow><msub><mi>n</mi><mn>0</mn></msub><mo>\u2212</mo><mn>1</mn></mrow></msup></math></mjx-assistive-mml></mjx-container>, and a nonasymptotic framework for establishing generalization of networks trained in the \"NTK regime\" with structured data. The proof makes heavy use of martingale concentration to optimally treat statistical dependencies across layers of the initial random network. This approach should be of use in establishing similar results for other network architectures.",
+            "one-sentence-summary": "We prove a finite-time generalization result for deep fully-connected neural networks trained by gradient descent to classify structured data, where the required width, depth, and sample complexity depend only on intrinsic properties of the data.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "ZzwDy_wiWv",
+            "paper_title": "Knowledge distillation via softmax regression representation learning",
+            "forum_link": "https://openreview.net/forum?id=ZzwDy_wiWv",
+            "pdf_link": "https://openreview.net/pdf?id=ZzwDy_wiWv",
+            "authors": [
+                  "Jing Yang",
+                  "Brais Martinez",
+                  "Adrian Bulat",
+                  "Georgios Tzimiropoulos"
+            ],
+            "abstract": "This paper addresses the problem of model compression via knowledge distillation. We advocate for a method that optimizes the output feature of the penultimate layer of the student network and hence is directly related to representation learning. Previous distillation methods which typically impose direct feature matching between the student and the teacher do not take into account the classification problem at hand. On the contrary, our distillation method decouples representation learning and classification and utilizes the teacher's pre-trained classifier to train the student's penultimate layer feature. In particular, for the same input image, we wish the teacher's and student's feature to produce the same output when passed through the teacher's classifier which is achieved with a simple <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"7\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.15em;\"><mjx-mn class=\"mjx-n\" size=\"s\"><mjx-c class=\"mjx-c32\"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>L</mi><mn>2</mn></msub></math></mjx-assistive-mml></mjx-container> loss. Our method is extremely simple to implement and straightforward to train and is shown to consistently outperform previous state-of-the-art methods over a large set of experimental settings including different (a) network architectures, (b) teacher-student capacities, (c) datasets, and (d) domains. The code will be available at \\url{https://github.com/jingyang2017/KD_SRRL}.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "7wCBOfJ8hJM",
+            "paper_title": "Nearest Neighbor Machine Translation",
+            "forum_link": "https://openreview.net/forum?id=7wCBOfJ8hJM",
+            "pdf_link": "https://openreview.net/pdf?id=7wCBOfJ8hJM",
+            "authors": [
+                  "Urvashi Khandelwal",
+                  "Angela Fan",
+                  "Dan Jurafsky",
+                  "Luke Zettlemoyer",
+                  "Mike Lewis"
+            ],
+            "keywords": "nearest neighbors, machine translation",
+            "abstract": "We introduce <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"8\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D458 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>k</mi></math></mjx-assistive-mml></mjx-container>-nearest-neighbor machine translation (<mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"9\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D458 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>k</mi></math></mjx-assistive-mml></mjx-container>NN-MT), which predicts tokens with a nearest-neighbor classifier over a large datastore of cached examples, using representations from a neural translation model for similarity search. This approach requires no additional training and scales to give the decoder direct access to billions of examples at test time, resulting in a highly expressive model that consistently improves performance across many settings. Simply adding nearest-neighbor search improves a state-of-the-art German-English translation model by 1.5 BLEU. <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"10\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D458 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>k</mi></math></mjx-assistive-mml></mjx-container>NN-MT allows a single model to be adapted to diverse domains by using a domain-specific datastore, improving results by an average of 9.2 BLEU over zero-shot transfer, and achieving new state-of-the-art results---without training on these domains. A massively multilingual model can also be specialized for particular language pairs, with improvements of 3 BLEU for translating from English into German and Chinese. Qualitatively, <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"11\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D458 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>k</mi></math></mjx-assistive-mml></mjx-container>NN-MT is easily interpretable; it combines source and target context to retrieve highly relevant examples.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We augment the decoder of a pre-trained machine translation model with a nearest neighbor classifier, substantially improving performance in the single language-pair, multilingual and domain adaptation settings, without any additional training."
+      }
+]

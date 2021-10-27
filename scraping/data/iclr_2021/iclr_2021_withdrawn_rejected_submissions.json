@@ -1,0 +1,178 @@
+[
+      {
+            "data_id": "meG3o0ttiAD",
+            "paper_title": "Toward Trainability of Quantum Neural Networks",
+            "forum_link": "https://openreview.net/forum?id=meG3o0ttiAD",
+            "pdf_link": "https://openreview.net/pdf?id=meG3o0ttiAD",
+            "authors": [
+                  "Kaining Zhang",
+                  "Min-Hsiu Hsieh",
+                  "Liu Liu",
+                  "Dacheng Tao"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=54dVwdWkZ9\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=54dVwdWkZ9</a>",
+            "keywords": "Near-term Quantum Algorithm, Quantum Neural Network, Trainability, Hierarchical Structure",
+            "abstract": "Quantum Neural Networks (QNNs) have been recently proposed as generalizations of classical neural networks to achieve the quantum speed-up. Despite the potential to outperform classical models, serious bottlenecks exist for training QNNs; namely, QNNs with random structures have poor trainability due to the vanishing gradient with rate exponential to the input qubit number. The vanishing gradient could seriously influence the applications of large-size QNNs. In this work, we provide the first viable solution with theoretical guarantees. Specifically, we prove that QNNs with tree tensor and step controlled architectures have gradients that vanish at most polynomially with the qubit number. Moreover, our result holds irrespective of which encoding methods are employed. We numerically demonstrate QNNs with tree tensor and step controlled structures for the application of binary classification. Simulations show faster convergent rates and better accuracy compared to QNNs with random structures.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We analyze the trainability of quantum neural networks with special structures with proven bounds and numerical simulations.",
+            "supplementary-material": "<a href=\"/attachment?id=meG3o0ttiAD&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "AJY3fGPF1DC",
+            "paper_title": "Selecting Treatment Effects Models for Domain Adaptation Using Causal Knowledge",
+            "forum_link": "https://openreview.net/forum?id=AJY3fGPF1DC",
+            "pdf_link": "https://openreview.net/pdf?id=AJY3fGPF1DC",
+            "authors": [
+                  "Trent Kyono",
+                  "Ioana Bica",
+                  "Zhaozhi Qian",
+                  "Mihaela van der Schaar"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=XkYKGjA3w\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=XkYKGjA3w</a>",
+            "keywords": "causal inference, treatment effects, healthcare",
+            "abstract": "Selecting causal inference models for estimating individualized treatment effects (ITE) from observational data presents a unique challenge since the counterfactual outcomes are never observed. The problem is challenged further in the unsupervised domain adaptation (UDA) setting where we only have access to labeled samples in the source domain, but desire selecting a model that achieves good performance on a target domain for which only unlabeled samples are available. Existing techniques for UDA model selection are designed for the predictive setting. These methods examine discriminative density ratios between the input covariates in the source and target domain and do not factor in the model's predictions in the target domain. Because of this, two models with identical performance on the source domain would receive the same risk score by existing methods, but in reality, have significantly different performance in the test domain. We leverage the invariance of causal structures across domains to propose a novel model selection metric specifically designed for ITE methods under the UDA setting. In particular, we propose selecting models whose predictions of interventions' effects satisfy known causal structures in the target domain. Experimentally, our method selects ITE models that are more robust to covariate shifts on several healthcare datasets, including estimating the effect of ventilation in COVID-19 patients from different geographic locations.",
+            "one-sentence-summary": "We take advantage of the invariance of causal graphs across domains and propose a novel model selection metric for individualized treatment effect models in the unsupervised domain adaptation setting.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "_O9YLet0wvN",
+            "paper_title": "Closing the Generalization Gap in One-Shot Object Detection",
+            "forum_link": "https://openreview.net/forum?id=_O9YLet0wvN",
+            "pdf_link": "https://openreview.net/pdf?id=_O9YLet0wvN",
+            "authors": [
+                  "Claudio Michaelis",
+                  "Matthias Bethge",
+                  "Alexander S Ecker"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=wfpa48Obz1\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=wfpa48Obz1</a>",
+            "keywords": "One-Shot Learning, Few-Shot Learning, Object Detection, One-Shot Object Detection, Generalization",
+            "abstract": "Despite substantial progress in object detection and few-shot learning, detecting objects based on a single example - one-shot object detection - remains a challenge. A central problem is the generalization gap: Object categories used during training are detected much more reliably than novel ones. We here show that this generalization gap can be nearly closed by increasing the number of object categories used during training. Doing so allows us to beat the state-of-the-art on COCO by 5.4 %AP50 (from 22.0 to 27.5) and improve generalization from seen to unseen classes from 45% to 89%. We verify that the effect is caused by the number of categories and not the amount of data and that it holds for different models, backbones and datasets. This result suggests that the key to strong few-shot detection models may not lie in sophisticated metric learning approaches, but instead simply in scaling the number of categories. We hope that our findings will help to better understand the challenges of few-shot learning and encourage future data annotation efforts to focus on wider datasets with a broader set of categories rather than gathering more samples per category.",
+            "one-sentence-summary": "The generalization gap in one-shot object detection can be closed using datasets with sufficient categories.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "WoLQsYU8aZ",
+            "paper_title": "PettingZoo: Gym for Multi-Agent Reinforcement Learning",
+            "forum_link": "https://openreview.net/forum?id=WoLQsYU8aZ",
+            "pdf_link": "https://openreview.net/pdf?id=WoLQsYU8aZ",
+            "authors": [
+                  "J K Terry",
+                  "Benjamin Black",
+                  "Mario Jayakumar",
+                  "Ananth Hari",
+                  "Luis Santos",
+                  "Clemens Dieffendahl",
+                  "Niall L Williams",
+                  "Yashas Lokesh",
+                  "Ryan Sullivan",
+                  "Caroline Horsch",
+                  "Praveen Ravi"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=x_9O0dCn0u\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=x_9O0dCn0u</a>",
+            "keywords": "Reinforcement Learning, Multi-agent Reinforcement Learning",
+            "abstract": "OpenAI's Gym library  contains a large, diverse set of environments that are useful benchmarks in reinforcement learning, under a single elegant Python API (with tools to develop new compliant environments) . The introduction of this library has proven a watershed moment for the reinforcement learning community, because it created an accessible set of benchmark environments that everyone could use (including wrapper important existing libraries), and because a standardized API let RL learning methods and environments from anywhere be trivially exchanged. This paper similarly introduces PettingZoo, a library of diverse set of multi-agent environments under a single elegant Python API, with tools to easily make new compliant environments.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We introduce a large library that's essentially Gym for multi-agent reinforcement learning",
+            "supplementary-material": "<a href=\"/attachment?id=WoLQsYU8aZ&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "Sc8cY4Jpi3s",
+            "paper_title": "Towards Practical Second Order Optimization for Deep Learning",
+            "forum_link": "https://openreview.net/forum?id=Sc8cY4Jpi3s",
+            "pdf_link": "https://openreview.net/pdf?id=Sc8cY4Jpi3s",
+            "authors": [
+                  "Rohan Anil",
+                  "Vineet Gupta",
+                  "Tomer Koren",
+                  "Kevin Regan",
+                  "Yoram Singer"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=80B6V-eoFP\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=80B6V-eoFP</a>",
+            "keywords": "large scale distributed deep learning, second order optimization, bert, resnet, criteo, transformer, machine translation",
+            "abstract": "Optimization in machine learning, both theoretical and applied, is presently dominated by first-order gradient methods such as stochastic gradient descent. Second-order optimization methods, that involve second derivatives and/or second order statistics of the data, are far less prevalent despite strong theoretical properties, due to their prohibitive computation, memory and communication costs.   In an attempt to bridge this gap between theoretical and practical optimization, we present a scalable implementation of a second-order preconditioned method (concretely, a variant of full-matrix Adagrad), that along with several critical algorithmic and numerical improvements, provides significant convergence and wall-clock time improvements compared to conventional first-order methods on state-of-the-art deep models. Our novel design effectively utilizes the prevalent heterogeneous hardware architecture for training deep models, consisting of a multicore CPU coupled with multiple accelerator units. We demonstrate superior performance compared to state-of-the-art on very large learning tasks such as machine translation with Transformers, language modeling with BERT, click-through rate prediction on Criteo, and image classification on ImageNet with ResNet-50.",
+            "one-sentence-summary": "We outperform state-of-the-art first-order optimizers on a variety of tasks using a distributed second-order method.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "JNP-CqSjkDb",
+            "paper_title": "Transforming Recurrent Neural Networks with Attention and Fixed-point Equations",
+            "forum_link": "https://openreview.net/forum?id=JNP-CqSjkDb",
+            "pdf_link": "https://openreview.net/pdf?id=JNP-CqSjkDb",
+            "authors": [
+                  "Zhaobin Xu",
+                  "Baotian Hu",
+                  "Buzhou Tang"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=0A6ad2eITFg\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=0A6ad2eITFg</a>",
+            "keywords": "Fixed-point, Attention, Feed Forward Network, Transformer, Recurrent Neural Network, Deep Learning",
+            "abstract": "Transformer has achieved state of the art performance in multiple Natural Language Processing tasks recently. Yet the Feed Forward Network(FFN) in a Transformer block is computationally expensive. In this paper, we present a framework to transform Recurrent Neural Networks(RNNs) and their variants into self-attention-style models, with an approximation of Banach Fixed-point Theorem. Within this framework, we propose a new model, StarSaber, by solving a set of equations obtained from RNN with Fixed-point Theorem and further approximate it with a Multi-layer Perceptron. It provides a view of stacking layers. StarSaber achieves better performance than both the vanilla Transformer and an improved version called ReZero on three datasets and is more computationally efficient, due to the reduction of Transformer's FFN layer. It has two major parts. One is a way to encode position information with two different matrices. For every position in a sequence, we have a matrix operating on positions before it and another matrix operating on positions after it. The other is the introduction of direct paths from the input layer to the rest of layers. Ablation studies show the effectiveness of these two parts. We additionally show that other RNN variants such as RNNs with gates can also be transformed in the same way, outperforming the two kinds of Transformers as well.",
+            "one-line-summary": "From Recurrent Neural Networks to self-attention models with an approximation of Banach Fixed-point Theorem.",
+            "acknowledgement-of-code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "0LlujmaN0R_",
+            "paper_title": "Truthful Self-Play",
+            "forum_link": "https://openreview.net/forum?id=0LlujmaN0R_",
+            "pdf_link": "https://openreview.net/pdf?id=0LlujmaN0R_",
+            "authors": [
+                  "Shohei Ohsawa"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=uwdqhWQpDP\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=uwdqhWQpDP</a>",
+            "keywords": "Comm-POSG, Imaginary Rewards",
+            "abstract": "We present a general framework for evolutionary learning to emergent unbiased state representation without any supervision. Evolutionary frameworks such as self-play converge to bad local optima in case of multi-agent reinforcement learning in non-cooperative partially observable environments with communication due to information asymmetry.  Our proposed framework is a simple modification of self-play inspired by mechanism design, also known as {\\em reverse game theory}, to elicit truthful signals and make the agents cooperative. The key idea is to add imaginary rewards using the peer prediction method, i.e., a mechanism for evaluating the validity of information exchanged between agents in a decentralized environment. Numerical experiments with predator prey, traffic junction and StarCraft tasks demonstrate that the state-of-the-art performance of our framework.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "TSP is a general framework for evolutionary learning to emergent unbiased state representation without any supervision.",
+            "supplementary-material": "<a href=\"/attachment?id=0LlujmaN0R_&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "PQlC91XxqK5",
+            "paper_title": "Segmenting Natural Language Sentences via Lexical Unit Analysis",
+            "forum_link": "https://openreview.net/forum?id=PQlC91XxqK5",
+            "pdf_link": "https://openreview.net/pdf?id=PQlC91XxqK5",
+            "authors": [
+                  "Yangming Li",
+                  "lemao liu",
+                  "Shuming Shi"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=PcU0XZgzh\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=PcU0XZgzh</a>",
+            "keywords": "Neural Sequence Labeling, Neural Sequence Segmentation, Dynamic Programming",
+            "abstract": "In this work, we present Lexical Unit Analysis (LUA), a framework for general sequence segmentation tasks. Given a natural language sentence, LUA scores all the valid segmentation candidates and utilizes dynamic programming (DP) to extract the maximum scoring one. LUA enjoys a number of appealing properties such as inherently guaranteeing the predicted segmentation to be valid and facilitating globally optimal training and inference. Besides, the practical time complexity of LUA can be reduced to linear time, which is very efficient. We have conducted extensive experiments on 5 tasks, including syntactic chunking, named entity recognition (NER), slot filling, Chinese word segmentation, and Chinese part-of-speech (POS) tagging, across 15 datasets. Our models have achieved the state-of-the-art performances on 13 of them. The results also show that the F1 score of identifying long-length segments is notably improved.",
+            "one-line-summary": "This paper introduces a new framework, Lexical Unit Analysis (LUA), for neural sequence segmentation",
+            "acknowledgement-of-code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We propose LUA, a novel framework for neural sequence segmentation, which facilitates globally optimal training and inference.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "X6YPReSv5CX",
+            "paper_title": "Mixture of Step Returns in Bootstrapped DQN",
+            "forum_link": "https://openreview.net/forum?id=X6YPReSv5CX",
+            "pdf_link": "https://openreview.net/pdf?id=X6YPReSv5CX",
+            "authors": [
+                  "PoHan Chiang",
+                  "Hsuan-Kung Yang",
+                  "Zhang-Wei Hong",
+                  "Chun-Yi Lee"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=blL_DRTGs\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=blL_DRTGs</a>",
+            "keywords": "Reinforcement Learning",
+            "abstract": "The concept of utilizing multi-step returns for updating value functions has been adopted in deep reinforcement learning (DRL) for a number of years. Updating value functions with different backup lengths provides advantages in different aspects, including bias and variance of value estimates, convergence speed, and exploration behavior of the agent. Conventional methods such as TD-lambda leverage these advantages by using a target value equivalent to an exponential average of different step returns. Nevertheless, integrating step returns into a single target sacrifices the diversity of the advantages offered by different step return targets. To address this issue, we propose Mixture Bootstrapped DQN (MB-DQN) built on top of bootstrapped DQN, and uses different backup lengths for different bootstrapped heads. MB-DQN enables heterogeneity of the target values that is unavailable in approaches relying only on a single target value. As a result, it is able to maintain the advantages offered by different backup lengths. In this paper, we first discuss the motivational insights through a simple maze environment. In order to validate the effectiveness of MB-DQN, we perform experiments on the Atari 2600 benchmark environments and demonstrate the performance improvement of MB-DQN over a number of baseline methods. We further provide a set of ablation studies to examine the impacts of different design configurations of MB-DQN.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "Utilize multi-step returns into Bootstrapped DQN"
+      },
+      {
+            "data_id": "6MaBrlQ5JM",
+            "paper_title": "THE EFFICACY OF L1 REGULARIZATION IN NEURAL NETWORKS",
+            "forum_link": "https://openreview.net/forum?id=6MaBrlQ5JM",
+            "pdf_link": "https://openreview.net/pdf?id=6MaBrlQ5JM",
+            "authors": [
+                  "Gen Li",
+                  "Yuantao Gu",
+                  "Jie Ding"
+            ],
+            "reviewed-version-(pdf)": "<a href=\"/references/pdf?id=oooLMSgOA2\" target=\"_blank\" rel=\"nofollow noreferrer\">/references/pdf?id=oooLMSgOA2</a>",
+            "keywords": "Model selection, Neural Network, Regularization",
+            "abstract": "A crucial problem in neural networks is to select the most appropriate number of hidden neurons and obtain tight statistical risk bounds. In this work, we present a new perspective towards the bias-variance tradeoff in neural networks. As an alternative to selecting the number of neurons, we theoretically show that <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"0\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.15em;\"><mjx-mn class=\"mjx-n\" size=\"s\"><mjx-c class=\"mjx-c31\"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>L</mi><mn>1</mn></msub></math></mjx-assistive-mml></mjx-container> regularization can control the generalization error and sparsify the input dimension. In particular, with an appropriate <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"1\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.15em;\"><mjx-mn class=\"mjx-n\" size=\"s\"><mjx-c class=\"mjx-c31\"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>L</mi><mn>1</mn></msub></math></mjx-assistive-mml></mjx-container> regularization on the output layer, the network can produce a statistical risk that is near minimax optimal. Moreover, an appropriate <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"2\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-msub><mjx-mi class=\"mjx-i\" noic=\"true\"><mjx-c class=\"mjx-c1D43F TEX-I\"></mjx-c></mjx-mi><mjx-script style=\"vertical-align: -0.15em;\"><mjx-mn class=\"mjx-n\" size=\"s\"><mjx-c class=\"mjx-c31\"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>L</mi><mn>1</mn></msub></math></mjx-assistive-mml></mjx-container> regularization on the input layer leads to a risk bound that does not involve the input data dimension. Our analysis is based on a new amalgamation of dimension-based and norm-based complexity analysis to bound the generalization error. A consequent observation from our results is that an excessively large number of neurons do not necessarily inflate generalization errors under a suitable regularization.",
+            "one-sentence-summary": "We develop novel theoretical results on the efficacy of L1 regularization for shallow neural networks.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      }
+]
