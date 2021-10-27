@@ -73,12 +73,13 @@ public class ViewCollectionActivity extends AppCompatActivity {
         fastAdapter.withEventHook(new CollectionsPaperItem.CollectionRemoveEvent());
         fastAdapter.withOnClickListener((OnClickListener<CollectionsPaperItem>) (v, adapter, item, position) -> {
             Intent intent = new Intent(ViewCollectionActivity.this, PaperWithDiscussion.class);
-            intent.putExtra("conf_name", item.conf);
+            // This is a super hacky solution to the `conf` vs `conf_name` dilemma but it works for today
+            // TODO: Handle this better in middleware
+            intent.putExtra("conf_name", item.conf.toLowerCase());
             intent.putExtra("year", item.year);
-            intent.putExtra("category", item.category);
+            intent.putExtra("category", item.category.toLowerCase().replaceAll("\\s+", "_"));
             intent.putExtra("data_id", item.content_id);
             startActivity(intent);
-            ;
             return false;
         });
 
