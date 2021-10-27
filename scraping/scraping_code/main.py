@@ -1,6 +1,6 @@
 """Documentation
 
-**Dependencies**
+**Dependencies** - 
 Python version 3.8.0 (compatible with any Python 3 version)
 Libraries used:
     1. selenium
