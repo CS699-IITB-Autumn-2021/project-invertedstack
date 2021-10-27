@@ -1,6 +1,20 @@
 """Documentation
 
-**Task** - This file is the entry point of the scraping code.
+**Dependencies**
+Python version 3.8.0 (compatible with any Python 3 version)
+Libraries used:
+    1. selenium
+    2. requests
+    3. os
+    4. glob
+    5. tqdm
+    6. pprint
+    7. json
+    8. time
+
+**Task** -
+
+This file is the entry point of the scraping code.
 This file imports all the other modules containing functions
 related to scraping the papers and comments from openreviews.net
 
