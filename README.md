@@ -23,8 +23,8 @@ Minimalist OpenReview client with support for native markdown notes
 	- Supports reading lists -- currently reading, already read and wishlist
 
 ## List of Deliverables
-[x] Server - capable of scraping the data from OpenReview for a given conference and serving the data to the android app 
-[x] Android app - with all the features stated above
+- [x] Server - capable of scraping the data from OpenReview for a given conference and serving the data to the android app 
+- [x] Android app - with all the features stated above
 
 ## Hardware/Software Requirements.
 
