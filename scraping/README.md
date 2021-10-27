@@ -63,20 +63,20 @@ The following sample tree structure is showing considering only 2021 year i.e. i
 data
 └───iclr_2021
 │   └───iclr_2021_oral_presentations
-│       │   file111.txt
-│       │   file112.txt
+│       │   <paper_id1>.json
+│       │   <paper_id1>.json
 │       │   ...
 │   └───iclr_2021_poster_presentations
-│       │   file111.txt
-│       │   file112.txt
+│       │   <paper_id1>.json
+│       │   <paper_id1>.json
 │       │   ...
 │   └───iclr_2021_spotlight_presentations
-│       │   file111.txt
-│       │   file112.txt
+│       │   <paper_id1>.json
+│       │   <paper_id1>.json
 │       │   ... 
 │   └───iclr_2021_withdrawn_rejected_submissions
-│       │   file111.txt
-│       │   file112.txt
+│       │   <paper_id1>.json
+│       │   <paper_id1>.json
 │       │   ... 
     │   iclr_2021_oral_presentation.json
     │   iclr_2021_poster_presentations.json
