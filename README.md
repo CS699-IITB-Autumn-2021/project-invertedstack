@@ -22,6 +22,14 @@ Minimalist OpenReview client with support for native markdown notes
 	- Supports collections of papers 
 	- Supports reading lists -- currently reading, already read and wishlist
 
+## Technology Stack
+- <mark>Python</mark>
+- <mark>Beautiful Soup</mark>
+- <mark>Selenium</mark>
+- Flask
+- <mark>Shell Scripting</mark>
+- <mark>Android</mark>
+
 ## List of Deliverables
 - [x] Server - capable of scraping the data from OpenReview for a given conference and serving the data to the android app 
 - [x] Android app - with all the features stated above
