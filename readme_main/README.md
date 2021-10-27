@@ -16,10 +16,10 @@
 ## Team details and contribution.
 
 ### Ashita Saxena 
-Scraped the data from OpenReview
+- Scraped the data from OpenReview
 
 ### Tejpalsingh Siledar
-Middleware and server management
+- Middleware and server management
 
 ### Ashutosh Sathe
-Android app
+- Android app
