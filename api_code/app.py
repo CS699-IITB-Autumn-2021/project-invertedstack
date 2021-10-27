@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Json files location.
 database_folder = "/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"
 
-
+# Dummy API call.
 @app.route('/')
 def hello_world():
     """
@@ -23,6 +23,7 @@ def hello_world():
     return 'Flask is running!'
 
 
+# API call to get parameters.
 @app.route("/get_parameters")
 def get_parameters():
     """
@@ -59,6 +60,7 @@ def get_parameters():
     return jsonify(data)
 
 
+# API call to get info.
 @app.route("/get_info")
 def get_info():
     """
@@ -114,6 +116,7 @@ def get_info():
     return jsonify(global_conf_list)
 
 
+# API call to get comments.
 @app.route("/get_comments")
 def get_comments():
     """
