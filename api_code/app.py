@@ -1,10 +1,13 @@
+# Importing libraries.
 from flask import Flask, request, jsonify
 from flask_ngrok import run_with_ngrok
 import json
 
+# Initializing flask
 app = Flask(__name__)
 # run_with_ngrok(app)
 
+# Json files location.
 database_folder = "/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"
 
 
@@ -63,7 +66,7 @@ def get_info():
 
     Returns
     -------
-    json output
+    json output containing all the info.
     """
     try:
         # Setting up years and conference. 
@@ -118,9 +121,10 @@ def get_comments():
 
     Returns
     -------
-    json output
+    json output containing comments.
     """
     try:
+
         year = request.args["year"]
         category = request.args["category"]
         conference = request.args["conference"]
