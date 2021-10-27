@@ -144,5 +144,5 @@ def get_all_comments_for_forum_id(forum_id, path):
             if item['date'] == date:
                 sorted_comments.append(item)
 
-    with open(path+forum_id+"_comments.json", "w") as f:
+    with open(path + forum_id + "_comments.json", "w") as f:
             json.dump(sorted_comments, f, indent=4)
