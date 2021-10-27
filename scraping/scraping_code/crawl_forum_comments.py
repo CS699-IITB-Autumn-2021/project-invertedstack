@@ -1,13 +1,17 @@
 """Documentation
 
-**Task** - This file contains the methods for the scraping discussion comments.
+**Task** - This file contains the methods for the scraping the discussion comments.
 
 This file is imported in the main.py file and functions are called
 for a particular forum_id and a given output path.
 
-**Author** - Ashita Saxena (21Q050009)
+This file contains code to scrape the comments from a forum of a particular paper.
+The code creates a json file per forum containing all forum comments
+and their replies in a proper nested structure.
 
+**Author** - Ashita Saxena (21Q050009)
 """
+
 import requests
 import json
 
@@ -140,5 +144,5 @@ def get_all_comments_for_forum_id(forum_id, path):
             if item['date'] == date:
                 sorted_comments.append(item)
 
-    with open(path+forum_id+"_comments.json", "w") as f:
+    with open(path + forum_id + "_comments.json", "w") as f:
             json.dump(sorted_comments, f, indent=4)
