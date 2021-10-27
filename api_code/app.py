@@ -31,20 +31,28 @@ def get_parameters():
     json output containing conference specific data.
     """
     try:
+        # Get arguments from api call.
         year = request.args["year"]
         category = request.args["category"]
         conference = request.args["conference"]
+
+        # Read the json file corresponding to the api call arguments.
         f = open(database_folder + conference + "_" + year + "/" + conference + "_" + year + "_" + category + ".json")
+        
+        # Load the json file.
         data = json.load(f)
 
+        # Code for preprocessing the data before returning. Handling of the empty strings.
         for d in data:
             for k in d.keys():
                 if type(d[k]) == str:
                     if len(d[k]) == 0:
                         d[k] = "N.A."
     except:
+        # Return if some error occurs.
         return jsonify("Invalid arguments please check.")
 
+    # Returning the data.
     return jsonify(data)
 
 
