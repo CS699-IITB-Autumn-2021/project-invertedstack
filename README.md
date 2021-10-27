@@ -31,3 +31,5 @@
 - Efficient on-device storage using SQLite DB.
 
 # Path to Code Documentation
+* [Middleware and Server](docs/Python-SphinxDoc/html/index.html)
+* [Android App](docs/ReviewsX-JavaDoc/index.html)
