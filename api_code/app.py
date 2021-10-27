@@ -23,11 +23,12 @@ def hello_world():
 @app.route("/get_parameters")
 def get_parameters():
     """
-    Will fetch the required parameters from the json database files.
+    Will fetch the all the data wrt a particular conference paper. 
+    API arguments are year, category and conference.
 
     Returns
     -------
-    json output
+    json output containing conference specific data.
     """
     try:
         year = request.args["year"]
