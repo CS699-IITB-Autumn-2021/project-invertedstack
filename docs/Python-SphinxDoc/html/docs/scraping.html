@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scraping package &mdash; ReviewsX 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="source" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ReviewsX
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ReviewsX’s documentation!</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="middleware.html">middleware package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">source</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scraping package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping.Config">scraping.Config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping.crawl_forum_comments">scraping.crawl_forum_comments module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping.iclr_crawler">scraping.iclr_crawler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping.main">scraping.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping.open_review_crawler">scraping.open_review_crawler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ReviewsX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">source</a> &raquo;</li>
+      <li>scraping package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/scraping.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scraping-package">
+<h1>scraping package<a class="headerlink" href="#scraping-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-scraping.Config">
+<span id="scraping-config-module"></span><h2>scraping.Config module<a class="headerlink" href="#module-scraping.Config" title="Permalink to this headline"></a></h2>
+<p>Documentation</p>
+<p><strong>Task</strong> - This file contains the configuration for the scraping code.
+This file contains a Config class specifying various variables
+related to scraping the papers and comments from openreviews.net</p>
+<p>This file is imported in the main.py file.</p>
+<p>The details of all the config variables are given below-</p>
+<ol class="arabic simple">
+<li><p>data_dir : specify the path of directory where scraped json files will be stored</p></li>
+<li><p>chrome_driver_path : specify the path where chromedriver is placed</p></li>
+<li><p>home_url : specify the home-url which needs to be scraped.
+This version of ReviewsX supports scraping only ‘<a class="reference external" href="https://openreview.net/">https://openreview.net/</a>’</p></li>
+<li><p>venue_name : specify the name of venue which needs to be scraped.
+This version of ReviewsX scrapes all conferences of ICLR venue.</p></li>
+<li><p>years : specify a comma separate list of years in quotation marks which needs to be scraped.</p></li>
+<li><p>limit : specify the maximum number of papers that needs to be scraped for every category. If all papers need to be scraped then keep limit as None.</p></li>
+</ol>
+<p><strong>Author</strong> - Ashita Saxena (21Q050009)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraping.Config.Config">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scraping.Config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#scraping.Config.Config" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class contains variables that can be configured as per need.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraping.Config.Config.chrome_driver_path">
+<span class="sig-name descname"><span class="pre">chrome_driver_path</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'./chromedriver'</span></em><a class="headerlink" href="#scraping.Config.Config.chrome_driver_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraping.Config.Config.data_dir">
+<span class="sig-name descname"><span class="pre">data_dir</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'../data/'</span></em><a class="headerlink" href="#scraping.Config.Config.data_dir" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraping.Config.Config.home_url">
+<span class="sig-name descname"><span class="pre">home_url</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://openreview.net/'</span></em><a class="headerlink" href="#scraping.Config.Config.home_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraping.Config.Config.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><em class="property"> <span class="pre">=</span> <span class="pre">500</span></em><a class="headerlink" href="#scraping.Config.Config.limit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraping.Config.Config.venue_name">
+<span class="sig-name descname"><span class="pre">venue_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'ICLR'</span></em><a class="headerlink" href="#scraping.Config.Config.venue_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraping.Config.Config.years">
+<span class="sig-name descname"><span class="pre">years</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['2021',</span> <span class="pre">'2020',</span> <span class="pre">'2019',</span> <span class="pre">'2018']</span></em><a class="headerlink" href="#scraping.Config.Config.years" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scraping.crawl_forum_comments">
+<span id="scraping-crawl-forum-comments-module"></span><h2>scraping.crawl_forum_comments module<a class="headerlink" href="#module-scraping.crawl_forum_comments" title="Permalink to this headline"></a></h2>
+<p>Documentation</p>
+<p><strong>Task</strong> - This file contains the methods for the scraping the discussion comments.</p>
+<p>This file is imported in the main.py file and functions are called
+for a particular forum_id and a given output path.</p>
+<p>This file contains code to scrape the comments from a forum of a particular paper.
+The code creates a json file per forum containing all forum comments
+and their replies in a proper nested structure.</p>
+<p><strong>Author</strong> - Ashita Saxena (21Q050009)</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="scraping.crawl_forum_comments.get_all_comments_for_forum_id">
+<span class="sig-prename descclassname"><span class="pre">scraping.crawl_forum_comments.</span></span><span class="sig-name descname"><span class="pre">get_all_comments_for_forum_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forum_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.crawl_forum_comments.get_all_comments_for_forum_id" title="Permalink to this definition"></a></dt>
+<dd><p>This function scrapes all the comments
+of a particular forum and saves in a json file.
+:param forum_id: The id of the forum to be scraped for comments
+:type forum_id: str
+:param path: path where the json file containing all comments for the particular forum id will be stored.
+:type path: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-scraping.iclr_crawler">
+<span id="scraping-iclr-crawler-module"></span><h2>scraping.iclr_crawler module<a class="headerlink" href="#module-scraping.iclr_crawler" title="Permalink to this headline"></a></h2>
+<p>Documentation</p>
+<p><strong>Task</strong> - This file contains the methods for scraping all the papers
+of a conferences of ICLR from Openreview.</p>
+<p>Contains class PageCrawler which contains methods to
+scrape data of all papers of all categories for
+all the years of conferences of a venue.</p>
+<p>This file is imported in the main.py file</p>
+<p><strong>Author</strong> - Ashita Saxena (21Q050009)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scraping.iclr_crawler.</span></span><span class="sig-name descname"><span class="pre">PageCrawler</span></span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class contains methods which
+can be used to scraped from openreview.net</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler.get_all_venues">
+<span class="sig-name descname"><span class="pre">get_all_venues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler.get_all_venues" title="Permalink to this definition"></a></dt>
+<dd><p>This method scrapes all the venues
+which are available in the home_url
+:param url: url or the home page of open review
+:type url: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>A dictionary containing all venues along with their url</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler.get_categories_from_iclr_conf">
+<span class="sig-name descname"><span class="pre">get_categories_from_iclr_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler.get_categories_from_iclr_conf" title="Permalink to this definition"></a></dt>
+<dd><p>This method scrapes the categories
+from a particular iclr conf.
+:param url: url of the conference for a particular year
+:type url: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>A dictionary containing the category name and the link</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler.get_conf_papers_from_category">
+<span class="sig-name descname"><span class="pre">get_conf_papers_from_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler.get_conf_papers_from_category" title="Permalink to this definition"></a></dt>
+<dd><p>This method scrapes the papers
+from a particular iclr conf category.
+:param category_url: url of the conference for a category for a particular year
+:type category_url: str
+:param year: year of the conference
+:type year: str
+:param category: category of the conference
+:type category: str
+:param output_path: path of the output for json files
+:type output_path: str
+:param limit: maximum number of files to be scraped
+:type limit: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler.get_iclr_conf_link">
+<span class="sig-name descname"><span class="pre">get_iclr_conf_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler.get_iclr_conf_link" title="Permalink to this definition"></a></dt>
+<dd><p>This method finds the conference link
+out of other links from the venues.
+:param url: url of the venure for a particular year
+:type url: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>url string of the conference link for a particular year</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler.get_list_of_iclr_conf">
+<span class="sig-name descname"><span class="pre">get_list_of_iclr_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler.get_list_of_iclr_conf" title="Permalink to this definition"></a></dt>
+<dd><p>This method scrapes and gets a list of
+all available iclr conferences.
+:param url: url of the venue home page
+:type url: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>A dictionary containing all conferences of the</em></p></li>
+<li><p><em>venue along with the urls</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.iclr_crawler.PageCrawler.save_json_of_all_iclr">
+<span class="sig-name descname"><span class="pre">save_json_of_all_iclr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.iclr_crawler.PageCrawler.save_json_of_all_iclr" title="Permalink to this definition"></a></dt>
+<dd><p>This method saves json files
+for all the categories of a particular conf
+:param url: url of the conference for a category for a particular year
+:type url: str
+:param year: year of the conference
+:type year: str
+:param category: category of the conference
+:type category: str
+:param output_path: path of the output for json files
+:type output_path: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scraping.main">
+<span id="scraping-main-module"></span><h2>scraping.main module<a class="headerlink" href="#module-scraping.main" title="Permalink to this headline"></a></h2>
+<p>Documentation</p>
+<p><strong>Dependencies</strong> -
+Python version 3.8.0 (compatible with any Python 3 version)
+Libraries used:
+1. selenium
+2. requests
+3. os
+4. glob
+5. tqdm
+6. pprint
+7. json
+8. time</p>
+<p><strong>Task</strong> -</p>
+<p>This file is the entry point of the scraping code.
+This file imports all the other modules containing functions
+related to scraping the papers and comments from openreviews.net</p>
+<p>We should be able to execute it as</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python3</span> <span class="pre">main.py</span></code></p>
+<p>Script should produce json data in the configured path.</p>
+<p><strong>Author</strong> - Ashita Saxena (21Q050009)</p>
+</section>
+<section id="module-scraping.open_review_crawler">
+<span id="scraping-open-review-crawler-module"></span><h2>scraping.open_review_crawler module<a class="headerlink" href="#module-scraping.open_review_crawler" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scraping.open_review_crawler.</span></span><span class="sig-name descname"><span class="pre">openReview</span></span><a class="headerlink" href="#scraping.open_review_crawler.openReview" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview.get_active_venues">
+<span class="sig-name descname"><span class="pre">get_active_venues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.open_review_crawler.openReview.get_active_venues" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview.get_all_venues">
+<span class="sig-name descname"><span class="pre">get_all_venues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.open_review_crawler.openReview.get_all_venues" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview.get_categories_from_iclr_conf">
+<span class="sig-name descname"><span class="pre">get_categories_from_iclr_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.open_review_crawler.openReview.get_categories_from_iclr_conf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview.get_iclr_conf_link">
+<span class="sig-name descname"><span class="pre">get_iclr_conf_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.open_review_crawler.openReview.get_iclr_conf_link" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview.get_list_of_iclr_conf">
+<span class="sig-name descname"><span class="pre">get_list_of_iclr_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.open_review_crawler.openReview.get_list_of_iclr_conf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraping.open_review_crawler.openReview.get_open_venues">
+<span class="sig-name descname"><span class="pre">get_open_venues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.open_review_crawler.openReview.get_open_venues" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scraping">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-scraping" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="source" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Team InvertedStack.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

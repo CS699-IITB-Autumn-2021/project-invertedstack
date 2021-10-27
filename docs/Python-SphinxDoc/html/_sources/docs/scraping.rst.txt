@@ -1,0 +1,53 @@
+scraping package
+================
+
+Submodules
+----------
+
+scraping.Config module
+----------------------
+
+.. automodule:: scraping.Config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraping.crawl\_forum\_comments module
+--------------------------------------
+
+.. automodule:: scraping.crawl_forum_comments
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraping.iclr\_crawler module
+-----------------------------
+
+.. automodule:: scraping.iclr_crawler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraping.main module
+--------------------
+
+.. automodule:: scraping.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraping.open\_review\_crawler module
+-------------------------------------
+
+.. automodule:: scraping.open_review_crawler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: scraping
+   :members:
+   :undoc-members:
+   :show-inheritance:

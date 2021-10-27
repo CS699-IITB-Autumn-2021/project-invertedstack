@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>middleware package &mdash; ReviewsX 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="source" href="modules.html" />
+    <link rel="prev" title="Welcome to ReviewsX’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ReviewsX
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to ReviewsX’s documentation!</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">middleware package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-middleware.app">middleware.app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-middleware">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scraping.html">scraping package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ReviewsX</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>middleware package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/middleware.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="middleware-package">
+<h1>middleware package<a class="headerlink" href="#middleware-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-middleware.app">
+<span id="middleware-app-module"></span><h2>middleware.app module<a class="headerlink" href="#module-middleware.app" title="Permalink to this headline"></a></h2>
+<p>Author - Tejpalsingh Siledar - 21Q050008</p>
+<p>This file contains code for all the api’s to support the linking and fetching
+of the data from the json files.</p>
+<p>API calls present in the file</p>
+<ul>
+<li><dl class="simple">
+<dt>/</dt><dd><ul class="simple">
+<li><p>This is a dummy api call to check if the server is working. This will return a simple message saying that the “Flask is running!”</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="option-list">
+<dt><kbd><span class="option">/get_parameters</span></kbd></dt>
+<dd><ul class="simple">
+<li><p>This api call is to fetch the information from conference json files.</p></li>
+<li><dl class="simple">
+<dt>Further improvements</dt><dd><ul>
+<li><p>This call can be modified to serve only specific key value information from the conference json files.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="option-list">
+<dt><kbd><span class="option">/get_info</span></kbd></dt>
+<dd><ul class="simple">
+<li><p>This api call is to fetch all the category files present in the json database.</p></li>
+<li><dl class="simple">
+<dt>Further improvements</dt><dd><ul>
+<li><p>The year and conference can be automated based on the json files present in the database.</p></li>
+<li><p>NULL values can be handled at the server side to improve this further.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="option-list">
+<dt><kbd><span class="option">/get_comments</span></kbd></dt>
+<dd><ul class="simple">
+<li><p>This api call is to fetch all the comments specific to a particular paper. The paper id from conference file is used to map the comment file and fetch all the comments.</p></li>
+<li><dl class="simple">
+<dt>Further improvements</dt><dd><ul>
+<li><p>Comments are hierarchical and can be parsed at the server side to preprocess all the comments in proper format before sending it as the api response</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="middleware.app.get_comments">
+<span class="sig-prename descclassname"><span class="pre">middleware.app.</span></span><span class="sig-name descname"><span class="pre">get_comments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#middleware.app.get_comments" title="Permalink to this definition"></a></dt>
+<dd><p>Will get the comments wrt the presentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>json output containing comments.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="middleware.app.get_info">
+<span class="sig-prename descclassname"><span class="pre">middleware.app.</span></span><span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#middleware.app.get_info" title="Permalink to this definition"></a></dt>
+<dd><p>Will get the categories from the json database files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>json output containing all the info.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="middleware.app.get_parameters">
+<span class="sig-prename descclassname"><span class="pre">middleware.app.</span></span><span class="sig-name descname"><span class="pre">get_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#middleware.app.get_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Will fetch the all the data wrt a particular conference paper.
+API arguments are year, category and conference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>json output containing conference specific data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="middleware.app.hello_world">
+<span class="sig-prename descclassname"><span class="pre">middleware.app.</span></span><span class="sig-name descname"><span class="pre">hello_world</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#middleware.app.hello_world" title="Permalink to this definition"></a></dt>
+<dd><p>This is a demo function to check the api calls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>A sample string output.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-middleware">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-middleware" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to ReviewsX’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="source" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Team InvertedStack.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

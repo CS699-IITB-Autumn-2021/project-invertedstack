@@ -1,0 +1,21 @@
+middleware package
+==================
+
+Submodules
+----------
+
+middleware.app module
+---------------------
+
+.. automodule:: middleware.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: middleware
+   :members:
+   :undoc-members:
+   :show-inheritance:
