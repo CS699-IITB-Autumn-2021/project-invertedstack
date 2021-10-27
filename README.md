@@ -2,11 +2,11 @@
 
 ## Dependencies
 
--Python version 3.8.0 (compatible with any version)
--Libraries used:
-	-flask
-	-json
-	-flask_ngrok
+- Python version 3.8.0 (compatible with any version)
+- Libraries used:
+	- flask
+	- json
+	- flask_ngrok
 
 ## How to run?
 
