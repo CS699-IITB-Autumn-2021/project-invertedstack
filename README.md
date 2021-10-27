@@ -197,14 +197,31 @@ The following steps can be used to run the flask api's.
 	- flask
 	- json
 	- flask_ngrok
+	- os
 
 #### How to run?
 
-To run the code, go to the directory containing the app.py and run the following command - 
+- Change the database_folder in app.py to the location containing the json files.
+- To run the code, go to the directory containing the app.py and run the following command - 
 
 `flask run`
 or 
 `python app.py`
+
+- Use either the browser or postman to run the api calls.
+- Use the localhost address or the ngrok address for the api calls.
+
+
+#### Sample API's
+
+- For getting the parameters
+	- http://127.0.0.1:5000/get_parameters?category=oral_presentations&year=2021&conference=iclr
+
+- For getting all the conferences for all the years
+	- http://127.0.0.1:5000/get_info
+
+- For getting comments with respect to a particular paper
+	- http://127.0.0.1:5000/get_comments?year=2020&category=poster_presentations&conference=iclr&data_id=B1eWOJHKvB
 
 #### File Descriptions
 
