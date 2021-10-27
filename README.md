@@ -23,7 +23,7 @@ Minimalist OpenReview client with support for native markdown notes
 	- Supports reading lists -- currently reading, already read and wishlist
 
 ## Technology Stack
-- <span style="color:blue">Python</span>
+- **Python**
 - <mark>Beautiful Soup</mark>
 - <mark>Selenium</mark>
 - Flask
