@@ -5,6 +5,8 @@ import json
 
 # Initializing flask
 app = Flask(__name__)
+
+# Uncomment the line below to run with ngrok
 # run_with_ngrok(app)
 
 # Json files location.
