@@ -3,6 +3,8 @@
 ## Dependencies ##
 
 - Python version 3.8.0 (compatible with any Python 3 version)
+- Chromebrowser
+- Chromedriver (of a version compatible with your Chrome Browser)
 - Libraries used:
     - selenium
     - requests
