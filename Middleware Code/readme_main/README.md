@@ -15,11 +15,19 @@
 
 ## Team details and contribution.
 
-### Ashita Saxena 
-- Scraped the data from OpenReview
+### Scraping the data off of OpenReview - Ashita Saxena - 21Q050009
+- Scraping openreview.net for all ICLR  conferences.
+- Extracting all papers for all categories and comments from discussion forums.
+- Making the scraping configurable and extensible to other conferences as per requirements.
 
-### Tejpalsingh Siledar
-- Middleware and server management
+### Middleware and server management - Tejpalsingh Siledar - 21Q050008
+- Creation and hosting of APIs to serve the requests to the Android App.
+- Preprocessing and cleaning up of data catering to the needs of the frontend.
+- Handling non-existent data that might be required by Android app cleanly.
 
-### Ashutosh Sathe
-- Android app
+### Android app - Ashutosh Sathe - 21Q050012
+- Core markdown rendering functionality on Android.
+- Conference agnostic interface with middleware.
+- Efficient on-device storage using SQLite DB.
+
+# Path to Code Documentation
