@@ -11,9 +11,11 @@ database_folder = "/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"
 @app.route('/')
 def hello_world():
     """
-    Demo function to check the api calls.
+    This is a demo function to check the api calls.
 
-    Returns : string
+    Returns
+    -------
+    A sample string output.
     """
     return 'Flask is running!'
 
@@ -23,7 +25,9 @@ def get_parameters():
     """
     Will fetch the required parameters from the json database files.
 
-    Returns : json output
+    Returns
+    -------
+    json output
     """
     try:
         year = request.args["year"]
@@ -48,7 +52,9 @@ def get_info():
     """
     Will get the categories from the json database files.
 
-    Returns : json output
+    Returns
+    -------
+    json output
     """
     try:
         years = ["2018", "2019", "2020", "2021"]
@@ -82,7 +88,9 @@ def get_comments():
     """
     Will get the comments wrt the presentation.
 
-    Returns : json output
+    Returns
+    -------
+    json output
     """
     try:
         year = request.args["year"]
