@@ -1,6 +1,6 @@
 """Documentation
 
-**Task** - This file contains the methods for the scraping discussion comments.
+**Task** - This file contains the methods for the scraping the discussion comments.
 
 This file is imported in the main.py file and functions are called
 for a particular forum_id and a given output path.
@@ -10,8 +10,8 @@ The code creates a json file per forum containing all forum comments
 and their replies in a proper nested structure.
 
 **Author** - Ashita Saxena (21Q050009)
-
 """
+
 import requests
 import json
 
