@@ -30,7 +30,7 @@ import cs699_a2021.invertedstack.reviewsx.items.CollectionsPaperItem;
  */
 public class ViewCollectionActivity extends AppCompatActivity {
     /**
-     * FastAdapter for showing the list of papers in the RecyclerView
+     * FastAdapter for showing the list of paRpers in the RecyclerView
      */
     private FastAdapter fastAdapter;
     /**
