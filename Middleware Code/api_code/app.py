@@ -1,7 +1,7 @@
-# Author - Tejpalsingh Siledar - 21Q050008
+""" 
 
+Author - Tejpalsingh Siledar - 21Q050008
 
-"""
 This file contains code for all the api's to support the linking and fetching 
 of the data from the json files.
 
@@ -38,6 +38,7 @@ from conference file is used to map the comment file and fetch all the comments.
 from flask import Flask, request, jsonify
 from flask_ngrok import run_with_ngrok
 import json
+import os
 
 # Initializing flask
 app = Flask(__name__)
@@ -117,11 +118,26 @@ def get_info():
     try:
         # Setting up years and conference.
         """
-        The process of getting the years and conference can be automated. 
-        Database folder can be searched for getting the year and conference.
+        The process of getting the years and conference is automatic 
+        Database folder is searched for getting the year and conference.
         """
-        years = ["2018", "2019", "2020", "2021"]
-        conferences = ["iclr"]
+        years = set()
+        conferences = set()
+
+        # Get the list of directories present in the database folder.
+        dir_contents = os.listdir(database_folder)
+
+        # Code to retrieve the years and the conferences.
+        for item in dir_contents:
+            print(item)
+            if os.path.isdir(database_folder+item):
+                print(item)
+                years.add(item.split("_")[1])
+                conferences.add(item.split("_")[0])
+
+        # Get sorted list of all the years and conferences.
+        years = sorted(list(years))
+        conferences = sorted(list(conferences))
 
         # global_conf_list collects data to be returned.
         global_conf_list = []
@@ -197,6 +213,7 @@ def get_comments():
         data = json.load(f)
 
         # Preprocessing of the json before returning. Handling of the improper keys.
+        # Needs extra preprocessing for 2020 data as it contains improper keys with hyphens
         if year == "2020":
             for d in data:
                 key_list = list(d["content"].keys())
