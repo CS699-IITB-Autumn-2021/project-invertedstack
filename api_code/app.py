@@ -3,7 +3,7 @@ from flask_ngrok import run_with_ngrok
 import json
 
 app = Flask(__name__)
-run_with_ngrok(app)
+# run_with_ngrok(app)
 
 database_folder = "/mnt/c/Users/tjsil/OneDrive/Desktop/Review_Papers/"
 
@@ -25,20 +25,23 @@ def get_parameters():
 
     Returns : json output
     """
-    year = request.args["year"]
-    category = request.args["category"]
-    conference = request.args["conference"]
-    output_dict = {}
-    f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+".json")
-    data = json.load(f)
+    try:
+        year = request.args["year"]
+        category = request.args["category"]
+        conference = request.args["conference"]
+        f = open(database_folder + conference + "_" + year + "/" + conference + "_" + year + "_" + category + ".json")
+        data = json.load(f)
 
-    for d in data:
-        for k in d.keys():
-            if type(d[k])==str:
-                if len(d[k])==0:
-                    d[k]="N.A."
+        for d in data:
+            for k in d.keys():
+                if type(d[k]) == str:
+                    if len(d[k]) == 0:
+                        d[k] = "N.A."
+    except:
+        return jsonify("Invalid arguments please check.")
 
     return jsonify(data)
+
 
 @app.route("/get_info")
 def get_info():
@@ -47,27 +50,32 @@ def get_info():
 
     Returns : json output
     """
-    years = ["2018","2019","2020","2021"]
-    conferences = ["iclr"]
-    global_conf_list=[]
-    for conference in conferences:
-        conference_dict = {}
-        data = []
-        for year in years:
-            temp_dict={}
-            categories={}
-            f = open(database_folder+conference+"_"+year+"_categories.json")
-            file_data = json.load(f)
-            for i in list(file_data.keys()):
-                categories[i.lower().replace(" ","_")]=i
-            temp_dict["year"] = year
-            temp_dict["categories"] = categories
-            data.append(temp_dict)
-        conference_dict["name"] = conference
-        conference_dict["readable_name"] = conference.upper()
-        conference_dict["data"]=data
-        global_conf_list.append(conference_dict)
+    try:
+        years = ["2018", "2019", "2020", "2021"]
+        conferences = ["iclr"]
+        global_conf_list = []
+        for conference in conferences:
+            conference_dict = {}
+            data = []
+            for year in years:
+                temp_dict = {}
+                categories = {}
+                f = open(database_folder + conference + "_" + year + "_categories.json")
+                file_data = json.load(f)
+                for i in list(file_data.keys()):
+                    categories[i.lower().replace(" ", "_")] = i
+                temp_dict["year"] = year
+                temp_dict["categories"] = categories
+                data.append(temp_dict)
+            conference_dict["name"] = conference
+            conference_dict["readable_name"] = conference.upper()
+            conference_dict["data"] = data
+            global_conf_list.append(conference_dict)
+    except:
+        return jsonify("Invalid arguments please check.")
+
     return jsonify(global_conf_list)
+
 
 @app.route("/get_comments")
 def get_comments():
@@ -76,24 +84,30 @@ def get_comments():
 
     Returns : json output
     """
-    year = request.args["year"]
-    category = request.args["category"]
-    conference = request.args["conference"]
-    data_id = request.args["data_id"]
+    try:
+        year = request.args["year"]
+        category = request.args["category"]
+        conference = request.args["conference"]
+        data_id = request.args["data_id"]
 
-    f = open(database_folder+conference+"_"+year+"/"+conference+"_"+year+"_"+category+"/"+data_id+"_comments.json")
-    data=json.load(f)
+        f = open(
+            database_folder + conference + "_" + year + "/" + conference + "_" + year + "_" + category + "/" + data_id
+            + "_comments.json")
+        data = json.load(f)
 
-    if year=="2020":
-        for d in data:
-            key_list = list(d["content"].keys())
-            for k in key_list:
-                if "review_assessment" in k:
-                    d["content"][k.split("review_assessment:_")[1].replace("_"," ")]=d["content"].pop(k)
-                elif "experience_assessment" in k:
-                    d["content"]["experience assessment"] = d["content"].pop(k)
+        if year == "2020":
+            for d in data:
+                key_list = list(d["content"].keys())
+                for k in key_list:
+                    if "review_assessment" in k:
+                        d["content"][k.split("review_assessment:_")[1].replace("_", " ")] = d["content"].pop(k)
+                    elif "experience_assessment" in k:
+                        d["content"]["experience assessment"] = d["content"].pop(k)
+    except:
+        return jsonify("Invalid arguments please check.")
 
     return jsonify(data)
 
+
 if __name__ == "__main__":
-  app.run()
+    app.run()
