@@ -1,3 +1,15 @@
+"""Documentation
+
+**Task** - This file contains the methods for scraping all the papers
+of a conferences of ICLR from Openreview.
+This file contains a PageCrawler class defining various methods
+related to scraping the papers from openreviews.net
+
+This file is imported in the main.py file 
+
+**Author** - Ashita Saxena (21Q050009)
+
+"""
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import json
@@ -223,11 +235,9 @@ class PageCrawler:
             # get meta-info
             meta_info = element.find_elements_by_css_selector("ul.note-content li")
             for ele in meta_info:
-                key = ele.find_element_by_css_selector("""strong.
-                        note-content-field""").get_attribute("innerHTML")
+                key = ele.find_element_by_css_selector("strong.note-content-field").get_attribute("innerHTML")
                 key = key.strip()
-                value = ele.find_element_by_css_selector("""span.
-                            note-content-value""").get_attribute("innerHTML")
+                value = ele.find_element_by_css_selector("span.note-content-value").get_attribute("innerHTML")
                 value = value.strip()
                 details_of_curr_paper[key[:-1].lower().replace(' ', '-')] = value
             list_of_all_papers.append(details_of_curr_paper)

@@ -1,3 +1,13 @@
+"""Documentation
+
+**Task** - This file contains the methods for the scraping discussion comments.
+
+This file is imported in the main.py file and functions are called
+for a particular forum_id and a given output path.
+
+**Author** - Ashita Saxena (21Q050009)
+
+"""
 import requests
 import json
 
@@ -21,9 +31,7 @@ def get_all_comments_for_forum_id(forum_id, path):
         'authority': 'api.openreview.net',
         'access-control-allow-origin': '*',
         'accept': 'application/json, text/javascript, */*; q=0.01',
-        'user-agent': '''Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X)
-        AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0
-        Mobile/15A5341f Safari/604.1''',
+        'user-agent': 'Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1',
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'origin': 'https://openreview.net',
         'sec-fetch-site': 'same-site',
@@ -31,20 +39,16 @@ def get_all_comments_for_forum_id(forum_id, path):
         'sec-fetch-dest': 'empty',
         'referer': 'https://openreview.net/',
         'accept-language': 'en-US,en;q=0.9,hi;q=0.8,ta;q=0.7',
-        'cookie': '''_ga=GA1.2.1468912180.1633190135;
-        _gid=GA1.2.898326189.1634062697; _gat_gtag_UA_108703919_1=1''',
+        'cookie': '_ga=GA1.2.1468912180.1633190135;_gid=GA1.2.898326189.1634062697; _gat_gtag_UA_108703919_1=1',
     }
 
     params = (
         ('forum', forum_id),
         ('trash', 'true'),
-        ('details',
-            '''replyCount,writable,revisions,
-                original,overwriting,invitation,tags'''),
+        ('details','replyCount,writable,revisions,original,overwriting,invitation,tags'),
     )
 
-    response = requests.get('https://api.openreview.net/notes',
-                            headers=headers, params=params)
+    response = requests.get('https://api.openreview.net/notes', headers=headers, params=params)
 
     json_data = response.json()
 

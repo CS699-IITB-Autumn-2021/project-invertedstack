@@ -1,3 +1,18 @@
+"""Documentation
+
+**Task** - This file is the entry point of the scraping code.
+This file imports all the other modules containing functions
+related to scraping the papers and comments from openreviews.net
+
+We should be able to execute it as 
+
+``$ python3 main.py``
+
+Script should produce json data in the configured path.
+
+**Author** - Ashita Saxena (21Q050009)
+
+"""
 import Config
 import os,glob,json
 import iclr_crawler
@@ -5,7 +20,7 @@ import crawl_forum_comments
 import pprint 
 
 if __name__ == "__main__":
-    """Main file to call all the required functions.
+    """Main method to call all the required functions.
     """
     config = Config.Config()
     home_url = config.home_url
