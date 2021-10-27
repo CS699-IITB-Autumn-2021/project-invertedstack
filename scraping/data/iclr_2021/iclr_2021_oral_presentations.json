@@ -1,0 +1,181 @@
+[
+      {
+            "data_id": "nIAxjsniDzg",
+            "paper_title": "What Matters for On-Policy Deep Actor-Critic Methods? A Large-Scale Study",
+            "forum_link": "https://openreview.net/forum?id=nIAxjsniDzg",
+            "pdf_link": "https://openreview.net/pdf?id=nIAxjsniDzg",
+            "authors": [
+                  "Marcin Andrychowicz",
+                  "Anton Raichuk",
+                  "Piotr Sta\u0144czyk",
+                  "Manu Orsini",
+                  "Sertan Girgin",
+                  "Rapha\u00ebl Marinier",
+                  "Leonard Hussenot",
+                  "Matthieu Geist",
+                  "Olivier Pietquin",
+                  "Marcin Michalski",
+                  "Sylvain Gelly",
+                  "Olivier Bachem"
+            ],
+            "keywords": "Reinforcement learning, continuous control",
+            "abstract": "In recent years, reinforcement learning (RL) has been successfully applied to many different continuous control tasks. While RL algorithms are often conceptually simple, their state-of-the-art implementations take numerous low- and high-level design decisions that strongly affect the performance of the resulting agents. Those choices are usually not extensively discussed in the literature, leading to discrepancy between published descriptions of algorithms and their implementations. This makes it hard to attribute progress in RL and slows down overall progress [Engstrom'20]. As a step towards filling that gap, we implement &gt;50 such ``\"choices\" in a unified on-policy deep actor-critic framework, allowing us to investigate their impact in a large-scale empirical study. We train over 250'000 agents in five continuous control environments of different complexity and provide insights and practical recommendations for the training of on-policy deep actor-critic RL agents.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "We conduct a large-scale empirical study that provides insights and practical recommendations for the training of on-policy deep actor-critic RL agents.",
+            "supplementary-material": "<a href=\"/attachment?id=nIAxjsniDzg&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "rC8sJ4i6kaH",
+            "paper_title": "Theoretical Analysis of Self-Training with Deep Networks on Unlabeled Data",
+            "forum_link": "https://openreview.net/forum?id=rC8sJ4i6kaH",
+            "pdf_link": "https://openreview.net/pdf?id=rC8sJ4i6kaH",
+            "authors": [
+                  "Colin Wei",
+                  "Kendrick Shen",
+                  "Yining Chen",
+                  "Tengyu Ma"
+            ],
+            "keywords": "deep learning theory, domain adaptation theory, unsupervised learning theory, semi-supervised learning theory",
+            "abstract": "Self-training algorithms, which train a model to fit pseudolabels predicted by another previously-learned model, have been very successful for learning with unlabeled data using neural networks. However, the current theoretical understanding of self-training only applies to linear models. This work provides a unified theoretical analysis of self-training with deep networks for semi-supervised learning, unsupervised domain adaptation, and unsupervised learning. At the core of our analysis is a simple but realistic \u201cexpansion\u201d assumption, which states that a low-probability subset of the data must expand to a neighborhood with large probability relative to the subset. We also assume that neighborhoods of examples in different classes have minimal overlap. We prove that under these assumptions, the minimizers of population objectives based on self-training and input-consistency regularization will achieve high accuracy with respect to ground-truth labels. By using off-the-shelf generalization bounds, we immediately convert this result to sample complexity guarantees for neural nets that are polynomial in the margin and Lipschitzness. Our results help explain the empirical successes of recently proposed self-training algorithms which use input consistency regularization.",
+            "one-sentence-summary": "This paper provides accuracy guarantees for self-training with deep networks on polynomial unlabeled samples for semi-supervised learning, unsupervised domain adaptation, and unsupervised learning.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "rALA0Xo6yNJ",
+            "paper_title": "Learning to Reach Goals via Iterated Supervised Learning",
+            "forum_link": "https://openreview.net/forum?id=rALA0Xo6yNJ",
+            "pdf_link": "https://openreview.net/pdf?id=rALA0Xo6yNJ",
+            "authors": [
+                  "Dibya Ghosh",
+                  "Abhishek Gupta",
+                  "Ashwin Reddy",
+                  "Justin Fu",
+                  "Coline Manon Devin",
+                  "Benjamin Eysenbach",
+                  "Sergey Levine"
+            ],
+            "keywords": "goal reaching, reinforcement learning, behavior cloning, goal-conditioned RL",
+            "abstract": "Current reinforcement learning (RL) algorithms can be brittle and difficult to use, especially when learning goal-reaching behaviors from sparse rewards. Although supervised imitation learning provides a simple and stable alternative, it requires access to demonstrations from a human supervisor. In this paper, we study RL algorithms that use imitation learning to acquire goal reaching policies from scratch, without the need for expert demonstrations or a value function. In lieu of demonstrations, we leverage the property that any trajectory is a successful demonstration for reaching the final state in that same trajectory. We propose a simple algorithm in which an agent continually relabels and imitates the trajectories it generates to progressively learn goal-reaching behaviors from scratch. Each iteration, the agent collects new trajectories using the latest policy, and maximizes the likelihood of the actions along these trajectories under the goal that was actually reached, so as to improve the policy. We formally show that this iterated supervised learning procedure optimizes a bound on the RL objective, derive performance bounds of the learned policy, and empirically demonstrate improved goal-reaching performance and robustness over current RL algorithms in several benchmark tasks.",
+            "one-sentence-summary": "We present GCSL, a simple RL method that uses supervised learning to learn goal-reaching policies.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "m5Qsh0kBQG",
+            "paper_title": "Deep symbolic regression: Recovering mathematical expressions from data via risk-seeking policy gradients",
+            "forum_link": "https://openreview.net/forum?id=m5Qsh0kBQG",
+            "pdf_link": "https://openreview.net/pdf?id=m5Qsh0kBQG",
+            "authors": [
+                  "Brenden K Petersen",
+                  "Mikel Landajuela Larma",
+                  "Terrell N. Mundhenk",
+                  "Claudio Prata Santiago",
+                  "Soo Kyung Kim",
+                  "Joanne Taery Kim"
+            ],
+            "keywords": "symbolic regression, reinforcement learning, automated machine learning",
+            "abstract": "Discovering the underlying mathematical expressions describing a dataset is a core challenge for artificial intelligence. This is the problem of <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"0\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mtext class=\"mjx-i\"><mjx-c class=\"mjx-c1D460 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D466 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D45A TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D44F TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D45C TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D459 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D456 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D450 TEX-I\"></mjx-c><mjx-c class=\"mjx-c20\"></mjx-c><mjx-c class=\"mjx-c1D45F TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D452 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D454 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D45F TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D452 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D460 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D460 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D456 TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D45C TEX-I\"></mjx-c><mjx-c class=\"mjx-c1D45B TEX-I\"></mjx-c></mjx-mtext></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mtext mathvariant=\"italic\">symbolic regression</mtext></math></mjx-assistive-mml></mjx-container>. Despite recent advances in training neural networks to solve complex tasks, deep learning approaches to symbolic regression are underexplored. We propose a framework that leverages deep learning for symbolic regression via a simple idea: use a large model to search the space of small models. Specifically, we use a recurrent neural network to emit a distribution over tractable mathematical expressions and employ a novel risk-seeking policy gradient to train the network to generate better-fitting expressions. Our algorithm outperforms several baseline methods (including Eureqa, the gold standard for symbolic regression) in its ability to exactly recover symbolic expressions on a series of benchmark problems, both with and without added noise. More broadly, our contributions include a framework that can be applied to optimize hierarchical, variable-length objects under a black-box performance metric, with the ability to incorporate constraints in situ, and a risk-seeking policy gradient formulation that optimizes for best-case performance instead of expected performance.",
+            "one-sentence-summary": "A deep learning approach to symbolic regression, in which an autoregressive RNN emits a distribution over expressions that is optimized using a risk-seeking policy gradient.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "PULSD5qI2N1",
+            "paper_title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+            "forum_link": "https://openreview.net/forum?id=PULSD5qI2N1",
+            "pdf_link": "https://openreview.net/pdf?id=PULSD5qI2N1",
+            "authors": [
+                  "Atsushi Nitanda",
+                  "Taiji Suzuki"
+            ],
+            "keywords": "stochastic gradient descent, two-layer neural network, over-parameterization, neural tangent kernel",
+            "abstract": "We analyze the convergence of the averaged stochastic gradient descent for overparameterized two-layer neural networks for regression problems. It was recently found that a neural tangent kernel (NTK) plays an important role in showing the global convergence of gradient-based methods under the NTK regime, where the learning dynamics for overparameterized neural networks can be almost characterized by that for the associated reproducing kernel Hilbert space (RKHS). However, there is still room for a convergence rate analysis in the NTK regime. In this study, we show that the averaged stochastic gradient descent can achieve the minimax optimal convergence rate, with the global convergence guarantee, by exploiting the complexities of the target function and the RKHS associated with the NTK. Moreover, we show that the target function specified by the NTK of a ReLU network can be learned at the optimal convergence rate through a smooth approximation of a ReLU network under certain conditions.",
+            "one-sentence-summary": "This is the first paper to overcome technical challenges of achieving the optimal convergence rate under the NTK regime.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "JWOiYxMG92s",
+            "paper_title": "Free Lunch for Few-shot Learning:  Distribution Calibration",
+            "forum_link": "https://openreview.net/forum?id=JWOiYxMG92s",
+            "pdf_link": "https://openreview.net/pdf?id=JWOiYxMG92s",
+            "authors": [
+                  "Shuo Yang",
+                  "Lu Liu",
+                  "Min Xu"
+            ],
+            "keywords": "few-shot learning, image classification, distribution estimation",
+            "abstract": "Learning from a limited number of samples is challenging since the learned model can easily become overfitted based on the biased distribution formed by only a few training examples. In this paper, we calibrate the distribution of these few-sample classes by transferring statistics from the classes with sufficient examples. Then an adequate number of examples can be sampled from the calibrated distribution to expand the inputs to the classifier. We assume every dimension in the feature representation follows a Gaussian distribution so that the mean and the variance of the distribution can borrow from that of similar classes whose statistics are better estimated with an adequate number of samples. Our method can be built on top of off-the-shelf pretrained feature extractors and classification models without extra parameters. We show that a simple logistic regression classifier trained using the features sampled from our calibrated distribution can outperform the state-of-the-art accuracy on three datasets (~5% improvement on miniImageNet compared to the next best). The visualization of these generated features demonstrates that our calibrated distribution is an accurate estimation.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "one-sentence-summary": "The code is available at: https://github.com/ShuoYang-1998/Few_Shot_Distribution_Calibration"
+      },
+      {
+            "data_id": "HajQFbx_yB",
+            "paper_title": "Scalable Learning and MAP Inference for Nonsymmetric Determinantal Point Processes",
+            "forum_link": "https://openreview.net/forum?id=HajQFbx_yB",
+            "pdf_link": "https://openreview.net/pdf?id=HajQFbx_yB",
+            "authors": [
+                  "Mike Gartrell",
+                  "Insu Han",
+                  "Elvis Dohmatob",
+                  "Jennifer Gillenwater",
+                  "Victor-Emmanuel Brunel"
+            ],
+            "keywords": "determinantal point processes, unsupervised learning, representation learning, submodular optimization",
+            "abstract": "Determinantal point processes (DPPs) have attracted significant attention in machine learning for their ability to model subsets drawn from a large item collection. Recent work shows that nonsymmetric DPP (NDPP) kernels have significant advantages over symmetric kernels in terms of modeling power and predictive performance. However, for an item collection of size <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"1\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D440 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>M</mi></math></mjx-assistive-mml></mjx-container>, existing NDPP learning and inference algorithms require memory quadratic in <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"2\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D440 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>M</mi></math></mjx-assistive-mml></mjx-container> and runtime cubic (for learning) or quadratic (for inference) in <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"3\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D440 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>M</mi></math></mjx-assistive-mml></mjx-container>, making them impractical for many typical subset selection tasks. In this work, we develop a learning algorithm with space and time requirements linear in <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"4\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D440 TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>M</mi></math></mjx-assistive-mml></mjx-container> by introducing a new NDPP kernel decomposition. We also derive a linear-complexity NDPP maximum a posteriori (MAP) inference algorithm that applies not only to our new kernel but also to that of prior work. Through evaluation on real-world datasets, we show that our algorithms scale significantly better, and can match the predictive performance of prior work.",
+            "one-sentence-summary": "We propose scalable learning and maximum a posteriori (MAP) inference algorithms for nonsymmetric determinantal point processes (DPPs).",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "supplementary-material": "<a href=\"/attachment?id=HajQFbx_yB&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "xpx9zj7CUlY",
+            "paper_title": "Randomized Automatic Differentiation",
+            "forum_link": "https://openreview.net/forum?id=xpx9zj7CUlY",
+            "pdf_link": "https://openreview.net/pdf?id=xpx9zj7CUlY",
+            "authors": [
+                  "Deniz Oktay",
+                  "Nick McGreivy",
+                  "Joshua Aduol",
+                  "Alex Beatson",
+                  "Ryan P Adams"
+            ],
+            "keywords": "automatic differentiation, autodiff, backprop, deep learning, pdes, stochastic optimization",
+            "abstract": "The successes of deep learning, variational inference, and many other fields have been aided by specialized implementations of reverse-mode automatic differentiation (AD) to compute gradients of mega-dimensional objectives. The AD techniques underlying these tools were designed to compute exact gradients to numerical precision, but modern machine learning models are almost always trained with stochastic gradient descent. Why spend computation and memory on exact (minibatch) gradients only to use them for stochastic optimization? We develop a general framework and approach for randomized automatic differentiation (RAD), which can allow unbiased gradient estimates to be computed with reduced memory in return for variance. We examine limitations of the general approach, and argue that we must leverage problem specific structure to realize benefits. We develop RAD techniques for a variety of simple neural network architectures, and show that for a fixed memory budget, RAD converges in fewer iterations than using a small batch size for feedforward networks, and in a similar number for recurrent networks. We also show that RAD can be applied to scientific computing, and use it to develop a low-memory stochastic gradient method for optimizing the control parameters of a linear reaction-diffusion PDE representing a fission reactor.",
+            "one-sentence-summary": "We develop a general framework and approach for randomized automatic differentiation (RAD), which can allow unbiased gradient estimates to be computed with reduced memory in return for variance.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+            "supplementary-material": "<a href=\"/attachment?id=xpx9zj7CUlY&amp;name=supplementary_material\" class=\"attachment-download-link\" title=\"Download Supplementary Material\" target=\"_blank\"><span class=\"glyphicon glyphicon-download-alt\" aria-hidden=\"true\"></span> &nbsp;zip</a>"
+      },
+      {
+            "data_id": "UuchYL8wSZo",
+            "paper_title": "Learning Generalizable Visual Representations via Interactive Gameplay",
+            "forum_link": "https://openreview.net/forum?id=UuchYL8wSZo",
+            "pdf_link": "https://openreview.net/pdf?id=UuchYL8wSZo",
+            "authors": [
+                  "Luca Weihs",
+                  "Aniruddha Kembhavi",
+                  "Kiana Ehsani",
+                  "Sarah M Pratt",
+                  "Winson Han",
+                  "Alvaro Herrasti",
+                  "Eric Kolve",
+                  "Dustin Schwenk",
+                  "Roozbeh Mottaghi",
+                  "Ali Farhadi"
+            ],
+            "keywords": "representation learning, deep reinforcement learning, computer vision",
+            "abstract": "A growing body of research suggests that embodied gameplay, prevalent not just in human cultures but across a variety of animal species including turtles and ravens, is critical in developing the neural flexibility for creative problem solving, decision making, and socialization. Comparatively little is known regarding the impact of embodied gameplay upon artificial agents. While recent work has produced agents proficient in abstract games, these environments are far removed the real world and thus these agents can provide little insight into the advantages of embodied play. Hiding games, such as hide-and-seek, played universally, provide a rich ground for studying the impact of embodied gameplay on representation learning in the context of perspective taking, secret keeping, and false belief understanding. Here we are the first to show that embodied adversarial reinforcement learning agents playing Cache, a variant of hide-and-seek, in a high fidelity, interactive, environment, learn generalizable representations of their observations encoding information such as object permanence, free space, and containment. Moving closer to biologically motivated learning strategies, our agents' representations, enhanced by intentionality and memory, are developed through interaction and play. These results serve as a model for studying how facets of vision develop through interaction, provide an experimental framework for assessing what is learned by artificial agents, and demonstrates the value of moving from large, static, datasets towards experiential, interactive, representation learning.",
+            "one-sentence-summary": "We show the representation learned through interaction and gameplay generalizes better compared to passive and static representation learning methods.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      },
+      {
+            "data_id": "KvyxFqZS_D",
+            "paper_title": "Global Convergence of Three-layer Neural Networks in the Mean Field Regime",
+            "forum_link": "https://openreview.net/forum?id=KvyxFqZS_D",
+            "pdf_link": "https://openreview.net/pdf?id=KvyxFqZS_D",
+            "authors": [
+                  "Huy Tuan Pham",
+                  "Phan-Minh Nguyen"
+            ],
+            "keywords": "deep learning theory",
+            "abstract": "In the mean field regime, neural networks are appropriately scaled so that as the width tends to infinity, the learning dynamics tends to a nonlinear and nontrivial dynamical limit, known as the mean field limit. This lends a way to study large-width neural networks via analyzing the mean field limit. Recent works have successfully applied such analysis to two-layer networks and provided global convergence guarantees. The extension to multilayer ones however has been a highly challenging puzzle, and little is known about the optimization efficiency in the mean field regime when there are more than two layers.\n        \n        In this work, we prove a global convergence result for unregularized feedforward three-layer networks in the mean field regime. We first develop a rigorous framework to establish the mean field limit of three-layer networks under stochastic gradient descent training. To that end, we propose the idea of a neuronal embedding, which comprises of a fixed probability space that encapsulates neural networks of arbitrary sizes. The identified mean field limit is then used to prove a global convergence guarantee under suitable regularity and convergence mode assumptions, which \u2013 unlike previous works on two-layer networks \u2013 does not rely critically on convexity. Underlying the result is a universal approximation property, natural of neural networks, which importantly is shown to hold at any finite training time (not necessarily at convergence) via an algebraic topology argument.",
+            "one-sentence-summary": "We propose a rigorous framework for three-layer neural networks in the mean field regime and prove a global convergence guarantee.",
+            "code-of-ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics"
+      }
+]

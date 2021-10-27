@@ -1,0 +1,720 @@
+[
+      {
+            "data_id": "B14ejsA5YQ",
+            "paper_title": "Neural Causal Discovery with Learnable Input Noise",
+            "forum_link": "https://openreview.net/forum?id=B14ejsA5YQ",
+            "pdf_link": "https://openreview.net/pdf?id=B14ejsA5YQ",
+            "authors": [
+                  "Tailin Wu",
+                  "Thomas Breuel",
+                  "Jan Kautz"
+            ],
+            "abstract": "Learning causal relations from observational time series with nonlinear interactions and complex causal structures is a key component of human intelligence, and has a wide range of applications. Although neural nets have demonstrated their effectiveness in a variety of fields, their application in learning causal relations has been scarce. This is due to both a lack of theoretical results connecting risk minimization and causality (enabling function approximators like neural nets to apply), and a lack of scalability in prior causal measures to allow for expressive function approximators like neural nets to apply. In this work, we propose a novel causal measure and algorithm using risk minimization to infer causal relations from time series. We demonstrate the effectiveness and scalability of our algorithms to learn nonlinear causal models in synthetic datasets as comparing to other methods, and its effectiveness in inferring causal relations in a video game environment and real-world heart-rate vs. breath-rate and rat brain EEG datasets.",
+            "keywords": "neural causal learning, learnable noise"
+      },
+      {
+            "data_id": "B14rPj0qY7",
+            "paper_title": "RETHINKING SELF-DRIVING : MULTI -TASK KNOWLEDGE FOR BETTER GENERALIZATION AND ACCIDENT EXPLANATION ABILITY",
+            "forum_link": "https://openreview.net/forum?id=B14rPj0qY7",
+            "pdf_link": "https://openreview.net/pdf?id=B14rPj0qY7",
+            "authors": [
+                  "Zhihao LI",
+                  "Toshiyuki MOTOYOSHI",
+                  "Kazuma SASAKI",
+                  "Tetsuya OGATA",
+                  "Shigeki SUGANO"
+            ],
+            "abstract": "Current end-to-end deep learning driving models have two problems: (1) Poor\n        generalization ability of unobserved driving environment when diversity of train-\n        ing driving dataset is limited (2) Lack of accident explanation ability when driving\n        models don\u2019t work as expected. To tackle these two problems, rooted on the be-\n        lieve that knowledge of associated easy task is benificial for addressing difficult\n        task, we proposed a new driving model which is composed of perception module\n        for see and think and driving module for behave, and trained it with multi-task\n        perception-related basic knowledge and driving knowledge stepwisely.  Specifi-\n        cally segmentation map and depth map (pixel level understanding of images) were\n        considered as what &amp; where and how far knowledge for tackling easier driving-\n        related perception problems before generating final control commands for difficult\n        driving task. The results of experiments demonstrated the effectiveness of multi-\n        task perception knowledge for better generalization and accident explanation abil-\n        ity. With our method the average sucess rate of finishing most difficult navigation\n        tasks in untrained city of CoRL test surpassed current benchmark method for 15\n        percent in trained weather and 20 percent in untrained weathers.",
+            "keywords": "Autonomous car, convolution network, image segmentation, depth estimation, generalization ability, explanation ability, multi-task learning",
+            "tl;dr": "we proposed a new self-driving model which is composed of perception module for see and think and driving module for behave to acquire better generalization  and accident explanation ability."
+      },
+      {
+            "data_id": "B1EiIsCctm",
+            "paper_title": "Improving Gaussian mixture latent variable model convergence with Optimal Transport",
+            "forum_link": "https://openreview.net/forum?id=B1EiIsCctm",
+            "pdf_link": "https://openreview.net/pdf?id=B1EiIsCctm",
+            "authors": [
+                  "Benoit Gaujac",
+                  "Ilya Feige",
+                  "David Barber"
+            ],
+            "abstract": "Generative models with both discrete and continuous latent variables are highly motivated by the structure of many real-world data sets. They present, however, subtleties in training often manifesting in the discrete latent variable not being leveraged. In this paper, we show why such models struggle to train using traditional log-likelihood maximization, and that they are amenable to training using the Optimal Transport framework of Wasserstein Autoencoders. We find our discrete latent variable to be fully leveraged by the model when trained, without any modifications to the objective function or significant fine tuning. Our model generates comparable samples to other approaches while using relatively simple neural networks, since the discrete latent variable carries much of the descriptive burden. Furthermore, the discrete latent provides significant control over generation.",
+            "keywords": "optimal transport, wasserstein autoencoder, variational autoencoder, latent variable modeling, generative modeling, discrete latent variables",
+            "tl;dr": "This paper shows that the Wasserstein distance objective enables the training of latent variable models with discrete latents in a case where the Variational Autoencoder objective fails to do so."
+      },
+      {
+            "data_id": "B1EjKsRqtQ",
+            "paper_title": "Hierarchical Attention: What Really Counts in Various NLP Tasks",
+            "forum_link": "https://openreview.net/forum?id=B1EjKsRqtQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1EjKsRqtQ",
+            "authors": [
+                  "Zehao Dou",
+                  "Zhihua Zhang"
+            ],
+            "abstract": "Attention mechanisms in sequence to sequence models have shown great ability and wonderful performance in various natural language processing  (NLP)  tasks, such as sentence embedding, text generation, machine translation, machine reading comprehension, etc. Unfortunately, existing attention mechanisms only learn either high-level or low-level features. In this paper, we think that the lack of hierarchical mechanisms is a bottleneck in improving the performance of the attention mechanisms, and propose a novel Hierarchical Attention Mechanism (Ham) based on the weighted sum of different layers of a multi-level attention. \n        Ham achieves a state-of-the-art BLEU score of 0.26 on Chinese poem generation task and a nearly 6.5% averaged improvement compared with the existing machine reading comprehension models such as BIDAF and Match-LSTM. Furthermore, our experiments and theorems reveal that Ham has greater generalization and representation ability than existing attention mechanisms.",
+            "keywords": "attention, hierarchical, machine reading comprehension, poem generation",
+            "tl;dr": "The paper proposed a novel hierarchical model to replace the original attention model in various NLP tasks."
+      },
+      {
+            "data_id": "B1GHJ3R9tQ",
+            "paper_title": "HyperGAN:  Exploring the Manifold of Neural Networks",
+            "forum_link": "https://openreview.net/forum?id=B1GHJ3R9tQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1GHJ3R9tQ",
+            "authors": [
+                  "Neale Ratzlaff",
+                  "Li  Fuxin"
+            ],
+            "abstract": "We introduce HyperGAN, a generative network that learns to generate all the weight parameters of deep neural networks. HyperGAN first transforms low dimensional noise into a latent space, which can be sampled from to obtain diverse, performant sets of parameters for a target architecture. We utilize an architecture that bears resemblance to generative adversarial networks, but we evaluate the likelihood of samples with a classification loss. This is equivalent to minimizing the KL-divergence between the generated network parameter distribution and an unknown true parameter distribution. We apply HyperGAN to classification, showing that HyperGAN can learn to generate parameters which solve the MNIST and CIFAR-10 datasets with competitive performance to fully supervised learning while learning a rich distribution of effective parameters. We also show that HyperGAN can also provide better uncertainty than standard ensembles. This is evaluated by the ability of HyperGAN-generated ensembles to detect out of distribution data as well as adversarial examples. We see that in addition to being highly accurate on inlier data, HyperGAN can provide reasonable uncertainty estimates.",
+            "keywords": "hypernetworks, generative adversarial networks, anomaly detection",
+            "tl;dr": "We use a GAN to generate parameters of a neural network in one forward pass."
+      },
+      {
+            "data_id": "B1GHb2RqYX",
+            "paper_title": "PolyCNN: Learning Seed Convolutional Filters",
+            "forum_link": "https://openreview.net/forum?id=B1GHb2RqYX",
+            "pdf_link": "https://openreview.net/pdf?id=B1GHb2RqYX",
+            "authors": [
+                  "Felix Juefei-Xu",
+                  "Vishnu Naresh Boddeti",
+                  "Marios Savvides"
+            ],
+            "abstract": "In this work, we propose the polynomial convolutional neural network (PolyCNN), as a new design of a weight-learning efficient variant of the traditional CNN. The biggest advantage of the PolyCNN is that at each convolutional layer, only one convolutional filter is needed for learning the weights, which we call the seed filter, and all the other convolutional filters are the polynomial transformations of the seed filter, which is termed as an early fan-out. Alternatively, we can also perform late fan-out on the seed filter response to create the number of response maps needed to be input into the next layer. Both early and late fan-out allow the PolyCNN to learn only one convolutional filter at each layer, which can dramatically reduce the model complexity by saving 10x to 50x parameters during learning. While being efficient during both training and testing, the PolyCNN does not suffer performance due to the non-linear polynomial expansion which translates to richer representational power within the convolutional layers. By allowing direct control over model complexity, PolyCNN provides a flexible trade-off between performance and efficiency. We have verified the on-par performance between the proposed PolyCNN and the standard CNN on several visual datasets, such as MNIST, CIFAR-10, SVHN, and ImageNet.",
+            "keywords": "Efficient CNN, Seed convolutional filter",
+            "tl;dr": "PolyCNN only needs to learn one seed convolutional filter at each layer. This is an efficient variant of traditional CNN, with on-par performance."
+      },
+      {
+            "data_id": "B1GIB3A9YX",
+            "paper_title": "Explicit Recall for Efficient Exploration",
+            "forum_link": "https://openreview.net/forum?id=B1GIB3A9YX",
+            "pdf_link": "https://openreview.net/pdf?id=B1GIB3A9YX",
+            "authors": [
+                  "Honghua Dong",
+                  "Jiayuan Mao",
+                  "Xinyue Cui",
+                  "Lihong Li"
+            ],
+            "abstract": "In this paper, we advocate the use of explicit memory for efficient exploration in reinforcement learning.  This memory records structured trajectories that have led to interesting states in the past, and can be used by the agent to revisit those states more effectively.  In high-dimensional decision making problems, where deep reinforcement learning is considered crucial, our approach provides a simple, transparent and effective way that can be naturally combined with complex, deep learning models.  We show how such explicit memory may be used to enhance existing exploration algorithms such as intrinsically motivated ones and count-based ones, and demonstrate our method's advantages in various simulated environments.",
+            "keywords": "Exploration, goal-directed, deep reinforcement learning, explicit memory",
+            "tl;dr": "We advocate the use of explicit memory for efficient exploration in reinforcement learning"
+      },
+      {
+            "data_id": "B1GIQhCcYm",
+            "paper_title": "Unsupervised  one-to-many image translation",
+            "forum_link": "https://openreview.net/forum?id=B1GIQhCcYm",
+            "pdf_link": "https://openreview.net/pdf?id=B1GIQhCcYm",
+            "authors": [
+                  "Samuel Lavoie-Marchildon",
+                  "Sebastien Lachapelle",
+                  "Miko\u0142aj Bi\u0144kowski",
+                  "Aaron Courville",
+                  "Yoshua Bengio",
+                  "R Devon Hjelm"
+            ],
+            "abstract": "We perform completely unsupervised one-sided image to image translation between a source domain <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"0\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D44B TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>X</mi></math></mjx-assistive-mml></mjx-container> and a target domain <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"1\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D44C TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>Y</mi></math></mjx-assistive-mml></mjx-container> such that we preserve relevant underlying shared semantics (e.g., class, size, shape, etc). \n        In particular, we are interested in a more difficult case than those typically addressed in the literature, where the source and target are ``far\" enough that reconstruction-style or pixel-wise approaches fail.\n        We argue that transferring (i.e., \\emph{translating}) said relevant information should involve both discarding source domain-specific information while incorporate target domain-specific information, the latter of which we model with a noisy prior distribution. \n        In order to avoid the degenerate case where the generated samples are only explained by the prior distribution, we propose to minimize an estimate of the mutual information between the generated sample and the sample from the prior distribution. We discover that the architectural choices are an important factor to consider in order to preserve the shared semantic between <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"2\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D44B TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>X</mi></math></mjx-assistive-mml></mjx-container> and <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"3\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mi class=\"mjx-i\"><mjx-c class=\"mjx-c1D44C TEX-I\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>Y</mi></math></mjx-assistive-mml></mjx-container>. \n        We show state of the art results on the MNIST to SVHN task for unsupervised image to image translation.",
+            "keywords": "Image-to-image, Translation, Unsupervised, Generation, Adversarial, Learning",
+            "tl;dr": "We train an image to image translation network that take as input the source image and a sample from a prior distribution to generate a sample from the target distribution"
+      },
+      {
+            "data_id": "B1GRtj05t7",
+            "paper_title": "NA",
+            "forum_link": "https://openreview.net/forum?id=B1GRtj05t7",
+            "pdf_link": "https://openreview.net/pdf?id=B1GRtj05t7",
+            "authors": [
+                  "NA"
+            ],
+            "abstract": "NA"
+      },
+      {
+            "data_id": "B1GSBsRcFX",
+            "paper_title": "Stop memorizing: A data-dependent regularization framework for intrinsic pattern learning",
+            "forum_link": "https://openreview.net/forum?id=B1GSBsRcFX",
+            "pdf_link": "https://openreview.net/pdf?id=B1GSBsRcFX",
+            "authors": [
+                  "Wei Zhu",
+                  "Qiang Qiu",
+                  "Bao Wang",
+                  "Jianfeng Lu",
+                  "Guillermo Sapiro",
+                  "Ingrid Daubechies"
+            ],
+            "abstract": "Deep neural networks (DNNs) typically have enough capacity to fit random data by brute force even when conventional data-dependent regularizations focusing on the geometry of the features are imposed. We find out that the reason for this is the inconsistency between the enforced geometry and the standard softmax cross entropy loss. To resolve this, we propose a new framework for data-dependent DNN regularization, the Geometrically-Regularized-Self-Validating neural Networks (GRSVNet). During training, the geometry enforced on one batch of features is simultaneously validated on a separate batch using a validation loss consistent with the geometry. We study  a particular case of GRSVNet, the Orthogonal-Low-rank Embedding (OLE)-GRSVNet, which is capable of producing highly discriminative features residing in orthogonal low-rank subspaces. Numerical experiments show that OLE-GRSVNet outperforms DNNs with conventional regularization when trained on real data. More importantly, unlike conventional DNNs, OLE-GRSVNet refuses to memorize random data or random labels, suggesting it only learns intrinsic patterns by reducing the memorizing capacity of the baseline DNN.",
+            "tl;dr": "we propose a new framework for data-dependent DNN regularization that can prevent DNNs from overfitting random data or random labels.",
+            "keywords": "deep neural networks, memorizing, data-dependent regularization"
+      },
+      {
+            "data_id": "B1M9FjC5FQ",
+            "paper_title": "Gradient Acceleration in Activation Functions",
+            "forum_link": "https://openreview.net/forum?id=B1M9FjC5FQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1M9FjC5FQ",
+            "authors": [
+                  "Sangchul Hahn",
+                  "Heeyoul Choi"
+            ],
+            "abstract": "Dropout has been one of standard approaches to train deep neural networks, and it is known to regularize large models to avoid overfitting. The effect of dropout has been explained by avoiding co-adaptation.\n        In this paper, however, we propose a new explanation of why dropout works and propose a new technique to design better activation functions. First, we show that dropout can be explained as an optimization technique to push the input towards the saturation area of nonlinear activation function by accelerating gradient information flowing even in the saturation area in backpropagation. Based on this explanation, we propose a new technique for activation functions, {\\em gradient acceleration in activation function (GAAF)}, that accelerates gradients to flow even in the saturation area. Then, input to the activation function can climb onto the saturation area which makes the network more robust because the model converges on a flat region.  \n        Experiment results support our explanation of dropout and confirm that the proposed GAAF technique improves performances with expected properties.",
+            "keywords": "Gradient Acceleration, Saturation Areas, Dropout, Coadaptation"
+      },
+      {
+            "data_id": "B1MAJhR5YX",
+            "paper_title": "Empirical Bounds on Linear Regions of Deep Rectifier Networks",
+            "forum_link": "https://openreview.net/forum?id=B1MAJhR5YX",
+            "pdf_link": "https://openreview.net/pdf?id=B1MAJhR5YX",
+            "authors": [
+                  "Thiago Serra",
+                  "Srikumar Ramalingam"
+            ],
+            "abstract": "One form of characterizing the expressiveness of a piecewise linear neural network is by the number of linear regions, or pieces, of the function modeled. We have observed substantial progress in this topic through lower and upper bounds on the maximum number of linear regions and a counting procedure. However, these bounds only account for the dimensions of the network and the exact counting may take a prohibitive amount of time, therefore making it infeasible to benchmark the expressiveness of networks. In this work, we approximate the number of linear regions of specific rectifier networks with an algorithm for probabilistic lower bounds of mixed-integer linear sets. In addition, we present a tighter upper bound that leverages network coefficients. We test both on trained networks. The algorithm for probabilistic lower bounds is several orders of magnitude faster than exact counting and the values reach similar orders of magnitude, hence making our approach a viable method to compare the expressiveness of such networks. The refined upper bound is particularly stronger on networks with narrow layers.",
+            "keywords": "linear regions, approximate model counting, mixed-integer linear programming",
+            "tl;dr": "We provide improved upper bounds for the number of linear regions used in network expressivity, and an highly efficient algorithm (w.r.t. exact counting) to obtain probabilistic lower bounds on the actual number of linear regions."
+      },
+      {
+            "data_id": "B1MB5oRqtQ",
+            "paper_title": "On-Policy Trust Region Policy Optimisation with Replay Buffers",
+            "forum_link": "https://openreview.net/forum?id=B1MB5oRqtQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1MB5oRqtQ",
+            "authors": [
+                  "Dmitry Kangin",
+                  "Nicolas Pugeault"
+            ],
+            "abstract": "Building upon the recent success of deep reinforcement learning methods, we investigate the possibility of on-policy reinforcement learning improvement by reusing the data from several consecutive policies. On-policy methods bring many benefits, such as ability to evaluate each resulting policy. However, they usually discard all the information about the policies which existed before. In this work, we propose adaptation of the replay buffer concept, borrowed from the off-policy learning setting, to the on-policy algorithms. To achieve this, the proposed algorithm generalises the Q-, value and advantage functions for data from multiple policies. The method uses trust region optimisation, while avoiding some of the common problems of the algorithms such as TRPO or ACKTR: it uses hyperparameters to replace the trust region selection heuristics, as well as  the trainable covariance matrix instead of the fixed one. In many cases, the method not only improves the results comparing to the state-of-the-art trust region on-policy learning algorithms such as ACKTR and TRPO, but also with respect to their off-policy counterpart DDPG.",
+            "keywords": "reinforcement learning, on-policy learning, trust region policy optimisation, replay buffer",
+            "tl;dr": "We investigate the theoretical and practical evidence of on-policy reinforcement learning improvement by reusing the data from several consecutive policies."
+      },
+      {
+            "data_id": "B1MIBs05F7",
+            "paper_title": "On the Ineffectiveness of Variance Reduced Optimization for Deep Learning",
+            "forum_link": "https://openreview.net/forum?id=B1MIBs05F7",
+            "pdf_link": "https://openreview.net/pdf?id=B1MIBs05F7",
+            "authors": [
+                  "Aaron Defazio"
+            ],
+            "abstract": "The application of stochastic variance reduction to optimization has shown remarkable recent theoretical and practical success. The applicability of these techniques to the hard non-convex optimization problems encountered during training of modern deep neural networks is an open problem. We show that naive application of the SVRG technique and related approaches fail, and explore why.",
+            "keywords": "machine learning, optimization, variance reduction",
+            "tl;dr": "The SVRG method fails on modern deep learning problems"
+      },
+      {
+            "data_id": "B1MUroRct7",
+            "paper_title": "Online Learning for Supervised Dimension Reduction",
+            "forum_link": "https://openreview.net/forum?id=B1MUroRct7",
+            "pdf_link": "https://openreview.net/pdf?id=B1MUroRct7",
+            "authors": [
+                  "Ning Zhang",
+                  "Qiang Wu"
+            ],
+            "abstract": "Online learning has attracted great attention due to the increasing demand for systems that have the ability of learning and evolving. When the data to be processed is also high dimensional and dimension reduction is necessary for visualization or prediction enhancement, online dimension reduction will play an essential role. The purpose of this paper is to propose new online learning approaches for supervised dimension reduction. Our first algorithm is motivated by adapting the sliced inverse regression (SIR), a pioneer and effective algorithm for supervised dimension reduction, and making it implementable in an incremental manner. The new algorithm, called incremental sliced inverse regression (ISIR), is able to update the subspace of significant factors with intrinsic lower dimensionality fast and efficiently when new observations come in. We also refine the algorithm by using an overlapping technique  and develop an incremental overlapping sliced inverse regression (IOSIR) algorithm. We verify the effectiveness and efficiency of both algorithms by simulations and real data applications.",
+            "keywords": "Online Learning, Supervised Dimension Reduction, Incremental Sliced Inverse Regression, Effective Dimension Reduction Space",
+            "tl;dr": "We proposed two new approaches,  the incremental sliced inverse regression and incremental overlapping sliced inverse regression, to implement supervised dimension reduction in an online learning manner."
+      },
+      {
+            "data_id": "B1MX5j0cFX",
+            "paper_title": "Universal Attacks on Equivariant Networks",
+            "forum_link": "https://openreview.net/forum?id=B1MX5j0cFX",
+            "pdf_link": "https://openreview.net/pdf?id=B1MX5j0cFX",
+            "authors": [
+                  "Amit Deshpande",
+                  "Sandesh Kamath",
+                  "K V Subrahmanyam"
+            ],
+            "abstract": "Adversarial attacks on neural networks perturb the input at test time in order to fool trained and deployed neural network models. Most attacks such as gradient-based Fast Gradient Sign Method (FGSM) by Goodfellow et al. 2015 and DeepFool by Moosavi-Dezfooli et al. 2016 are input-dependent, small, pixel-wise perturbations, and they give different attack directions for different inputs. On the other hand, universal adversarial attacks are input-agnostic and the same attack works for most inputs. Translation or rotation-equivariant neural network models provide one approach to prevent universal attacks based on simple geometric transformations. In this paper, we observe an interesting spectral property shared by all of the above input-dependent, pixel-wise adversarial attacks on translation and rotation-equivariant networks. We exploit this property to get a single universal attack direction that fools the model on most inputs. Moreover, we show how to compute this universal attack direction using principal components of the existing input-dependent attacks on a very small sample of test inputs. We complement our empirical results by a theoretical justification, using matrix concentration inequalities and spectral perturbation bounds. We also empirically observe that the top few principal adversarial attack directions are nearly orthogonal to the top few principal invariant directions.",
+            "keywords": "adversarial, equivariance, universal, rotation, translation, CNN, GCNN",
+            "tl;dr": "Universal attacks on equivariant networks using a small sample of test data"
+      },
+      {
+            "data_id": "B1MbDj0ctQ",
+            "paper_title": "Switching Linear Dynamics for Variational Bayes Filtering",
+            "forum_link": "https://openreview.net/forum?id=B1MbDj0ctQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1MbDj0ctQ",
+            "authors": [
+                  "Philip Becker-Ehmck",
+                  "Jan Peters",
+                  "Patrick van der Smagt"
+            ],
+            "abstract": "System identification of complex and nonlinear systems is a central problem for model predictive control and model-based reinforcement learning. Despite their complexity, such systems can often be approximated well by a set of linear dynamical systems if broken into appropriate subsequences. This mechanism not only helps us find good approximations of dynamics, but also gives us deeper insight into the underlying system. Leveraging Bayesian inference and Variational Autoencoders, we show how to learn a richer and more meaningful state space, e.g. encoding joint constraints and collisions with walls in a maze, from partial and high-dimensional observations. This representation translates into a gain of accuracy of the learned dynamics which we showcase on various simulated tasks.",
+            "keywords": "sequence model, switching linear dynamical systems, variational bayes, filter, variational inference, stochastic recurrent neural network",
+            "tl;dr": "A recurrent variational autoencoder with a latent transition function modeled by switching linear dynamical systems."
+      },
+      {
+            "data_id": "B1MhpiRqFm",
+            "paper_title": "A Convergent Variant of the Boltzmann Softmax Operator in Reinforcement Learning",
+            "forum_link": "https://openreview.net/forum?id=B1MhpiRqFm",
+            "pdf_link": "https://openreview.net/pdf?id=B1MhpiRqFm",
+            "authors": [
+                  "Ling Pan",
+                  "Qingpeng Cai",
+                  "Qi Meng",
+                  "Wei Chen",
+                  "Tie-Yan Liu"
+            ],
+            "abstract": "The Boltzmann softmax operator can trade-off well between exploration and exploitation according to current estimation in an exponential weighting scheme, which is a promising way to address the exploration-exploitation dilemma in reinforcement learning. Unfortunately, the Boltzmann softmax operator is not a non-expansion, which may lead to unstable or even divergent learning behavior when used in estimating the value function. The non-expansion is a vital and widely-used sufficient condition to guarantee the convergence of value iteration. However, how to characterize the effect of such non-expansive operators in value iteration remains an open problem. In this paper, we propose a new technique to analyze the error bound of value iteration with the the Boltzmann softmax operator. We then propose the dynamic Boltzmann softmax(DBS) operator to enable the convergence to the optimal value function in value iteration.  We also present convergence rate analysis of the algorithm.\n        Using Q-learning as an application, we show that the DBS operator can be applied in a model-free reinforcement learning algorithm. Finally, we demonstrate the effectiveness of the DBS operator in a toy problem called GridWorld and a suite of Atari games. Experimental results show that outperforms DQN substantially in benchmark games.",
+            "keywords": "Reinforcement Learning, Boltzmann Softmax Operator, Value Function Estimation"
+      },
+      {
+            "data_id": "B1VWtsA5tQ",
+            "paper_title": "PPO-CMA: Proximal Policy Optimization with Covariance Matrix Adaptation",
+            "forum_link": "https://openreview.net/forum?id=B1VWtsA5tQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1VWtsA5tQ",
+            "authors": [
+                  "Perttu H\u00e4m\u00e4l\u00e4inen",
+                  "Amin Babadi",
+                  "Xiaoxiao Ma",
+                  "Jaakko Lehtinen"
+            ],
+            "abstract": "Proximal Policy Optimization (PPO) is a highly popular model-free reinforcement learning (RL) approach. However, in continuous state and actions spaces and a Gaussian policy -- common in computer animation and robotics -- PPO is prone to getting stuck in local optima. In this paper, we observe a tendency of PPO to prematurely shrink the exploration variance, which naturally leads to slow progress. Motivated by this, we borrow ideas from CMA-ES, a black-box optimization method designed for intelligent adaptive Gaussian exploration, to derive PPO-CMA, a novel proximal policy optimization approach that expands the exploration variance on objective function slopes and only shrinks the variance when close to the optimum. This is implemented by using separate neural networks for policy mean and variance and training the mean and variance in separate passes. Our experiments demonstrate a clear improvement over vanilla PPO in many difficult OpenAI Gym MuJoCo tasks.",
+            "keywords": "Continuous Control, Reinforcement Learning, Policy Optimization, Policy Gradient, Evolution Strategies, CMA-ES, PPO",
+            "tl;dr": "We propose a new continuous control reinforcement learning method with a variance adaptation strategy inspired by the Covariance Matrix Adaptation Evolution Strategy (CMA-ES) optimization method"
+      },
+      {
+            "data_id": "B1e0KsRcYQ",
+            "paper_title": "Efficient Codebook and Factorization for Second Order Representation Learning",
+            "forum_link": "https://openreview.net/forum?id=B1e0KsRcYQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1e0KsRcYQ",
+            "authors": [
+                  "Pierre jacob",
+                  "David Picard",
+                  "Aymeric Histace",
+                  "Edouard Klein"
+            ],
+            "abstract": "Learning rich and compact representations is an open topic in many fields such as word embedding, visual question-answering, object recognition or image retrieval. Although deep neural networks (convolutional or not) have made a major breakthrough during the last few years by providing hierarchical, semantic and abstract representations for all of these tasks, these representations are not necessary as rich as needed nor as compact as expected. Models using higher order statistics, such as bilinear pooling, provide richer representations at the cost of higher dimensional features. Factorization schemes have been proposed but without being able to reach the original compactness of first order models, or at a heavy loss in performances. This paper addresses these two points by extending factorization schemes to codebook strategies, allowing compact representations with the same dimensionality as first order representations, but with second order performances. Moreover, we extend this framework with a joint codebook and factorization scheme, granting a reduction both in terms of parameters and computation cost. This formulation leads to state-of-the-art results and compact second-order models with few additional parameters and intermediate representations with a dimension similar to that of first-order statistics.",
+            "keywords": "Second order pooling",
+            "tl;dr": "We propose a joint codebook and factorization scheme to improve second order pooling."
+      },
+      {
+            "data_id": "B1e4wo09K7",
+            "paper_title": "Invariant-equivariant representation learning for multi-class data",
+            "forum_link": "https://openreview.net/forum?id=B1e4wo09K7",
+            "pdf_link": "https://openreview.net/pdf?id=B1e4wo09K7",
+            "authors": [
+                  "Ilya Feige"
+            ],
+            "abstract": "Representations learnt through deep neural networks tend to be highly informative, but opaque in terms of what information they learn to encode. We introduce an approach to probabilistic modelling that learns to represent data with two separate deep representations: an invariant representation that encodes the information of the class from which the data belongs, and an equivariant representation that encodes the symmetry transformation defining the particular data point within the class manifold (equivariant in the sense that the representation varies naturally with symmetry transformations). This approach to representation learning is conceptually transparent, easy to implement, and in-principle generally applicable to any data comprised of discrete classes of continuous distributions (e.g. objects in images, topics in language, individuals in behavioural data). We demonstrate qualitatively compelling representation learning and competitive quantitative performance, in both supervised and semi-supervised settings, versus comparable modelling approaches in the literature with little fine tuning.",
+            "keywords": "representation learning, semantic representations, local vs global information, latent variable modelling, generative modelling, semi-supervised learning, variational autoencoders.",
+            "tl;dr": "This paper presents a novel latent-variable generative modelling technique that enables the representation of global information into one latent variable and local information into another latent variable."
+      },
+      {
+            "data_id": "B1e7hs05Km",
+            "paper_title": "Efficient Exploration through Bayesian Deep Q-Networks",
+            "forum_link": "https://openreview.net/forum?id=B1e7hs05Km",
+            "pdf_link": "https://openreview.net/pdf?id=B1e7hs05Km",
+            "authors": [
+                  "Kamyar Azizzadenesheli",
+                  "Animashree Anandkumar"
+            ],
+            "abstract": "We propose Bayesian Deep Q-Networks (BDQN), a principled and a practical Deep Reinforcement Learning (DRL) algorithm for Markov decision processes (MDP). It combines Thompson sampling with deep-Q networks (DQN). Thompson sampling ensures more efficient exploration-exploitation tradeoff in high dimensions. It is typically carried out through posterior sampling over the model parameters, which makes it computationally expensive. To overcome this limitation, we directly incorporate uncertainty over the value (Q) function. Further, we only introduce randomness in the last layer (i.e. the output layer) of the DQN and use independent Gaussian priors on the weights. This allows us to efficiently carry out Thompson sampling through Gaussian sampling and Bayesian Linear Regression (BLR), which has fast closed-form updates. The rest of the layers of the Q network are trained through back propagation, as in a standard DQN. We apply our method to a wide range of Atari games in Arcade Learning Environments and compare BDQN to a powerful baseline: the double deep Q-network (DDQN). Since BDQN carries out more efficient exploration, it is able to reach higher rewards substantially faster: in less than 5M\u00b11M samples for almost half of the games to reach DDQN scores while a typical run of DDQN is 50-200M. We also establish theoretical guarantees for the special case when the feature representation is fixed and not learnt. We show that the Bayesian regret is bounded by O\udbff\udc12(d \\sqrt(N)) after N time steps for a d-dimensional feature map, and this bound is shown to be tight up-to logarithmic factors. To the best of our knowledge, this is the first Bayesian theoretical guarantee for Markov Decision Processes (MDP) beyond the tabula rasa setting.",
+            "keywords": "Deep RL, Exploration Exploitation, DQN, Bayesian Regret, Thompson Sampling",
+            "tl;dr": "Using Bayesian regression for the last layer of DQN, and do Thompson Sampling for exploration. With Bayesian Regret bound"
+      },
+      {
+            "data_id": "B1e8CsRctX",
+            "paper_title": "Generative Ensembles for Robust Anomaly Detection",
+            "forum_link": "https://openreview.net/forum?id=B1e8CsRctX",
+            "pdf_link": "https://openreview.net/pdf?id=B1e8CsRctX",
+            "authors": [
+                  "Hyunsun Choi",
+                  "Eric Jang"
+            ],
+            "abstract": "Deep generative models are capable of learning probability distributions over large, high-dimensional datasets such as images, video and natural language. Generative models trained on samples from p(x) ought to assign low likelihoods to out-of-distribution (OoD) samples from q(x), making them suitable for anomaly detection applications. We show that in practice, likelihood models are themselves susceptible to OoD errors, and even assign large likelihoods to images from other natural datasets. To mitigate these issues, we propose Generative Ensembles, a model-independent technique for OoD detection that combines density-based anomaly detection with uncertainty estimation. Our method outperforms ODIN and VIB baselines on image datasets, and achieves comparable performance to a classification model on the Kaggle Credit Fraud dataset.",
+            "keywords": "Anomaly Detection, Uncertainty, Out-of-Distribution, Generative Models",
+            "tl;dr": "We use generative models to perform out-of-distribution detection, and improve their robustness with uncertainty estimation."
+      },
+      {
+            "data_id": "B1e9W3AqFX",
+            "paper_title": "Multi-task Learning with Gradient Communication",
+            "forum_link": "https://openreview.net/forum?id=B1e9W3AqFX",
+            "pdf_link": "https://openreview.net/pdf?id=B1e9W3AqFX",
+            "authors": [
+                  "Pengfei Liu",
+                  "Xuanjing Huang"
+            ],
+            "abstract": "In this paper, we describe a general framework to systematically analyze current neural models for multi-task learning, in which we find that existing models expect to disentangle features into different spaces while features learned in practice are still entangled in shared space,  leaving potential hazards for other training or unseen tasks. We propose to alleviate this problem by incorporating a new inductive bias into the process of multi-task learning, that different tasks can communicate with each other not only by passing hidden variables but gradients explicitly. Experimentally, we evaluate proposed methods on three groups of tasks and two types of settings (\\textsc{in-task} and \\textsc{out-of-task}). Quantitative and qualitative results show their effectiveness.",
+            "keywords": "Pretend to share, Gradient Communication",
+            "tl;dr": "We introduce an inductive bias for multi-task learning, allowing different tasks to communicate by gradient passing."
+      },
+      {
+            "data_id": "B1e9csRcFm",
+            "paper_title": "The Importance of Norm Regularization in Linear Graph Embedding: Theoretical Analysis and Empirical Demonstration",
+            "forum_link": "https://openreview.net/forum?id=B1e9csRcFm",
+            "pdf_link": "https://openreview.net/pdf?id=B1e9csRcFm",
+            "authors": [
+                  "Yihan Gao",
+                  "Chao Zhang",
+                  "Jian Peng",
+                  "Aditya Parameswaran"
+            ],
+            "abstract": "Learning distributed representations for nodes in graphs is a crucial primitive in network analysis with a wide spectrum of applications. Linear graph embedding methods learn such representations by optimizing the likelihood of both positive and negative edges while constraining the dimension of the embedding vectors. We argue that the generalization performance of these methods is not due to the dimensionality constraint as commonly believed, but rather the small norm of embedding vectors. Both theoretical and empirical evidence are provided to support this argument: (a) we prove that the generalization error of these methods can be bounded by limiting the norm of vectors, regardless of the embedding dimension; (b) we show that the generalization performance of linear graph embedding methods is correlated with the norm of embedding vectors, which is small due to the early stopping of SGD and the vanishing gradients. We performed extensive experiments to validate our analysis and showcased the importance of proper norm regularization in practice.",
+            "keywords": "Graph Embedding, Generalization Analysis, Matrix Factorization",
+            "tl;dr": "We argue that the generalization of linear graph embedding is not due to the dimensionality constraint but rather the small norm of embedding vectors."
+      },
+      {
+            "data_id": "B1eCCoR5tm",
+            "paper_title": "Pseudosaccades: A simple ensemble scheme for improving classification performance of deep nets",
+            "forum_link": "https://openreview.net/forum?id=B1eCCoR5tm",
+            "pdf_link": "https://openreview.net/pdf?id=B1eCCoR5tm",
+            "authors": [
+                  "Jin Sean Lim",
+                  "Robert John Durrant"
+            ],
+            "abstract": "We describe a simple ensemble approach that, unlike conventional ensembles,\n        uses multiple random data sketches (\u2018pseudosaccades\u2019) rather than multiple classifiers\n        to improve classification performance. Using this simple, but novel, approach\n        we obtain statistically significant improvements in classification performance on\n        AlexNet, GoogLeNet, ResNet-50 and ResNet-152 baselines on Imagenet data \u2013\n        e.g. of the order of 0.3% to 0.6% in Top-1 accuracy and similar improvements in\n        Top-k accuracy \u2013 essentially nearly for free.",
+            "keywords": "Ensemble classification, random subspace, data sketching",
+            "tl;dr": "Inspired by saccades we describe a simple, cheap, effective way to improve deep net performance on an image labelling task."
+      },
+      {
+            "data_id": "B1eEKi0qYQ",
+            "paper_title": "Interactive Parallel Exploration for Reinforcement Learning in Continuous Action Spaces",
+            "forum_link": "https://openreview.net/forum?id=B1eEKi0qYQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1eEKi0qYQ",
+            "authors": [
+                  "Whiyoung Jung",
+                  "Giseung Park",
+                  "Youngchul Sung"
+            ],
+            "abstract": "In this paper, a new interactive parallel learning scheme is proposed to enhance the performance of off-policy continuous-action reinforcement learning.  In the proposed interactive parallel learning scheme, multiple identical learners with their own value-functions and policies share a common experience replay buffer, and search a good policy in collaboration with the guidance of the best policy information. The information of the best policy  is fused in a soft manner by constructing an augmented loss function for policy update to enlarge the overall search space by the multiple learners. The guidance by the previous best policy and the enlarged search space by the proposed interactive parallel learning scheme enable faster and better policy search in the policy parameter space. Working algorithms are constructed by  applying the proposed interactive parallel learning scheme to several off-policy reinforcement learning algorithms such as  the twin delayed deep deterministic (TD3) policy gradient algorithm and the soft actor-critic (SAC) algorithm, and numerical results show that the constructed IPE-enhanced algorithms outperform most of the current state-of-the-art reinforcement learning algorithms for continuous action control.",
+            "keywords": "reinforcement learning, continuous action space RL"
+      },
+      {
+            "data_id": "B1eKk2CcKm",
+            "paper_title": "Towards the Latent Transcriptome",
+            "forum_link": "https://openreview.net/forum?id=B1eKk2CcKm",
+            "pdf_link": "https://openreview.net/pdf?id=B1eKk2CcKm",
+            "authors": [
+                  "Assya Trofimov",
+                  "Francis Dutil",
+                  "Claude Perreault",
+                  "Sebastien Lemieux",
+                  "Yoshua Bengio",
+                  "Joseph Paul Cohen"
+            ],
+            "abstract": "In this work we propose a method to compute continuous embeddings for kmers from raw RNA-seq data, in a reference-free fashion. We report that our model captures information of both DNA sequence similarity as well as DNA sequence abundance in the embedding latent space. We confirm the quality of these vectors by comparing them to known gene sub-structures and report that the latent space recovers exon information from raw RNA-Seq data from acute myeloid leukemia patients. Furthermore we show that this latent space allows the detection of genomic abnormalities such as translocations as well as patient-specific mutations, making this representation space both useful for visualization as well as analysis.",
+            "keywords": "representation learning, RNA-Seq, gene expression, bioinformatics, computational biology, transcriptomics, deep learning, genomics"
+      },
+      {
+            "data_id": "B1eO9oA5Km",
+            "paper_title": "A Guider Network for Multi-Dual Learning",
+            "forum_link": "https://openreview.net/forum?id=B1eO9oA5Km",
+            "pdf_link": "https://openreview.net/pdf?id=B1eO9oA5Km",
+            "authors": [
+                  "Wenpeng Hu",
+                  "Zhengwei Tao",
+                  "Zhanxing Zhu",
+                  "Bing Liu",
+                  "Zhou Lin",
+                  "Jinwen Ma",
+                  "Dongyan Zhao",
+                  "Rui Yan"
+            ],
+            "abstract": "A large amount of parallel data is needed to train a strong neural machine translation (NMT) system. This is a major challenge for low-resource languages. Building on recent work on unsupervised and semi-supervised methods, we propose a multi-dual learning framework to improve the performance of NMT by using an almost infinite amount of available monolingual data and some parallel data of other languages. Since our framework involves multiple languages and components, we further propose a timing optimization method that uses reinforcement learning (RL) to optimally schedule the different components in order to avoid imbalanced training. Experimental results  demonstrate the validity of our model, and confirm its superiority to existing dual learning methods."
+      },
+      {
+            "data_id": "B1ePui0ctQ",
+            "paper_title": "SnapQuant: A Probabilistic and Nested Parameterization for Binary Networks",
+            "forum_link": "https://openreview.net/forum?id=B1ePui0ctQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1ePui0ctQ",
+            "authors": [
+                  "Kuan Wang",
+                  "Hao Zhao",
+                  "Anbang Yao",
+                  "Aojun Zhou",
+                  "Dawei Sun",
+                  "Yurong Chen"
+            ],
+            "abstract": "In this paper, we study the problem of training real binary weight networks (without layer-wise or filter-wise scaling factors) from scratch under the Bayesian deep learning perspective, meaning that the final objective is to approximate the posterior distribution of binary weights rather than reach a point estimation. The proposed method, named as SnapQuant, has two intriguing features: (1) The posterior distribution is parameterized as a policy network trained with a reinforcement learning scheme. During the training phase, we generate binary weights on-the-fly since what we actually maintain is the policy network, and all the binary weights are used in a burn-after-reading style. At the testing phase, we can sample binary weight instances for a given recognition architecture from the learnt policy network. (2) The policy network, which has a nested parameter structure consisting of layer-wise, filter-wise and kernel-wise parameter sharing designs, is applicable to any neural network architecture. Such a nested parameterization explicitly and hierarchically models the joint posterior distribution of binary weights. The performance of SnapQuant is evaluated with several visual recognition tasks including ImageNet. The code will be made publicly available.",
+            "keywords": "Binary weight networks, neural network quantization, reinforcement learning",
+            "tl;dr": "We propose SnapQuant, a reinforcement learning method for training binary weight networks from scratch under the Bayesian deep learning perspective, which approximates the posterior distribution of binary weights instead of a single point estimation."
+      },
+      {
+            "data_id": "B1eSg3C9Ym",
+            "paper_title": "MEAN-FIELD ANALYSIS OF BATCH NORMALIZATION",
+            "forum_link": "https://openreview.net/forum?id=B1eSg3C9Ym",
+            "pdf_link": "https://openreview.net/pdf?id=B1eSg3C9Ym",
+            "authors": [
+                  "Mingwei Wei",
+                  "James Stokes",
+                  "David J Schwab"
+            ],
+            "abstract": "Batch Normalization (BatchNorm) is an extremely useful component of modern neural network architectures, enabling optimization using higher learning rates and achieving faster convergence. In this paper, we use mean-field theory to analytically quantify the impact of BatchNorm on the geometry of the loss landscape for multi-layer networks consisting of fully-connected and convolutional layers. We show that it has a flattening effect on the loss landscape, as quantified by the maximum eigenvalue of the Fisher Information Matrix. These findings are then used to justify the use of larger learning rates for networks that use BatchNorm, and we provide quantitative characterization of the maximal allowable learning rate to ensure convergence. Experiments support our theoretically predicted maximum learning rate, and furthermore suggest that networks with smaller values of the BatchNorm parameter achieve lower loss after the same number of epochs of training.",
+            "keywords": "neural networks, optimization, batch normalization, mean field theory, Fisher information"
+      },
+      {
+            "data_id": "B1eXbn05t7",
+            "paper_title": "Open-Ended Content-Style Recombination Via Leakage Filtering",
+            "forum_link": "https://openreview.net/forum?id=B1eXbn05t7",
+            "pdf_link": "https://openreview.net/pdf?id=B1eXbn05t7",
+            "authors": [
+                  "Karl Ridgeway",
+                  "Michael C. Mozer"
+            ],
+            "abstract": "We consider visual domains in which a class label specifies the content of an image, and class-irrelevant properties that differentiate instances constitute the style.  We present a domain-independent method that permits the open-ended recombination of style of one image with the content of another. Open ended simply means that the method generalizes to style and content not present in the training data. The method starts by constructing a content embedding using an existing deep metric-learning technique. This trained content encoder is incorporated into a variational autoencoder (VAE), paired with a to-be-trained style encoder. The VAE reconstruction loss alone is inadequate to ensure a decomposition of the latent representation into style and content. Our method thus includes an auxiliary loss, leakage filtering, which ensures that no style information remaining in the content representation is used for reconstruction and vice versa. We synthesize novel images by decoding the style representation obtained from one image with the content representation from another. Using this method for data-set augmentation, we obtain state-of-the-art performance on few-shot learning tasks."
+      },
+      {
+            "data_id": "B1eZCjA9KX",
+            "paper_title": "IncSQL: Training Incremental Text-to-SQL Parsers with Non-Deterministic Oracles",
+            "forum_link": "https://openreview.net/forum?id=B1eZCjA9KX",
+            "pdf_link": "https://openreview.net/pdf?id=B1eZCjA9KX",
+            "authors": [
+                  "Tianze Shi",
+                  "Kedar Tatwawadi",
+                  "Kaushik Chakrabarti",
+                  "Yi Mao",
+                  "Oleksandr Polozov",
+                  "Weizhu Chen"
+            ],
+            "abstract": "We present a sequence-to-action parsing approach for the natural language to SQL task that incrementally fills the slots of a SQL query with feasible actions from a pre-defined inventory. To account for the fact that typically there are multiple correct SQL queries with the same or very similar semantics, we draw inspiration from syntactic parsing techniques and propose to train our sequence-to-action models with non-deterministic oracles. We evaluate our models on the WikiSQL dataset and achieve an execution accuracy of 83.7% on the test set, a 2.1% absolute improvement over the models trained with traditional static oracles assuming a single correct target SQL query. When further combined with the execution-guided decoding strategy, our model sets a new state-of-the-art performance at an execution accuracy of 87.1%.",
+            "keywords": "semantic parsing, non-deterministic oracles, natural language to SQL, incremental parsing, sequence prediction",
+            "tl;dr": "We design incremental sequence-to-action parsers for text-to-SQL task and achieve SOTA results. We further improve by using non-deterministic oracles to allow multiple correct action sequences."
+      },
+      {
+            "data_id": "B1eZRiC9YX",
+            "paper_title": "Sufficient Conditions for Robustness to Adversarial Examples: a Theoretical and Empirical Study with Bayesian Neural Networks",
+            "forum_link": "https://openreview.net/forum?id=B1eZRiC9YX",
+            "pdf_link": "https://openreview.net/pdf?id=B1eZRiC9YX",
+            "authors": [
+                  "Yarin Gal",
+                  "Lewis Smith"
+            ],
+            "abstract": "We prove, under two sufficient conditions, that idealised models can have no adversarial examples. We discuss which idealised models satisfy our conditions, and show that idealised Bayesian neural networks (BNNs) satisfy these. We continue by studying near-idealised BNNs using HMC inference, demonstrating the theoretical ideas in practice. We experiment with HMC on synthetic data derived from MNIST for which we know the ground-truth image density, showing that near-perfect epistemic uncertainty correlates to density under image manifold, and that adversarial images lie off the manifold in our setting. This suggests why MC dropout, which can be seen as performing approximate inference, has been observed to be an effective defence against adversarial examples in practice; We highlight failure-cases of non-idealised BNNs relying on dropout, suggesting a new attack for dropout models and a new defence as well. Lastly, we demonstrate the defence on a cats-vs-dogs image classification task with a VGG13 variant.",
+            "keywords": "Bayesian deep learning, Bayesian neural networks, adversarial examples",
+            "tl;dr": "We prove that idealised Bayesian neural networks can have no adversarial examples, and give empirical evidence with real-world BNNs."
+      },
+      {
+            "data_id": "B1edvs05Y7",
+            "paper_title": "Sparse Binary Compression: Towards Distributed Deep Learning with minimal Communication",
+            "forum_link": "https://openreview.net/forum?id=B1edvs05Y7",
+            "pdf_link": "https://openreview.net/pdf?id=B1edvs05Y7",
+            "authors": [
+                  "Felix Sattler",
+                  "Simon Wiedemann",
+                  "Klaus-Robert M\u00fcller",
+                  "Wojciech Samek"
+            ],
+            "abstract": "Currently, progressively larger deep neural networks are trained on ever growing data corpora. In result, distributed training schemes are becoming increasingly relevant. A major issue in distributed training is the limited communication bandwidth between contributing nodes or prohibitive communication cost in general. \n        %These challenges become even more pressing, as the number of computation nodes increases. \n        To mitigate this problem we propose Sparse Binary Compression (SBC), a compression framework that allows for a drastic reduction of communication cost for distributed training. SBC combines existing techniques of communication delay and gradient sparsification with a novel binarization method and optimal weight update encoding to push compression gains to new limits. By doing so, our method also allows us to smoothly trade-off gradient sparsity and temporal sparsity to adapt to the requirements of the learning task. \n        %We use tools from information theory to reason why SBC can achieve the striking compression rates observed in the experiments.\n        Our experiments show, that SBC can reduce the upstream communication on a variety of convolutional and recurrent neural network architectures by more than four orders of magnitude without significantly harming the convergence speed in terms of forward-backward passes. For instance, we can train ResNet50 on ImageNet in the same number of iterations to the baseline accuracy, using <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"4\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-cD7\"></mjx-c></mjx-mo><mjx-mn class=\"mjx-n\"><mjx-c class=\"mjx-c33\"></mjx-c><mjx-c class=\"mjx-c35\"></mjx-c><mjx-c class=\"mjx-c33\"></mjx-c><mjx-c class=\"mjx-c31\"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mo>\u00d7</mo><mn>3531</mn></math></mjx-assistive-mml></mjx-container> less bits or train it to a <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"5\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mn class=\"mjx-n\"><mjx-c class=\"mjx-c31\"></mjx-c></mjx-mn><mjx-mi class=\"mjx-n\"><mjx-c class=\"mjx-c25\"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mn>1</mn><mi mathvariant=\"normal\">%</mi></math></mjx-assistive-mml></mjx-container> lower accuracy using <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"6\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-cD7\"></mjx-c></mjx-mo><mjx-mn class=\"mjx-n\"><mjx-c class=\"mjx-c33\"></mjx-c><mjx-c class=\"mjx-c37\"></mjx-c><mjx-c class=\"mjx-c32\"></mjx-c><mjx-c class=\"mjx-c30\"></mjx-c><mjx-c class=\"mjx-c38\"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mo>\u00d7</mo><mn>37208</mn></math></mjx-assistive-mml></mjx-container> less bits. In the latter case, the total upstream communication required is cut from 125 terabytes to 3.35 gigabytes for every participating client. Our method also achieves state-of-the-art compression rates in a Federated Learning setting with 400 clients."
+      },
+      {
+            "data_id": "B1enCo0cK7",
+            "paper_title": "One Bit Matters: Understanding Adversarial Examples as the Abuse of Redundancy",
+            "forum_link": "https://openreview.net/forum?id=B1enCo0cK7",
+            "pdf_link": "https://openreview.net/pdf?id=B1enCo0cK7",
+            "authors": [
+                  "Jingkang Wang",
+                  "Ruoxi Jia",
+                  "Gerald Friedland",
+                  "Bo Li",
+                  "Costas Spanos"
+            ],
+            "abstract": "Adversarial examples have somewhat disrupted the enormous success of machine learning (ML) and are causing concern with regards to its trustworthiness: A small perturbation of an input results in an arbitrary failure of an otherwise seemingly well-trained ML system. While studies are being conducted to discover the intrinsic properties of adversarial examples, such as their transferability and universality, there is insufficient theoretic analysis to help understand the phenomenon in a way that can influence the design process of ML experiments. In this paper, we deduce an information-theoretic model which explains adversarial attacks universally as the abuse of feature redundancies in ML algorithms. We prove that feature redundancy is a necessary condition for the existence of adversarial examples. Our model helps to explain the major questions raised in many anecdotal studies on adversarial examples. Our theory is backed up by empirical measurements of the information content of benign and adversarial examples on both image and text datasets. Our measurements show that typical adversarial examples introduce just enough redundancy to overflow the decision making of a machine learner trained on corresponding benign examples. We conclude with actionable recommendations to improve the robustness of machine learners against adversarial examples.",
+            "keywords": "adversarial examples, information theory, robust neural networks",
+            "tl;dr": "A new theoretical explanation for the existence of adversarial examples"
+      },
+      {
+            "data_id": "B1epooR5FX",
+            "paper_title": "Predicted Variables in Programming",
+            "forum_link": "https://openreview.net/forum?id=B1epooR5FX",
+            "pdf_link": "https://openreview.net/pdf?id=B1epooR5FX",
+            "authors": [
+                  "Victor Carbune",
+                  "Thierry Coppey",
+                  "Alexander Daryin",
+                  "Thomas Deselaers",
+                  "Nikhil Sarda",
+                  "Jay Yagnik"
+            ],
+            "abstract": "We present Predicted Variables, an approach to making machine learning (ML) a first class citizen in programming languages.\n        There is a growing divide in approaches to building systems: using human experts (e.g. programming) on the one hand, and using behavior learned from data (e.g. ML) on the other hand. PVars aim to make using ML in programming easier by hybridizing the two. We leverage the existing concept of variables and create a new type, a predicted variable. PVars are akin to native variables with one important distinction: PVars determine their value using ML when evaluated. We describe PVars and their interface, how they can be used in programming, and demonstrate the feasibility of our approach on three algorithmic problems: binary search, QuickSort, and caches.\n        We show experimentally that PVars are able to improve over the commonly used heuristics and lead to a better performance than the original algorithms.\n        As opposed to previous work applying ML to algorithmic problems, PVars have the advantage that they can be used within the existing frameworks and do not require the existing domain knowledge to be replaced. PVars allow for a seamless integration of ML into existing systems and algorithms.\n        Our PVars implementation currently relies on standard Reinforcement Learning (RL) methods. To learn faster, PVars use the heuristic function, which they are replacing, as an initial function. We show that PVars quickly pick up the behavior of the initial function and then improve performance beyond that without ever performing substantially worse -- allowing for a safe deployment in critical applications.",
+            "keywords": "predicted variables, machine learning, programming, computing systems, reinforcement learning",
+            "tl;dr": "We present Predicted Variables, an approach to making machine learning a first class citizen in programming languages."
+      },
+      {
+            "data_id": "B1ethsR9Ym",
+            "paper_title": "Look Ma, No GANs! Image Transformation with ModifAE",
+            "forum_link": "https://openreview.net/forum?id=B1ethsR9Ym",
+            "pdf_link": "https://openreview.net/pdf?id=B1ethsR9Ym",
+            "authors": [
+                  "Chad Atalla",
+                  "Bartholomew Tam"
+            ],
+            "abstract": "Existing methods of image to image translation require multiple steps in the training or modification process, and suffer from either an inability to generalize, or long training times. These methods also focus on binary trait modification, ignoring continuous traits. To address these problems, we propose ModifAE: a novel standalone neural network, trained exclusively on an autoencoding task, that implicitly learns to make continuous trait image modifications. As a standalone image modification network, ModifAE requires fewer parameters and less time to train than existing models. We empirically show that ModifAE produces significantly more convincing and more consistent continuous face trait modifications than the previous state-of-the-art model.",
+            "keywords": "Computer Vision, Deep Learning, Autoencoder, GAN, Image Modification, Social Traits, Social Psychology",
+            "tl;dr": "ModifAE is a standalone neural network, trained exclusively on an autoencoding task, that implicitly learns to make image modifications (without GANs)."
+      },
+      {
+            "data_id": "B1euhoAcKX",
+            "paper_title": "DppNet: Approximating Determinantal Point Processes with Deep Networks",
+            "forum_link": "https://openreview.net/forum?id=B1euhoAcKX",
+            "pdf_link": "https://openreview.net/pdf?id=B1euhoAcKX",
+            "authors": [
+                  "Zelda Mariet",
+                  "Jasper Snoek",
+                  "Yaniv Ovadia"
+            ],
+            "abstract": "Determinantal Point Processes (DPPs) provide an elegant and versatile way to sample sets of items that balance the point-wise quality with the set-wise diversity of selected items. For this reason, they have gained prominence in many machine learning applications that rely on subset selection. However, sampling from a DPP over a ground set of size N is a costly operation, requiring in general an O(N^3) preprocessing cost and an O(Nk^3) sampling cost for subsets of size k. We approach this problem by introducing DppNets: generative deep models that produce DPP-like samples for arbitrary ground sets.  We develop an inhibitive attention mechanism based on transformer networks that captures a notion of dissimilarity between feature vectors.  We show theoretically that such an approximation is sensible as it maintains the guarantees of inhibition or dissimilarity that makes DPP so powerful and unique.  Empirically, we demonstrate that samples from our model receive high likelihood under the more expensive DPP alternative.",
+            "keywords": "dpp, submodularity, determinant",
+            "tl;dr": "We approximate Determinantal Point Processes with neural nets; we justify our model theoretically and empirically."
+      },
+      {
+            "data_id": "B1excoAqKQ",
+            "paper_title": "What Would pi* Do?: Imitation Learning via Off-Policy Reinforcement Learning",
+            "forum_link": "https://openreview.net/forum?id=B1excoAqKQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1excoAqKQ",
+            "authors": [
+                  "Siddharth Reddy",
+                  "Anca D. Dragan",
+                  "Sergey Levine"
+            ],
+            "abstract": "Learning to imitate expert actions given demonstrations containing image observations is a difficult problem in robotic control. The key challenge is generalizing behavior to out-of-distribution states that differ from those in the demonstrations. State-of-the-art imitation learning algorithms perform well in environments with low-dimensional observations, but typically involve adversarial optimization procedures, which can be difficult to use with high-dimensional image observations. We propose a remarkably simple alternative based on off-policy soft Q-learning, which we call soft Q imitation learning (SQIL, pronounced \"skill\"), that rewards the agent for matching demonstrated actions in demonstrated states. The key idea is initially filling the agent's experience replay buffer with demonstrations, where rewards are set to a positive constant, and setting rewards to zero in all additional experiences. We derive SQIL from first principles as a method for performing approximate inference under the MaxCausalEnt model of expert behavior. The approximate inference objective trades off between a pure behavioral cloning loss and a regularization term that incorporates information about state transitions via the soft Bellman error. Our experiments show that SQIL matches the state of the art in low-dimensional environments, and significantly outperforms prior work in playing video games from high-dimensional images.",
+            "keywords": "imitation learning, reinforcement learning",
+            "tl;dr": "We propose a simple and effective imitation learning algorithm based on off-policy RL, which works well on image-based tasks and implicitly performs approximate inference of the expert policy."
+      },
+      {
+            "data_id": "B1fA3oActQ",
+            "paper_title": "GraphSeq2Seq: Graph-Sequence-to-Sequence for Neural Machine Translation",
+            "forum_link": "https://openreview.net/forum?id=B1fA3oActQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1fA3oActQ",
+            "authors": [
+                  "Guoshuai Zhao",
+                  "Jun Li",
+                  "Lu Wang",
+                  "Xueming Qian",
+                  "Yun Fu"
+            ],
+            "abstract": "Sequence-to-Sequence  (Seq2Seq)  neural  models  have  become  popular  for  text generation problems,  e.g.   neural machine translation (NMT) (Bahdanau et al.,2014;  Britz  et  al.,  2017),  text  summarization  (Nallapati  et  al.,  2017;  Wang  &amp;Ling, 2016), and image captioning (Venugopalan et al., 2015; Liu et al., 2017). Though sequential modeling has been shown to be effective, the dependency graph among words contains additional semantic information and thus can be utilized for sentence modeling. In this paper, we propose a Graph-Sequence-to-Sequence(GraphSeq2Seq) model to fuse the dependency graph among words into the traditional  Seq2Seq  framework.   For each sample,  the sub-graph  of each word is encoded to a graph representation, which is then utilized to sequential encoding. At last, a sequence decoder is leveraged for output generation. Since above model fuses different features by contacting them together to encode, we also propose a variant of our model that regards the graph representations as additional annotations in attention mechanism (Bahdanau et al., 2014) by separately encoding different features.  Experiments on several translation benchmarks show that our models can outperform existing state-of-the-art methods, demonstrating the effectiveness of the combination of Graph2Seq and Seq2Seq.",
+            "keywords": "Neural Machine Translation, Natural Language Generation, Graph Embedding, LSTM",
+            "tl;dr": "Graph-Sequence-to-Sequence for Neural Machine Translation"
+      },
+      {
+            "data_id": "B1fPYj0qt7",
+            "paper_title": "Riemannian Stochastic Gradient Descent for Tensor-Train Recurrent Neural Networks",
+            "forum_link": "https://openreview.net/forum?id=B1fPYj0qt7",
+            "pdf_link": "https://openreview.net/pdf?id=B1fPYj0qt7",
+            "authors": [
+                  "Jun Qi",
+                  "Chin-Hui Lee",
+                  "Javier Tejedor"
+            ],
+            "abstract": "The Tensor-Train factorization (TTF) is an efficient way to compress large weight matrices of fully-connected layers and recurrent layers in recurrent neural networks (RNNs). However, high Tensor-Train ranks for all the core tensors of parameters need to be element-wise fixed, which results in an unnecessary redundancy of model parameters. This work applies Riemannian stochastic gradient descent (RSGD) to train core tensors of parameters in the Riemannian Manifold before finding vectors of lower Tensor-Train ranks for parameters. The paper first presents the RSGD algorithm with a convergence analysis and then tests it on more advanced Tensor-Train RNNs such as bi-directional GRU/LSTM and Encoder-Decoder RNNs with a Tensor-Train attention model. The experiments on digit recognition and machine translation tasks suggest the effectiveness of the RSGD algorithm for Tensor-Train RNNs.",
+            "keywords": "Riemannian Stochastic Gradient Descent, Tensor-Train, Recurrent Neural Networks",
+            "tl;dr": "Applying the Riemannian SGD (RSGD) algorithm for training Tensor-Train RNNs to further reduce model parameters."
+      },
+      {
+            "data_id": "B1fbosCcYm",
+            "paper_title": "A Biologically Inspired Visual Working Memory for Deep Networks",
+            "forum_link": "https://openreview.net/forum?id=B1fbosCcYm",
+            "pdf_link": "https://openreview.net/pdf?id=B1fbosCcYm",
+            "authors": [
+                  "Ethan Harris",
+                  "Mahesan Niranjan",
+                  "Jonathon Hare"
+            ],
+            "abstract": "The ability to look multiple times through a series of pose-adjusted glimpses is fundamental to human vision. This critical faculty allows us to understand highly complex visual scenes. Short term memory plays an integral role in aggregating the information obtained from these glimpses and informing our interpretation of the scene. Computational models have attempted to address glimpsing and visual attention but have failed to incorporate the notion of memory. We introduce a novel, biologically inspired visual working memory architecture that we term the Hebb-Rosenblatt memory. We subsequently introduce a fully differentiable Short Term Attentive Working Memory model (STAWM) which uses transformational attention to learn a memory over each image it sees. The state of our Hebb-Rosenblatt memory is embedded in STAWM as the weights space of a layer. By projecting different queries through this layer we can obtain goal-oriented latent representations for tasks including classification and visual reconstruction. Our model obtains highly competitive classification performance on MNIST and CIFAR-10. As demonstrated through the CelebA dataset, to perform reconstruction the model learns to make a sequence of updates to a canvas which constitute a parts-based representation. Classification with the self supervised representation obtained from MNIST is shown to be in line with the state of the art models (none of which use a visual attention mechanism). Finally, we show that STAWM can be trained under the dual constraints of classification and reconstruction to provide an interpretable visual sketchpad which helps open the `black-box' of deep learning.",
+            "keywords": "memory, visual attention, image classification, image reconstruction, latent representations",
+            "tl;dr": "A biologically inspired working memory that can be integrated in recurrent visual attention models for state of the art performance"
+      },
+      {
+            "data_id": "B1fysiAqK7",
+            "paper_title": "Probabilistic Binary Neural Networks",
+            "forum_link": "https://openreview.net/forum?id=B1fysiAqK7",
+            "pdf_link": "https://openreview.net/pdf?id=B1fysiAqK7",
+            "authors": [
+                  "Jorn W.T. Peters",
+                  "Tim Genewein",
+                  "Max Welling"
+            ],
+            "abstract": "Low bit-width weights and activations are an effective way of combating the increasing need for both memory and compute power of Deep Neural Networks. In this work, we present a probabilistic training method for Neural Network with both binary weights and activations, called PBNet. By embracing stochasticity during training, we circumvent the need to approximate the gradient of functions for which the derivative is zero almost always, such as <mjx-container class=\"MathJax CtxtMenu_Attached_0\" jax=\"CHTML\" role=\"presentation\" tabindex=\"0\" ctxtmenu_counter=\"7\" style=\"font-size: 113.1%; position: relative;\"><mjx-math class=\"MJX-TEX\" aria-hidden=\"true\"><mjx-mtext class=\"mjx-n\"><mjx-c class=\"mjx-c73\"></mjx-c><mjx-c class=\"mjx-c69\"></mjx-c><mjx-c class=\"mjx-c67\"></mjx-c><mjx-c class=\"mjx-c6E\"></mjx-c></mjx-mtext><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-c28\"></mjx-c></mjx-mo><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-c22C5\"></mjx-c></mjx-mo><mjx-mo class=\"mjx-n\"><mjx-c class=\"mjx-c29\"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml role=\"presentation\" unselectable=\"on\" display=\"inline\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mtext>sign</mtext><mo stretchy=\"false\">(</mo><mo>\u22c5</mo><mo stretchy=\"false\">)</mo></math></mjx-assistive-mml></mjx-container>, while still obtaining a fully Binary Neural Network at test time. Moreover, it allows for anytime ensemble predictions for improved performance and uncertainty estimates by sampling from the weight distribution. Since all operations in a layer of the PBNet operate on random variables, we introduce stochastic versions of Batch Normalization and max pooling, which transfer well to a deterministic network at test time.  We evaluate two related training methods for the PBNet: one in which activation distributions are propagated throughout the network, and one in which binary activations are sampled in each layer. Our experiments indicate that sampling the binary activations is an important element for stochastic training of binary Neural Networks.",
+            "keywords": "binary neural Network, efficient deep learning, stochastic training, discrete neural network, efficient inference",
+            "tl;dr": "We introduce a stochastic training method for training Binary Neural Network with both binary weights and activations."
+      },
+      {
+            "data_id": "B1g-X3RqKm",
+            "paper_title": "A Proposed Hierarchy of Deep Learning Tasks",
+            "forum_link": "https://openreview.net/forum?id=B1g-X3RqKm",
+            "pdf_link": "https://openreview.net/pdf?id=B1g-X3RqKm",
+            "authors": [
+                  "Joel Hestness",
+                  "Sharan Narang",
+                  "Newsha Ardalani",
+                  "Heewoo Jun",
+                  "Hassan Kianinejad",
+                  "Md. Mostofa Ali Patwary",
+                  "Yang Yang",
+                  "Yanqi Zhou",
+                  "Gregory Diamos",
+                  "Kenneth Church"
+            ],
+            "abstract": "As the pace of deep learning innovation accelerates, it becomes increasingly important to organize the space of problems by relative difficultly.  Looking to other fields for inspiration, we see analogies to the Chomsky Hierarchy in computational linguistics and time and space complexity in theoretical computer science.\n        \n        As a complement to prior theoretical work on the data and computational requirements of learning, this paper presents an empirical approach. We introduce a methodology for measuring validation error scaling with data and model size and test tasks in natural language, vision, and speech domains. We find that power-law validation error scaling exists across a breadth of factors and that model size scales sublinearly with data size, suggesting that simple learning theoretic models offer insights into the scaling behavior of realistic deep learning settings, and providing a new perspective on how to organize the space of  problems. \n        \n        We measure the power-law exponent---the \"steepness\" of the learning curve---and propose using this metric to sort problems by degree of difficulty.  There is no data like more data, but some tasks are more effective at taking advantage of more data.  Those that are more effective are easier on the proposed scale. \n        \n        Using this approach, we can observe that studied tasks in speech and vision domains scale faster than those in the natural language domain, offering insight into the observation that progress in these areas has proceeded more rapidly than in natural language.",
+            "keywords": "Deep learning, scaling with data, computational complexity, learning curves, speech recognition, image recognition, machine translation, language modeling",
+            "tl;dr": "We use 50 GPU years of compute time to study how deep learning scales with more data, and propose a new way to organize the space of problems by difficulty."
+      },
+      {
+            "data_id": "B1g29oAqtm",
+            "paper_title": "Understanding the Asymptotic Performance of Model-Based RL Methods",
+            "forum_link": "https://openreview.net/forum?id=B1g29oAqtm",
+            "pdf_link": "https://openreview.net/pdf?id=B1g29oAqtm",
+            "authors": [
+                  "William Whitney",
+                  "Rob Fergus"
+            ],
+            "abstract": "In complex simulated environments, model-based reinforcement learning methods typically lag the asymptotic performance of model-free approaches. This paper uses two MuJoCo environments to understand this gap through a series of ablation experiments designed to separate the contributions of the dynamics model and planner. These reveal the importance of long planning horizons, beyond those typically used. A dynamics model that directly predicts distant states, based on current state and a long sequence of actions, is introduced. This avoids the need for many recursions during long-range planning, and thus is able to yield more accurate state estimates. These accurate predictions allow us to uncover the relationship between model accuracy and performance, and translate to higher task reward that matches or exceeds current state-of-the-art model-free approaches.",
+            "keywords": "model-based reinforcement learning, mbrl, reinforcement learning, predictive models, predictive learning, forward models, deep learning",
+            "tl;dr": "Long-term prediction accuracy limits the performance of model-based RL, and can be improved with a simple change to the form of the model."
+      },
+      {
+            "data_id": "B1g6XnCcKQ",
+            "paper_title": "Object-Contrastive Networks: Unsupervised Object Representations",
+            "forum_link": "https://openreview.net/forum?id=B1g6XnCcKQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1g6XnCcKQ",
+            "authors": [
+                  "Soeren Pirk",
+                  "Mohi Khansari",
+                  "Yunfei Bai",
+                  "Corey Lynch",
+                  "Pierre Sermanet"
+            ],
+            "abstract": "Discovering objects and their attributes is of great importance for autonomous agents to effectively operate in human environments. This task is particularly challenging due to the ubiquitousness of objects and all their nuances in perceptual and semantic detail. In this paper we present an unsupervised approach for learning disentangled representations of objects entirely from unlabeled monocular videos. These continuous representations are not biased by or limited by a discrete set of labels determined by human labelers. The proposed representation is trained with a metric learning loss, where objects with homogeneous features are pushed together, while those with heterogeneous features are pulled apart. We show these unsupervised embeddings allow to discover object attributes and can enable robots to self-supervise in previously unseen environments. We quantitatively evaluate performance on a large-scale synthetic dataset with 12k object models, as well as on a real dataset collected by a robot and show that our unsupervised object understanding generalizes to previously unseen objects. Specifically, we demonstrate the effectiveness of our approach on robotic manipulation tasks, such as pointing at and grasping of objects. An interesting and perhaps surprising finding in this approach is that given a limited set of objects, object correspondences will naturally emerge when using metric learning without requiring explicit positive pairs.",
+            "keywords": "self-supervised robotics, object understanding, object representations, metric learning, unsupervised vision",
+            "tl;dr": "An unsupervised approach for learning disentangled representations of objects entirely from unlabeled monocular videos."
+      },
+      {
+            "data_id": "B1gHjoRqYQ",
+            "paper_title": "An Efficient and Margin-Approaching Zero-Confidence Adversarial Attack",
+            "forum_link": "https://openreview.net/forum?id=B1gHjoRqYQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1gHjoRqYQ",
+            "authors": [
+                  "Yang Zhang",
+                  "Shiyu Chang",
+                  "Mo Yu",
+                  "Kaizhi Qian"
+            ],
+            "abstract": "There are two major paradigms of white-box adversarial attacks that attempt to impose input perturbations.  The first paradigm, called the fix-perturbation attack, crafts adversarial samples within a given perturbation level.  The second paradigm, called the zero-confidence attack, finds the smallest perturbation needed to cause misclassification, also known as the margin of an input feature.  While the former paradigm is well-resolved, the latter is not.  Existing zero-confidence attacks either introduce significant approximation errors, or are too time-consuming.  We therefore propose MarginAttack, a zero-confidence attack framework that is able to compute the margin with improved accuracy and efficiency.  Our experiments show that MarginAttack is able to compute a smaller margin than the state-of-the-art zero-confidence attacks, and matches the state-of-the-art fix-perturbation attacks.  In addition, it runs significantly faster than the Carlini-Wagner attack, currently the most accurate zero-confidence attack algorithm.",
+            "keywords": "adversarial attack, zero-confidence attack",
+            "tl;dr": "This paper introduces MarginAttack, a stronger and faster zero-confidence adversarial attack."
+      },
+      {
+            "data_id": "B1gIf305Ym",
+            "paper_title": "NSGA-Net: A Multi-Objective Genetic Algorithm for Neural Architecture Search",
+            "forum_link": "https://openreview.net/forum?id=B1gIf305Ym",
+            "pdf_link": "https://openreview.net/pdf?id=B1gIf305Ym",
+            "authors": [
+                  "Zhichao Lu",
+                  "Ian Whalen",
+                  "Vishnu Boddeti",
+                  "Yashesh Dhebar",
+                  "Kalyanmoy Deb",
+                  "Erik Goodman",
+                  "Wolfgang Banzhaf"
+            ],
+            "abstract": "This paper introduces NSGA-Net, an evolutionary approach for neural architecture search (NAS). NSGA-Net is designed with three goals in mind: (1) a NAS procedure for multiple, possibly conflicting, objectives, (2) efficient exploration and exploitation of the space of potential neural network architectures, and (3) output of a diverse set of network architectures spanning a trade-off frontier of the objectives in a single run. NSGA-Net is a population-based search algorithm that explores a space of potential neural network architectures in three steps, namely, a population initialization step that is based on prior-knowledge from hand-crafted architectures, an exploration step comprising crossover and mutation of architectures and finally an exploitation step that applies the entire history of evaluated neural architectures in the form of a Bayesian Network prior. Experimental results suggest that combining the objectives of minimizing both an error metric and computational complexity, as measured by FLOPS, allows NSGA-Net to find competitive neural architectures near the Pareto front of both objectives on two different tasks, object classification and object alignment. NSGA-Net obtains networks that achieve 3.72% (at 4.5 million FLOP) error on CIFAR-10 classification and 8.64% (at 26.6 million FLOP) error on the CMU-Car alignment task.",
+            "keywords": "neural architecture search, evolutionary algorithms",
+            "tl;dr": "An efficient multi-objective neural architecture search algorithm using NSGA-II"
+      },
+      {
+            "data_id": "B1gJOoRcYQ",
+            "paper_title": "S3TA: A Soft, Spatial, Sequential, Top-Down Attention Model",
+            "forum_link": "https://openreview.net/forum?id=B1gJOoRcYQ",
+            "pdf_link": "https://openreview.net/pdf?id=B1gJOoRcYQ",
+            "authors": [
+                  "Alex Mott",
+                  "Daniel Zoran",
+                  "Mike Chrzanowski",
+                  "Daan Wierstra",
+                  "Danilo J. Rezende"
+            ],
+            "abstract": "We present a soft, spatial, sequential, top-down attention model (S3TA). This model uses a soft attention mechanism to bottleneck its view of the input. A recurrent core is used to generate query vectors, which actively select information from the input by correlating the query with input- and space-dependent key maps at different spatial locations.\n        \n        We demonstrate the power and interpretabilty of this model under two settings. First, we build an agent which uses this attention model in RL environments and show that we can achieve performance competitive with state-of-the-art models while producing attention maps that elucidate some of the strategies used to solve the task. Second, we use this model in supervised learning tasks and show that it also achieves competitive performance and provides interpretable attention maps that show some of the underlying logic in the model's decision making.",
+            "keywords": "Attention, RL, Top-Down, Interpretability",
+            "tl;dr": "<a href=\"http://sites.google.com/view/s3ta\" target=\"_blank\" rel=\"nofollow noreferrer\">http://sites.google.com/view/s3ta</a>"
+      }
+]
