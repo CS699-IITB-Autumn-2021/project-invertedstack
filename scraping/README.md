@@ -9,7 +9,6 @@
     - os
     - glob
     - tqdm
-    - pprint
     - json
     - time
    
@@ -56,9 +55,15 @@ Contains code to scrape the comments from a forum of a particular paper. The cod
 The main code which imports Config.py, iclr_crawler.py and crawl_forum_comments.py and calls the appropriate functions.
 
 
-## Structure of json files ##
+## Structure of json files and folders ##
 
-### Year wise categories of ICLR conferences are scraped and saved in - iclr_year_categories.json for the years 2021, 2020, 2019 and 2018
+All the json files for different conferences in separate folders. For e.g., if the config file has 4 years - 2021,2020,2019 and 2018 - then 4 separate folders will get created - 
+with the name iclr_year. Inside the folder, json files containing extracted information for all the papers for a particular category will be stored. 
+
+The comments scraped from each paper discussions are stored in separate json files per paper. These files are stored in a separate folder for each category with the name paper-id.json
+
+### Year wise categories of ICLR conferences are scraped and saved in - iclr_year_categories.json for the years 2021, 2020, 2019 and 2018 ###
+    
 For instance the ICLR categories for the year 2021 in the file iclr_2021_categories.json - 
 
 {
@@ -73,7 +78,7 @@ For instance the ICLR categories for the year 2021 in the file iclr_2021_categor
 
 }
 
-### Json files are created for every ICLR conference per category 
+### Json files are created for every ICLR conference per category ###
 The structure of the values in the json files is as follows - 
 
 {
@@ -102,4 +107,18 @@ The structure of the values in the json files is as follows -
             
  }
 
-
+### Comments information for each paper is saved in a separate json file ###
+The structure of the json files for comments is as follows -
+```
+{
+        "id": id of the comment,
+        "content": {
+            "title": title of the comment,
+            "decision": Accept/Reject,
+            "comment": comment content
+        },
+        "date": timestamp when the comment was posted,
+        "signatures": author or group of authors who posted the comment,
+        "reply": [the same nested comment structure, if any replies are there]
+    },
+```
