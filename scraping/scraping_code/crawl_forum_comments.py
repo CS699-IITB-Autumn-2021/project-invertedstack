@@ -5,7 +5,7 @@
 This file is imported in the main.py file and functions are called
 for a particular forum_id and a given output path.
 
-Contains code to scrape the comments from a forum of a particular paper.
+This file contains code to scrape the comments from a forum of a particular paper.
 The code creates a json file per forum containing all forum comments
 and their replies in a proper nested structure.
 
