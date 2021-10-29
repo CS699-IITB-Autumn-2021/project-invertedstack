@@ -23,29 +23,37 @@ Minimalist OpenReview client with support for native markdown notes
 	- Supports reading lists -- currently reading, already read and wishlist
 
 ## Technology Stack
-- **Python**
-- **Beautiful Soup**
-- **Selenium**
+- **Python** - Related to CS699
+- **Beautiful Soup** - Related to CS699
+- **Selenium** - Related to CS699
 - Flask
-- **Shell Scripting**
-- **Android**
+- **Shell Scripting** - Related to CS699
+- **Android (Java)** - Related to CS699
 
 ## List of Deliverables
 - [x] Server - capable of scraping the data from OpenReview for a given conference and serving the data to the android app 
 - [x] Android app - with all the features stated above
 
-## Hardware/Software Requirements.
+We have delivered both the deliverables with all the promised features <sup>[1](#feature-completion)</sup>
 
-### Hardware Requirements.
+## Hardware/Software Requirements
+
+### Hardware Requirements
 - Atleast 100MB of free storage space.
 
-### Software Requirements.
+### Software Requirements
 - Android OS with minimum android version 6.0 (API level 23).
 - (optional) PDF reader for viewing the PDF of the paper.
 
-## How to operate?
+## How to operate ?
+
+Sections on "scraping" and "middleware" are relevant to server side whereas "android" is what end users will use
 
 ### Scraping Papers
+
+<details>
+	<summary><b>View Details</b></summary>
+	
 The following steps can be used to run the scraping code.
 
 #### Dependencies
@@ -186,9 +194,14 @@ The structure of the json files for comments is as follows -
     },
 ```
 
+</details>
 
-### Flask API's
-The following steps can be used to run the flask api's.
+### Flask APIs
+
+<details>
+	<summary><b>View Details</b></summary>
+	
+The following steps can be used to run the flask APIs.
 
 #### Dependencies
 
@@ -196,7 +209,7 @@ The following steps can be used to run the flask api's.
 - Libraries used:
 	- flask
 	- json
-	- flask_ngrok
+	- flask_ngrok (optional) -- you can also run the app normally and run ngrok independently for exposing to the entire world
 	- os
 
 #### How to run?
@@ -212,7 +225,7 @@ or
 - Use the localhost address or the ngrok address for the api calls.
 
 
-#### Sample API's
+#### Sample API Calls
 
 - For getting the parameters
 	- http://127.0.0.1:5000/get_parameters?category=oral_presentations&year=2021&conference=iclr
@@ -229,11 +242,18 @@ or
 
 Contains the flask api definitions which will act as the middleware to support the linking between the android and the scraped database.
 
+</details>
 
 ### Android App
-Users can do following tasks within the android app
 
-#### Downloading data for a conference category 
+<details>
+	<summary><b>View Details</b></summary>
+
+	
+Users can do following tasks within the android app
+	
+#### Downloading data for a conference category
+	
 - On the home screen users will see a list of cards with conference name, conference year and a particular category in that particular conference
 - Simply tapping on that category will fetch all the papers in that specific category from the server
 
@@ -281,14 +301,14 @@ Alternatively,
 - Go to the intended collection and click on the "delete" button (dustbin icon) on the right of it
 - Note that only user created collections can be deleted
 
+Additional information on how the app internally works can be referred from the documentation of the Java classes [here](docs/ReviewsX-JavaDoc/index.html)
+
 ## Primary stakeholders of the product
 - Research students.
 - Professors.
 - Anyone interested in reading research papers!
 
-**Regarding concerns about NOT having the search functionality across conferences** - This was brought up in the discussion during the final demo and we (authors of this project) felt that we did not explain this properly. The main reason behind not having this functionality was primarily because of our stakeholders. Intended users of this app already know a thing-or-two about the topic they're interested in. Mainly the stakeholders are often going to think like "Hey what are some spotlight papers at ICLR 2022 that I might be interested in ?". These questions will always be specific to a particular category of the conference because often when attending these big conferences, you want to make sure that you don't miss a talk or a poster. If the conference happened in previous years, it's still valuable to search in a particular category so that you can catch up on that particular talk or poster using archives. For these types of users, a general purpose, all-conference search serves "less" functionality because then the users will have to parse through more info.
-
-Therefore, there is technically no need to have this functionality on the home screen and hence we did not promise it in any of the presentations before. While we agree that this functionality could be useful for more general public, we decided to omit this from the demo since we did not promise it at all in any of our previous presentations. Moreover, implementing this functionality is a trivial task given the modularity of the app and middleware code. Even then, we wanted to focus more on delivering the promised requirements super well hence we focussed a LOT more on testing the promised requirements.
+</details>
 
 ## Team details and contribution.
 
@@ -310,3 +330,15 @@ Therefore, there is technically no need to have this functionality on the home s
 # Path to Code Documentation
 * [Middleware and Server](docs/Python-SphinxDoc/html/index.html)
 * [Android App](docs/ReviewsX-JavaDoc/index.html)
+
+# Footnotes
+
+<details>
+	<summary><b><a name="feature-completion">Regarding concerns about NOT having the search functionality across conferences</b></summary>
+
+This was brought up in the discussion during the final demo and we (authors of this project) felt that we did not explain this properly. We as authors NEVER promised cross conference search in any of the previous presentations (you can refer to the previous presentations as well). We only promised searching WITHIN a particular category
+		
+The main reason behind not having this (saerching "across" conference) functionality was primarily because of our stakeholders. Intended users of this app already know a thing-or-two about the topic they're interested in. Mainly the stakeholders are often going to think like "Hey what are some spotlight papers at ICLR 2022 that I might be interested in ?". These questions will always be specific to a particular category of the conference because often when attending these big conferences, you want to make sure that you don't miss a talk or a poster. If the conference happened in previous years, it's still valuable to search in a particular category so that you can catch up on that particular talk or poster using archives. For these types of users, a general purpose, all-conference search serves "less" functionality because then the users will have to parse through more info.
+
+Therefore, there is technically no need to have this functionality on the home screen and hence we did not promise it in any of the presentations before. While we agree that this functionality could be useful for a more general audience, we decided to omit this from the demo since we did not promise it at all in any of our previous presentations. Moreover, implementing this functionality is a trivial task given the modularity of the app and middleware code. Even then, we wanted to focus more on delivering the promised requirements super well hence we focussed a LOT more on testing the promised requirements.
+</details>
